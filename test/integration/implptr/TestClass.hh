@@ -20,15 +20,16 @@
 #include <ignition/utils/ImplPtr.hh>
 #include <ignition/utils/Export.hh>
 
+#include <string>
+
 // Forward declaration of implementation class
 class TestClassImpl;
-
 
 /// \class TestClass TestClass.hh
 /// \brief A simple test class utilizing an impl_ptr
 class IGNITION_UTILS_VISIBLE TestClass {
 
-  public: TestClass(const std::string &_testText);
+  public: explicit TestClass(const std::string &_testText);
 
   public: std::string GetTestText() const;
 
@@ -39,7 +40,7 @@ class IGNITION_UTILS_VISIBLE TestClass {
 /// \brief A simple test class utilizing a unique impl_ptr
 class IGNITION_UTILS_VISIBLE TestClassUnique {
 
-  public: TestClassUnique(const std::string &_testText);
+  public: explicit TestClassUnique(const std::string &_testText);
 
   public: std::string GetTestText() const;
 

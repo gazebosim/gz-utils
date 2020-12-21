@@ -17,6 +17,8 @@
 
 #include "TestClass.hh"
 
+#include <string>
+
 /// \class TestClassImpl
 /// \brief Implementation of the TestClass
 class TestClassImpl

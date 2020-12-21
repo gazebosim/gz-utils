@@ -25,9 +25,11 @@
 #ifndef IGNITION_UTILS_IMPLPTR_HH_
 #define IGNITION_UTILS_IMPLPTR_HH_
 
+#include <cassert>
+#include <functional>
 #include <memory>
 #include <type_traits>
-#include <cassert>
+#include <utility>
 
 namespace ignition
 {
@@ -79,6 +81,7 @@ protected:
   static_assert(
       !std::is_array<T>::value,
       "unique_impl_ptr specialization for arrays is not implemented");
+  // cppcheck-suppress unusedStructMember
   struct dummy_t_ {int dummy__;};
 
 public:
@@ -94,7 +97,7 @@ public:
   constexpr unique_impl_ptr() noexcept
   : ptr_(nullptr, deleter_type{}) {}
 
-  constexpr unique_impl_ptr(std::nullptr_t) noexcept
+  constexpr explicit unique_impl_ptr(std::nullptr_t) noexcept
   : unique_impl_ptr() {}
 
   template<class D>
@@ -106,19 +109,21 @@ public:
   : ptr_(std::move(p), std::forward<D>(d)) {}
 
   template<class U>
-  unique_impl_ptr(U *u,
+  explicit unique_impl_ptr(U *u,
            typename std::enable_if<
               std::is_convertible<U*, pointer>::value
                   && is_default_manageable::value,
               dummy_t_
            >::type = dummy_t_()) noexcept
-  : unique_impl_ptr(u, &details::default_delete<T>, &details::default_copy<T>) {}
+  : unique_impl_ptr(u,
+      &details::default_delete<T>,
+      &details::default_copy<T>) {}
 
   unique_impl_ptr(unique_impl_ptr&& r) noexcept = default;
 
 
   template<class U>
-  unique_impl_ptr(std::unique_ptr<U>&& u,
+  explicit unique_impl_ptr(std::unique_ptr<U>&& u,
            typename std::enable_if<
               std::is_convertible<U*, pointer>::value
                   && is_default_manageable::value,
@@ -127,7 +132,7 @@ public:
   : ptr_(u.release(), &details::default_delete<T>) {}
 
   template<class U, class D>
-  unique_impl_ptr(std::unique_ptr<U, D>&& u,
+  explicit unique_impl_ptr(std::unique_ptr<U, D>&& u,
            typename std::enable_if<
               std::is_convertible<U*, pointer>::value
                   && std::is_convertible<D, deleter_type>::value,
@@ -181,8 +186,11 @@ public:
 
   explicit operator bool() const noexcept { return static_cast<bool>(ptr_); }
 
-  typename std::remove_reference<deleter_type>::type& get_deleter() noexcept { return ptr_.get_deleter(); }
-  const typename std::remove_reference<deleter_type>::type& get_deleter() const noexcept { return ptr_.get_deleter(); }
+  typename std::remove_reference<deleter_type>::type&
+  get_deleter() noexcept { return ptr_.get_deleter(); }
+
+  const typename std::remove_reference<deleter_type>::type&
+  get_deleter() const noexcept { return ptr_.get_deleter(); }
 
 protected:
   unique_ptr_type ptr_;
@@ -197,19 +205,22 @@ inline void swap(unique_impl_ptr<T, D>& l, unique_impl_ptr<T, D>& r) noexcept
 
 
 template <class T1, class D1, class T2, class D2>
-inline bool operator==(const unique_impl_ptr<T1, D1>& l, const unique_impl_ptr<T2, D2>& r)
+inline bool operator==(const unique_impl_ptr<T1, D1>& l,
+                       const unique_impl_ptr<T2, D2>& r)
 {
   return l.get() == r.get();
 }
 
 template <class T1, class D1, class C1, class T2, class D2>
-inline bool operator!=(const unique_impl_ptr<T1, D1>& l, const unique_impl_ptr<T2, D2>& r)
+inline bool operator!=(const unique_impl_ptr<T1, D1>& l,
+                       const unique_impl_ptr<T2, D2>& r)
 {
   return !(l == r);
 }
 
 template <class T1, class D1, class T2, class D2>
-inline bool operator< (const unique_impl_ptr<T1, D1>& l, const unique_impl_ptr<T2, D2>& r)
+inline bool operator< (const unique_impl_ptr<T1, D1>& l,
+                       const unique_impl_ptr<T2, D2>& r)
 {
   using P1 = typename unique_impl_ptr<T1, D1>::pointer;
   using P2 = typename unique_impl_ptr<T2, D2>::pointer;
@@ -218,19 +229,22 @@ inline bool operator< (const unique_impl_ptr<T1, D1>& l, const unique_impl_ptr<T
 }
 
 template <class T1, class D1, class T2, class D2>
-inline bool operator> (const unique_impl_ptr<T1, D1>& l, const unique_impl_ptr<T2, D2>& r)
+inline bool operator> (const unique_impl_ptr<T1, D1>& l,
+                       const unique_impl_ptr<T2, D2>& r)
 {
   return r < l;
 }
 
 template <class T1, class D1, class T2, class D2>
-inline bool operator<=(const unique_impl_ptr<T1, D1>& l, const unique_impl_ptr<T2, D2>& r)
+inline bool operator<=(const unique_impl_ptr<T1, D1>& l,
+                       const unique_impl_ptr<T2, D2>& r)
 {
   return !(r < l);
 }
 
 template <class T1, class D1, class T2, class D2>
-inline bool operator>=(const unique_impl_ptr<T1, D1>& l, const unique_impl_ptr<T2, D2>& r)
+inline bool operator>=(const unique_impl_ptr<T1, D1>& l,
+                       const unique_impl_ptr<T2, D2>& r)
 {
   return !(l < r);
 }
@@ -313,12 +327,15 @@ inline bool operator>=(std::nullptr_t, const unique_impl_ptr<T, D>& p)
 template<class T, class... Args>
 inline unique_impl_ptr<T> make_unique_impl(Args&&... args)
 {
-  return unique_impl_ptr<T>(new T(std::forward<Args>(args)...), &details::default_delete<T>);
+  return unique_impl_ptr<T>(new T(std::forward<Args>(args)...),
+                            &details::default_delete<T>);
 }
 
 
 // Helpers to manage unique impl, stored in std::unique_ptr
-template<class T, class Deleter = details::default_deleter_t<T>, class Copier = details::default_copier_t<T>>
+template<class T,
+         class Deleter = details::default_deleter_t<T>,
+         class Copier = details::default_copier_t<T>>
 class impl_ptr : public unique_impl_ptr<T, Deleter>
 {
   using base_type = unique_impl_ptr<T, Deleter>;
@@ -332,12 +349,13 @@ public:
   using deleter_type = typename base_type::deleter_type;
   using unique_ptr_type = typename base_type::unique_ptr_type;
   using copier_type = typename std::decay<Copier>::type;
-  using is_default_manageable = details::is_default_manageable<T, deleter_type, copier_type>;
+  using is_default_manageable =
+    details::is_default_manageable<T, deleter_type, copier_type>;
 
   constexpr impl_ptr() noexcept
   : base_type(nullptr, deleter_type{}), copier_(copier_type{}) {}
 
-  constexpr impl_ptr(std::nullptr_t) noexcept
+  constexpr explicit impl_ptr(std::nullptr_t) noexcept
   : impl_ptr() {}
 
   template<class D, class C>
@@ -350,7 +368,7 @@ public:
   : base_type(std::move(p), std::forward<D>(d)), copier_(std::forward<C>(c)) {}
 
   template<class U>
-  impl_ptr(U *u,
+  explicit impl_ptr(U *u,
            typename std::enable_if<
               std::is_convertible<U*, pointer>::value
                   && is_default_manageable::value,
@@ -364,7 +382,7 @@ public:
   impl_ptr(impl_ptr&& r) noexcept = default;
 
   template<class U>
-  impl_ptr(std::unique_ptr<U>&& u,
+  explicit impl_ptr(std::unique_ptr<U>&& u,
            typename std::enable_if<
               std::is_convertible<U*, pointer>::value
                   && is_default_manageable::value,
@@ -451,8 +469,11 @@ public:
         copier_);
   }
 
-  const typename std::remove_reference<copier_type>::type& get_copier() const noexcept { return copier_; }
-  typename std::remove_reference<copier_type>::type& get_copier() noexcept { return copier_; }
+  const typename std::remove_reference<copier_type>::type&
+  get_copier() const noexcept { return copier_; }
+
+  typename std::remove_reference<copier_type>::type&
+  get_copier() noexcept { return copier_; }
 private:
   copier_type copier_;
 };
@@ -460,22 +481,24 @@ private:
 template<class T, class... Args>
 inline impl_ptr<T> make_impl(Args&&... args)
 {
-  return impl_ptr<T>(new T(std::forward<Args>(args)...), &details::default_delete<T>, &details::default_copy<T>);
+  return impl_ptr<T>(new T(std::forward<Args>(args)...),
+                     &details::default_delete<T>,
+                     &details::default_copy<T>);
 }
 
 template<class T, class D, class C>
-inline void swap(impl_ptr<T, D, C>& l,impl_ptr<T, D, C>& r) noexcept
+inline void swap(impl_ptr<T, D, C>& l, impl_ptr<T, D, C>& r) noexcept
 {
   l.swap(r);
 }
-} // namespace utils
-} // namespace ignition
+}  // namespace utils
+}  // namespace ignition
 
 namespace std {
 template <class T, class D>
 struct hash<ignition::utils::unique_impl_ptr<T, D>>
 {
-  using argument_type = ignition::utils::unique_impl_ptr<T, D> ;
+  using argument_type = ignition::utils::unique_impl_ptr<T, D>;
   using result_type = size_t;
 
   result_type operator()(const argument_type& p) const noexcept
@@ -487,7 +510,7 @@ struct hash<ignition::utils::unique_impl_ptr<T, D>>
 template <class T, class D, class C>
 struct hash<ignition::utils::impl_ptr<T, D, C>>
 {
-  using argument_type = ignition::utils::impl_ptr<T, D, C> ;
+  using argument_type = ignition::utils::impl_ptr<T, D, C>;
   using result_type = size_t;
 
   result_type operator()(const argument_type& p) const noexcept
@@ -495,6 +518,6 @@ struct hash<ignition::utils::impl_ptr<T, D, C>>
     return hash<typename argument_type::pointer>()(p.get());
   }
 };
-} // namespace std
+}  // namespace std
 
 #endif  // IGNITION_UTILS_IMPLPTR_HH_
