@@ -22,8 +22,6 @@
 using namespace ignition;
 using namespace ignition::implptr_test_classes;
 
-
-
 class ignition::implptr_test_classes::Implementation
 {
   public: int ivalue;

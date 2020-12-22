@@ -71,7 +71,7 @@ namespace ignition
     template <class T,
               class Deleter = void (*)(T*),
               class Operations = detail::CopyMoveDeleteOperations<T> >
-    class IGNITION_UTILS_VISIBLE ImplPtr
+    class ImplPtr
     {
       /// \brief Constructor
       /// \tparam U A type that is compatible with T, i.e. either T or a class
