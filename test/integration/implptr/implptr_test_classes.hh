@@ -31,59 +31,49 @@ namespace ignition
     class Implementation;
 
     /// \brief A PIMPL test class that can be copied.
-    class CopyableObject
+    class IGNITION_UTILS_VISIBLE CopyableObject
     {
       /// \brief Constructor
-      public: IGNITION_UTILS_VISIBLE
-              CopyableObject(int _ivalue = 0,
+      public: CopyableObject(int _ivalue = 0,
                              const std::string &_svalue = "");
 
       /// \brief Get the int value held by the pimpl
-      public: IGNITION_UTILS_VISIBLE
-              int GetInt() const;
+      public: int GetInt() const;
 
       /// \brief Set the int value held by the pimpl
-      public: IGNITION_UTILS_VISIBLE
-              void SetInt(const int _value);
+      public: void SetInt(const int _value);
 
       /// \brief Get the string value held by the pimpl
-      public: IGNITION_UTILS_VISIBLE
-              const std::string &GetString() const;
+      public: const std::string &GetString() const;
 
       /// \brief Set the string value held by the pimpl
-      public: IGNITION_UTILS_VISIBLE
-              void SetString(const std::string &_value);
+      public: void SetString(const std::string &_value);
 
       /// \brief Pointer to implementation
-      private: utils::ImplPtr<Implementation> dataPtr;
+      IGN_UTILS_IMPL_PTR_FWD(Implementation)
     };
 
     /// \brief A PIMPL test class that cannot be copied; it can only be moved.
-    class MovableObject
+    class IGNITION_UTILS_VISIBLE MovableObject
     {
       /// \brief Constructor
-      public: IGNITION_UTILS_VISIBLE
-              MovableObject(int _ivalue = 0,
-                             const std::string &_svalue = "");
+      public: MovableObject(int _ivalue = 0,
+                            const std::string &_svalue = "");
 
       /// \brief Get the int value held by the pimpl
-      public: IGNITION_UTILS_VISIBLE
-              int GetInt() const;
+      public: int GetInt() const;
 
       /// \brief Set the int value held by the pimpl
-      public: IGNITION_UTILS_VISIBLE
-              void SetInt(const int _value);
+      public: void SetInt(const int _value);
 
       /// \brief Get the string value held by the pimpl
-      public: IGNITION_UTILS_VISIBLE
-              const std::string &GetString() const;
+      public: const std::string &GetString() const;
 
       /// \brief Set the string value held by the pimpl
-      public: IGNITION_UTILS_VISIBLE
-              void SetString(const std::string &_value);
+      public: void SetString(const std::string &_value);
 
       /// \brief Pointer to implementation
-      private: utils::UniqueImplPtr<Implementation> dataPtr;
+      IGN_UTILS_UNIQUE_IMPL_PTR_FWD(Implementation)
     };
   }  // namespace implptr_test_classes
 }  // namespace ignition

@@ -139,9 +139,7 @@ namespace ignition
       private: ImplPtr Clone() const;
 
       /// \brief Pointer to the contained object
-      IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING
       private: std::unique_ptr<T, Deleter> ptr;
-      IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
 
       /// \brief Structure to hold the copy operators
       private: Operations ops;
@@ -217,6 +215,28 @@ namespace ignition
     UniqueImplPtr<T> MakeUniqueImpl(Args &&...args);
   }  // namespace utils
 }  // namespace ignition
+
+#define IGN_UTILS_IMPL_PTR \
+  public: class Implementation; \
+  IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING \
+  private: ::ignition::utils::ImplPtr<Implementation> dataPtr; \
+  IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
+
+#define IGN_UTILS_UNIQUE_IMPL_PTR \
+  public: class Implementation; \
+  IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING \
+  private: ::ignition::utils::UniqueImplPtr<Implementation> dataPtr; \
+  IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
+
+#define IGN_UTILS_IMPL_PTR_FWD(ImplementationClass) \
+  IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING \
+  private: ::ignition::utils::ImplPtr<ImplementationClass> dataPtr; \
+  IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
+
+#define IGN_UTILS_UNIQUE_IMPL_PTR_FWD(ImplementationClass) \
+  IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING \
+  private: ::ignition::utils::UniqueImplPtr<ImplementationClass> dataPtr; \
+  IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
 
 #include <ignition/utils/detail/ImplPtr.hh>
 
