@@ -31,46 +31,56 @@ namespace ignition
     class Implementation;
 
     /// \brief A PIMPL test class that can be copied.
-    class IGNITION_UTILS_VISIBLE CopyableObject
+    class CopyableObject
     {
       /// \brief Constructor
-      public: CopyableObject(int _ivalue = 0,
+      public: IGNITION_UTILS_VISIBLE
+              CopyableObject(int _ivalue = 0,
                              const std::string &_svalue = "");
 
       /// \brief Get the int value held by the pimpl
-      public: int GetInt() const;
+      public: IGNITION_UTILS_VISIBLE
+              int GetInt() const;
 
       /// \brief Set the int value held by the pimpl
-      public: void SetInt(const int _value);
+      public: IGNITION_UTILS_VISIBLE
+              void SetInt(const int _value);
 
       /// \brief Get the string value held by the pimpl
-      public: const std::string &GetString() const;
+      public: IGNITION_UTILS_VISIBLE
+              const std::string &GetString() const;
 
       /// \brief Set the string value held by the pimpl
-      public: void SetString(const std::string &_value);
+      public: IGNITION_UTILS_VISIBLE
+              void SetString(const std::string &_value);
 
       /// \brief Pointer to implementation
       private: utils::ImplPtr<Implementation> dataPtr;
     };
 
     /// \brief A PIMPL test class that cannot be copied; it can only be moved.
-    class IGNITION_UTILS_VISIBLE MovableObject
+    class MovableObject
     {
       /// \brief Constructor
-      public: MovableObject(int _ivalue = 0,
+      public: IGNITION_UTILS_VISIBLE
+              MovableObject(int _ivalue = 0,
                              const std::string &_svalue = "");
 
       /// \brief Get the int value held by the pimpl
-      public: int GetInt() const;
+      public: IGNITION_UTILS_VISIBLE
+              int GetInt() const;
 
       /// \brief Set the int value held by the pimpl
-      public: void SetInt(const int _value);
+      public: IGNITION_UTILS_VISIBLE
+              void SetInt(const int _value);
 
       /// \brief Get the string value held by the pimpl
-      public: const std::string &GetString() const;
+      public: IGNITION_UTILS_VISIBLE
+              const std::string &GetString() const;
 
       /// \brief Set the string value held by the pimpl
-      public: void SetString(const std::string &_value);
+      public: IGNITION_UTILS_VISIBLE
+              void SetString(const std::string &_value);
 
       /// \brief Pointer to implementation
       private: utils::UniqueImplPtr<Implementation> dataPtr;
