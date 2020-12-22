@@ -15,14 +15,14 @@
  *
  */
 
-#ifndef IGNITION_UTILS_DETAIL_DEFAULTOPS_HH_
-#define IGNITION_UTILS_DETAIL_DEFAULTOPS_HH_
+#ifndef IGNITION_UTILS__DETAIL__DEFAULTOPS_HH_
+#define IGNITION_UTILS__DETAIL__DEFAULTOPS_HH_
 
 #include <type_traits>
 
 namespace ignition
 {
-  namespace utilities
+  namespace utils
   {
     namespace detail
     {
@@ -77,8 +77,8 @@ namespace ignition
         public: CopyAssign assign;
       };
     }  // namespace detail
-  }  // namespace utilities
+  }  // namespace utils
 }  // namespace ignition
 
-#endif  // IGNITION_UTILS_DETAIL_DEFAULTOPS_HH_
+#endif  // IGNITION_UTILS__DETAIL__DEFAULTOPS_HH_
 

@@ -15,17 +15,19 @@
  *
  */
 
-#ifndef IGNITION_UTILS_IMPLPTR_HH_
-#define IGNITION_UTILS_IMPLPTR_HH_
+#ifndef IGNITION_UTILS__IMPLPTR_HH_
+#define IGNITION_UTILS__IMPLPTR_HH_
 
 #include <memory>
 #include <utility>
 
 #include <ignition/utils/detail/DefaultOps.hh>
+#include <ignition/utils/SuppressWarning.hh>
+#include <ignition/utils/Export.hh>
 
 namespace ignition
 {
-  namespace utilities
+  namespace utils
   {
     //////////////////////////////////////////////////
     /// \brief The ImplPtr class provides a convenient away to achieve the
@@ -69,7 +71,7 @@ namespace ignition
     template <class T,
               class Deleter = void (*)(T*),
               class Operations = detail::CopyMoveDeleteOperations<T> >
-    class ImplPtr
+    class IGNITION_UTILS_VISIBLE ImplPtr
     {
       /// \brief Constructor
       /// \tparam U A type that is compatible with T, i.e. either T or a class
@@ -137,7 +139,9 @@ namespace ignition
       private: ImplPtr Clone() const;
 
       /// \brief Pointer to the contained object
+      IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING
       private: std::unique_ptr<T, Deleter> ptr;
+      IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
 
       /// \brief Structure to hold the copy operators
       private: Operations ops;
@@ -152,7 +156,7 @@ namespace ignition
     ///
     /// \code
     /// MyClass::MyClass(Arg1 arg1, Arg2 arg2, Arg3 arg3)
-    ///   : dataPtr(utilities::MakeImpl<Implementation>(arg1, arg2, arg3))
+    ///   : dataPtr(utils::MakeImpl<Implementation>(arg1, arg2, arg3))
     /// {
     ///   // Do nothing
     /// }
@@ -195,7 +199,7 @@ namespace ignition
     ///
     /// \code
     /// MyClass::MyClass(Arg1 arg1, Arg2 arg2, Arg3 arg3)
-    ///   : dataPtr(utilities::MakeUniqueImpl<Implementation>(arg1, arg2, arg3))
+    ///   : dataPtr(utils::MakeUniqueImpl<Implementation>(arg1, arg2, arg3))
     /// {
     ///   // Do nothing
     /// }
@@ -211,9 +215,9 @@ namespace ignition
     /// created object into it.
     template <class T, typename... Args>
     UniqueImplPtr<T> MakeUniqueImpl(Args &&...args);
-  }  // namespace utilities
+  }  // namespace utils
 }  // namespace ignition
 
 #include <ignition/utils/detail/ImplPtr.hh>
 
-#endif  // IGNITION_UTILS_IMPLPTR_HH_
+#endif  // IGNITION_UTILS__IMPLPTR_HH_

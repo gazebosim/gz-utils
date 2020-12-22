@@ -15,86 +15,80 @@
  *
 */
 
-#include "classes.hh"
+#include "implptr_test_classes.hh"
 
 #include <string>
 
 using namespace ignition;
-using namespace ignition::test::pimpl;
+using namespace ignition::implptr_test_classes;
 
-//////////////////////////////////////////////////
-class CopiableObject::Implementation
+
+
+class ignition::implptr_test_classes::Implementation
 {
   public: int ivalue;
   public: std::string svalue;
 };
 
 //////////////////////////////////////////////////
-CopiableObject::CopiableObject(const int _ivalue,
+CopyableObject::CopyableObject(const int _ivalue,
                                const std::string &_svalue)
-  : dataPtr(utilities::MakeImpl<Implementation>(_ivalue, _svalue))
+  : dataPtr(utils::MakeImpl<Implementation>(_ivalue, _svalue))
 {
   // Do nothing
 }
 
 //////////////////////////////////////////////////
-int CopiableObject::GetInt() const
+int CopyableObject::GetInt() const
 {
   return dataPtr->ivalue;
 }
 
 //////////////////////////////////////////////////
-void CopiableObject::SetInt(const int _value)
+void CopyableObject::SetInt(const int _value)
 {
   dataPtr->ivalue = _value;
 }
 
 //////////////////////////////////////////////////
-const std::string &CopiableObject::GetString() const
+const std::string &CopyableObject::GetString() const
 {
   return (*dataPtr).svalue;
 }
 
 //////////////////////////////////////////////////
-void CopiableObject::SetString(const std::string &_value)
+void CopyableObject::SetString(const std::string &_value)
 {
   (*dataPtr).svalue = _value;
 }
 
 //////////////////////////////////////////////////
-class MoveableObject::Implementation
-{
-  public: int ivalue;
-  public: std::string svalue;
-};
-
-//////////////////////////////////////////////////
-MoveableObject::MoveableObject(const int _ivalue, const std::string &_svalue)
-  : dataPtr(utilities::MakeUniqueImpl<Implementation>(_ivalue, _svalue))
+MovableObject::MovableObject(const int _ivalue, const std::string &_svalue)
+  : dataPtr(utils::MakeUniqueImpl<Implementation>(_ivalue, _svalue))
 {
   // Do nothing
 }
 
 //////////////////////////////////////////////////
-int MoveableObject::GetInt() const
+int MovableObject::GetInt() const
 {
   return dataPtr->ivalue;
 }
 
 //////////////////////////////////////////////////
-void MoveableObject::SetInt(const int _value)
+void MovableObject::SetInt(const int _value)
 {
   dataPtr->ivalue = _value;
 }
 
 //////////////////////////////////////////////////
-const std::string &MoveableObject::GetString() const
+const std::string &MovableObject::GetString() const
 {
   return (*dataPtr).svalue;
 }
 
 //////////////////////////////////////////////////
-void MoveableObject::SetString(const std::string &_value)
+void MovableObject::SetString(const std::string &_value)
 {
   (*dataPtr).svalue = _value;
 }

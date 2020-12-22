@@ -18,24 +18,24 @@
 #include <gtest/gtest.h>
 
 #include <ignition/utils/ImplPtr.hh>
-#include "classes.hh"
+#include "implptr_test_classes.hh"
 
-using namespace ignition::test::pimpl;
+using namespace ignition::implptr_test_classes;
 
 /////////////////////////////////////////////////
 TEST(ImplPtr, CopyConstruct)
 {
-  CopiableObject object(28, "golden_string");
+  CopyableObject object(28, "golden_string");
   EXPECT_EQ(28, object.GetInt());
   EXPECT_EQ("golden_string", object.GetString());
 
-  EXPECT_NE(object.GetInt(), CopiableObject().GetInt());
-  EXPECT_NE(object.GetString(), CopiableObject().GetString());
+  EXPECT_NE(object.GetInt(), CopyableObject().GetInt());
+  EXPECT_NE(object.GetString(), CopyableObject().GetString());
 
-  EXPECT_EQ(object.GetInt(), CopiableObject(object).GetInt());
-  EXPECT_EQ(object.GetString(), CopiableObject(object).GetString());
+  EXPECT_EQ(object.GetInt(), CopyableObject(object).GetInt());
+  EXPECT_EQ(object.GetString(), CopyableObject(object).GetString());
 
-  CopiableObject other(object);
+  CopyableObject other(object);
 
   EXPECT_EQ(object.GetInt(), other.GetInt());
   EXPECT_EQ(object.GetString(), other.GetString());
@@ -44,11 +44,11 @@ TEST(ImplPtr, CopyConstruct)
 /////////////////////////////////////////////////
 TEST(ImplPtr, CopyAssign)
 {
-  CopiableObject object{47, "some_object"};
+  CopyableObject object{47, "some_object"};
   EXPECT_EQ(47, object.GetInt());
   EXPECT_EQ("some_object", object.GetString());
 
-  CopiableObject other{};
+  CopyableObject other{};
 
   EXPECT_NE(object.GetInt(), other.GetInt());
   EXPECT_NE(object.GetString(), other.GetString());
@@ -61,12 +61,12 @@ TEST(ImplPtr, CopyAssign)
 /////////////////////////////////////////////////
 TEST(ImplPtr, MoveConstruct)
 {
-  CopiableObject object(64, "move this thing");
+  CopyableObject object(64, "move this thing");
   EXPECT_EQ(64, object.GetInt());
   EXPECT_EQ("move this thing", object.GetString());
 
-  CopiableObject copy(object);
-  CopiableObject moved(std::move(object));
+  CopyableObject copy(object);
+  CopyableObject moved(std::move(object));
 
   EXPECT_EQ(copy.GetInt(), moved.GetInt());
   EXPECT_EQ(copy.GetString(), moved.GetString());
@@ -75,16 +75,16 @@ TEST(ImplPtr, MoveConstruct)
 /////////////////////////////////////////////////
 TEST(ImplPtr, MoveAssign)
 {
-  CopiableObject object(78, "we will move assign this");
+  CopyableObject object(78, "we will move assign this");
   EXPECT_EQ(78, object.GetInt());
   EXPECT_EQ("we will move assign this", object.GetString());
 
-  CopiableObject copy(object);
+  CopyableObject copy(object);
 
   EXPECT_EQ(object.GetInt(), copy.GetInt());
   EXPECT_EQ(object.GetString(), copy.GetString());
 
-  CopiableObject moved;
+  CopyableObject moved;
 
   EXPECT_NE(object.GetInt(), moved.GetInt());
   EXPECT_NE(object.GetString(), moved.GetString());
@@ -98,15 +98,15 @@ TEST(ImplPtr, MoveAssign)
 /////////////////////////////////////////////////
 TEST(UniqueImplPtr, MoveConstruct)
 {
-  MoveableObject object(101, "moving this unique thing");
+  MovableObject object(101, "moving this unique thing");
   EXPECT_EQ(101, object.GetInt());
   EXPECT_EQ("moving this unique thing", object.GetString());
 
-  MoveableObject other(101, "moving this unique thing");
+  MovableObject other(101, "moving this unique thing");
   EXPECT_EQ(other.GetInt(), object.GetInt());
   EXPECT_EQ(other.GetString(), object.GetString());
 
-  MoveableObject moved(std::move(object));
+  MovableObject moved(std::move(object));
   EXPECT_EQ(other.GetInt(), moved.GetInt());
   EXPECT_EQ(other.GetString(), moved.GetString());
 }
@@ -114,15 +114,15 @@ TEST(UniqueImplPtr, MoveConstruct)
 /////////////////////////////////////////////////
 TEST(UniqueImplPtr, MoveAssign)
 {
-  MoveableObject object(117, "assigning this unique thing");
+  MovableObject object(117, "assigning this unique thing");
   EXPECT_EQ(117, object.GetInt());
   EXPECT_EQ("assigning this unique thing", object.GetString());
 
-  MoveableObject other(117, "assigning this unique thing");
+  MovableObject other(117, "assigning this unique thing");
   EXPECT_EQ(other.GetInt(), object.GetInt());
   EXPECT_EQ(other.GetString(), object.GetString());
 
-  MoveableObject moved;
+  MovableObject moved;
   EXPECT_NE(other.GetInt(), moved.GetInt());
   EXPECT_NE(other.GetInt(), moved.GetInt());
 

@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef IGNITION_UTILS_DETAIL_IMPLPTR_HH_
-#define IGNITION_UTILS_DETAIL_IMPLPTR_HH_
+#ifndef IGNITION_UTILS__DETAIL__IMPLPTR_HH_
+#define IGNITION_UTILS__DETAIL__IMPLPTR_HH_
 
 #include <ignition/utils/ImplPtr.hh>
 
@@ -24,7 +24,7 @@
 
 namespace ignition
 {
-  namespace utilities
+  namespace utils
   {
     namespace detail
     {
@@ -130,7 +130,7 @@ namespace ignition
             new T{std::forward<Args>(args)...},
             &detail::DefaultDelete<T>);
     }
-  }  // namespace utilities
+  }  // namespace utils
 }  // namespace ignition
 
-#endif  // IGNITION_UTILS_DETAIL_IMPLPTR_HH_
+#endif  // IGNITION_UTILS__DETAIL__IMPLPTR_HH_
