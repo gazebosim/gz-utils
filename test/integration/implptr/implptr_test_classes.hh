@@ -28,7 +28,7 @@ namespace ignition
   namespace implptr_test_classes
   {
     /// \brief A forward-declared implementation class
-    class Implementation;
+    class ObjectPrivate;
 
     /// \brief A PIMPL test class that can be copied.
     class IGNITION_UTILS_VISIBLE CopyableObject
@@ -50,7 +50,9 @@ namespace ignition
       public: void SetString(const std::string &_value);
 
       /// \brief Pointer to implementation
-      IGN_UTILS_IMPL_PTR_FWD(Implementation)
+      /// This demonstrates using an implementation class that is
+      /// forward-declared outside of this class.
+      IGN_UTILS_IMPL_PTR_FWD(ObjectPrivate, dataPtr)
     };
 
     /// \brief A PIMPL test class that cannot be copied; it can only be moved.
@@ -73,8 +75,36 @@ namespace ignition
       public: void SetString(const std::string &_value);
 
       /// \brief Pointer to implementation
-      IGN_UTILS_UNIQUE_IMPL_PTR_FWD(Implementation)
+      /// This demonstrates using an implementation class that is
+      /// forward-declared outside of this class.
+      IGN_UTILS_UNIQUE_IMPL_PTR_FWD(ObjectPrivate, dataPtr)
     };
+
+    /// \brief A PIMPL test class that can be copied (alternate definition)
+    class IGNITION_UTILS_VISIBLE CopyableObjectAlt
+    {
+      /// \brief Constructor
+      public: CopyableObjectAlt(int _ivalue = 0,
+                                const std::string &_svalue = "");
+
+      /// \brief Get the int value held by the pimpl
+      public: int GetInt() const;
+
+      /// \brief Set the int value held by the pimpl
+      public: void SetInt(const int _value);
+
+      /// \brief Get the string value held by the pimpl
+      public: const std::string &GetString() const;
+
+      /// \brief Set the string value held by the pimpl
+      public: void SetString(const std::string &_value);
+
+      /// \brief Pointer to implementation
+      /// This will automatically forward declare a class named
+      /// "Implementation" inline
+      IGN_UTILS_IMPL_PTR(dataPtr)
+    };
+
   }  // namespace implptr_test_classes
 }  // namespace ignition
 

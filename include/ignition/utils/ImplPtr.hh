@@ -217,34 +217,31 @@ namespace ignition
 }  // namespace ignition
 
 /// \brief Add a private ImplPtr to a class as dataPtr.
-///  This variant forward-declares Class::Implementation as the impl.
-#define IGN_UTILS_IMPL_PTR \
-  public: class Implementation; \
+///  This variant takes a forward-declared ImplementationClass as the impl.
+#define IGN_UTILS_IMPL_PTR_FWD(ImplementationClass, memberName) \
   IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING \
-  private: ::ignition::utils::ImplPtr<Implementation> dataPtr; \
+  private: ::ignition::utils::ImplPtr<ImplementationClass> memberName; \
   IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
 
 /// \brief Add a private UniqueImplPtr to a class as dataPtr.
-///  This variant forward-declares Class::Implementation as the impl.
-#define IGN_UTILS_UNIQUE_IMPL_PTR \
-  public: class Implementation; \
+///  This variant takes a forward-declared ImplementationClass as the impl.
+#define IGN_UTILS_UNIQUE_IMPL_PTR_FWD(ImplementationClass, memberName) \
   IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING \
-  private: ::ignition::utils::UniqueImplPtr<Implementation> dataPtr; \
+  private: ::ignition::utils::UniqueImplPtr<ImplementationClass> memberName; \
   IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
 
 /// \brief Add a private ImplPtr to a class as dataPtr.
-///  This variant takes a forward-declared ImplementationClass as the impl.
-#define IGN_UTILS_IMPL_PTR_FWD(ImplementationClass) \
-  IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING \
-  private: ::ignition::utils::ImplPtr<ImplementationClass> dataPtr; \
-  IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
+///  This variant forward-declares Class::Implementation as the impl.
+#define IGN_UTILS_IMPL_PTR(memberName) \
+  public: class Implementation; \
+  IGN_UTILS_IMPL_PTR_FWD(Implementation, memberName)
 
 /// \brief Add a private UniqueImplPtr to a class as dataPtr.
-///  This variant takes a forward-declared ImplementationClass as the impl.
-#define IGN_UTILS_UNIQUE_IMPL_PTR_FWD(ImplementationClass) \
-  IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING \
-  private: ::ignition::utils::UniqueImplPtr<ImplementationClass> dataPtr; \
-  IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
+///  This variant forward-declares Class::Implementation as the impl.
+#define IGN_UTILS_UNIQUE_IMPL_PTR(memberName) \
+  public: class Implementation; \
+  IGN_UTILS_UNIQUE_IMPL_PTR_FWD(Implementation, memberName)
+
 
 #include <ignition/utils/detail/ImplPtr.hh>
 

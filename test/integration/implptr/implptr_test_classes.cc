@@ -22,7 +22,7 @@
 using namespace ignition;
 using namespace ignition::implptr_test_classes;
 
-class ignition::implptr_test_classes::Implementation
+class ignition::implptr_test_classes::ObjectPrivate
 {
   public: int ivalue;
   public: std::string svalue;
@@ -31,7 +31,7 @@ class ignition::implptr_test_classes::Implementation
 //////////////////////////////////////////////////
 CopyableObject::CopyableObject(const int _ivalue,
                                const std::string &_svalue)
-  : dataPtr(utils::MakeImpl<Implementation>(_ivalue, _svalue))
+  : dataPtr(utils::MakeImpl<ObjectPrivate>(_ivalue, _svalue))
 {
   // Do nothing
 }
@@ -62,7 +62,7 @@ void CopyableObject::SetString(const std::string &_value)
 
 //////////////////////////////////////////////////
 MovableObject::MovableObject(const int _ivalue, const std::string &_svalue)
-  : dataPtr(utils::MakeUniqueImpl<Implementation>(_ivalue, _svalue))
+  : dataPtr(utils::MakeUniqueImpl<ObjectPrivate>(_ivalue, _svalue))
 {
   // Do nothing
 }
@@ -90,3 +90,43 @@ void MovableObject::SetString(const std::string &_value)
 {
   (*dataPtr).svalue = _value;
 }
+
+//////////////////////////////////////////////////
+class CopyableObjectAlt::Implementation
+{
+  public: int ivalue;
+  public: std::string svalue;
+};
+
+//////////////////////////////////////////////////
+CopyableObjectAlt::CopyableObjectAlt(const int _ivalue,
+                               const std::string &_svalue)
+  : dataPtr(utils::MakeImpl<Implementation>(_ivalue, _svalue))
+{
+  // Do nothing
+}
+
+//////////////////////////////////////////////////
+int CopyableObjectAlt::GetInt() const
+{
+  return dataPtr->ivalue;
+}
+
+//////////////////////////////////////////////////
+void CopyableObjectAlt::SetInt(const int _value)
+{
+  dataPtr->ivalue = _value;
+}
+
+//////////////////////////////////////////////////
+const std::string &CopyableObjectAlt::GetString() const
+{
+  return (*dataPtr).svalue;
+}
+
+//////////////////////////////////////////////////
+void CopyableObjectAlt::SetString(const std::string &_value)
+{
+  (*dataPtr).svalue = _value;
+}
+
