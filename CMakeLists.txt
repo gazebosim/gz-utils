@@ -32,7 +32,8 @@ ign_configure_project(VERSION_SUFFIX pre1)
 #============================================================================
 # Configure the build
 #============================================================================
-ign_configure_build(QUIT_IF_BUILD_ERRORS)
+ign_configure_build(QUIT_IF_BUILD_ERRORS
+  COMPONENTS cli)
 
 #============================================================================
 # Create package information
