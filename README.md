@@ -1,6 +1,6 @@
 # Ignition Utils : Classes and functions for robot applications
 
-**Maintainer:** TODO AT openrobotics DOT org
+**Maintainer:** addisu AT openrobotics DOT org
 
 [![GitHub open issues](https://img.shields.io/github/issues-raw/ignitionrobotics/ign-utils.svg)](https://github.com/ignitionrobotics/ign-utils/issues)
 [![GitHub open pull requests](https://img.shields.io/github/issues-pr-raw/ignitionrobotics/ign-utils.svg)](https://github.com/ignitionrobotics/ign-utils/pulls)
