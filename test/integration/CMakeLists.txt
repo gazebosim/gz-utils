@@ -10,3 +10,5 @@ if (UNIX AND NOT APPLE)
 endif()
 
 ign_build_tests(TYPE INTEGRATION SOURCES ${tests})
+
+add_subdirectory(implptr)
