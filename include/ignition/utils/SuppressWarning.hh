@@ -65,6 +65,14 @@
 #define IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING \
   DETAIL_IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
 
+/// \brief Use this to suppress deprecation warnings. This may be useful when
+/// retaining tests for deprecated methods to preserve code coverage.
+#define IGN_UTILS_WARN_IGNORE__DEPRECATED_DECLARATION \
+  DETAIL_IGN_UTILS_WARN_IGNORE__DEPRECATED_DECLARATION
+
+#define IGN_UTILS_WARN_RESUME__DEPRECATED_DECLARATION \
+  DETAIL_IGN_UTILS_WARN_RESUME__DEPRECATED_DECLARATION
+
 // TODO(anyone): Add more warning types as they become relevant.
 // Do not add warning types to suppress unless they are genuinely necessary.
 
