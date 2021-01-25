@@ -1,8 +1,7 @@
 add_library(implptr_test_classes SHARED implptr_test_classes.cc)
 
-set_target_properties(implptr_test_classes PROPERTIES
-  CXX_STANDARD ${c++standard}
-  CXX_STANDARD_REQUIRED ON 
+target_link_libraries(implptr_test_classes
+  ${PROJECT_LIBRARY_TARGET_NAME}
 )
 
 # Piggyback on the auto-generated dll exports for Windows
