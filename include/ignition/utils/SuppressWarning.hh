@@ -48,30 +48,42 @@
 /// We want to suppress this warning when we know for certain (via the design
 /// of our implementation) that the pointer is definitely not pointing to a more
 /// derived type.
-#define IGN_UTILS_WARN_IGNORE__NON_VIRTUAL_DESTRUCTOR \
-  DETAIL_IGN_UTILS_WARN_IGNORE__NON_VIRTUAL_DESTRUCTOR
+#ifndef IGN_UTILS_WARN_IGNORE__NON_VIRTUAL_DESTRUCTOR
+  #define IGN_UTILS_WARN_IGNORE__NON_VIRTUAL_DESTRUCTOR \
+    DETAIL_IGN_UTILS_WARN_IGNORE__NON_VIRTUAL_DESTRUCTOR
+#endif
 
-#define IGN_UTILS_WARN_RESUME__NON_VIRTUAL_DESTRUCTOR \
-  DETAIL_IGN_UTILS_WARN_RESUME__NON_VIRTUAL_DESTRUCTOR
+#ifndef IGN_UTILS_WARN_RESUME__NON_VIRTUAL_DESTRUCTOR
+  #define IGN_UTILS_WARN_RESUME__NON_VIRTUAL_DESTRUCTOR \
+    DETAIL_IGN_UTILS_WARN_RESUME__NON_VIRTUAL_DESTRUCTOR
+#endif
 
 /// \brief Microsoft Visual Studio does not automatically export the interface
 /// information for member variables that belong to interface classes of a DLL.
 /// Instead it issues this warning. When the member variable is private, we
 /// choose to suppress the warning instead of needlessly adding the class
 /// information to the DLL interface.
-#define IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING \
-  DETAIL_IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING
+#ifndef IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING
+  #define IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING \
+    DETAIL_IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING
+#endif
 
-#define IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING \
-  DETAIL_IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
+#ifndef IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
+  #define IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING \
+    DETAIL_IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
+#endif
 
 /// \brief Use this to suppress deprecation warnings. This may be useful when
 /// retaining tests for deprecated methods to preserve code coverage.
-#define IGN_UTILS_WARN_IGNORE__DEPRECATED_DECLARATION \
-  DETAIL_IGN_UTILS_WARN_IGNORE__DEPRECATED_DECLARATION
+#ifndef IGN_UTILS_WARN_IGNORE__DEPRECATED_DECLARATION
+  #define IGN_UTILS_WARN_IGNORE__DEPRECATED_DECLARATION \
+    DETAIL_IGN_UTILS_WARN_IGNORE__DEPRECATED_DECLARATION
+#endif
 
-#define IGN_UTILS_WARN_RESUME__DEPRECATED_DECLARATION \
-  DETAIL_IGN_UTILS_WARN_RESUME__DEPRECATED_DECLARATION
+#ifndef IGN_UTILS_WARN_RESUME__DEPRECATED_DECLARATION
+  #define IGN_UTILS_WARN_RESUME__DEPRECATED_DECLARATION \
+    DETAIL_IGN_UTILS_WARN_RESUME__DEPRECATED_DECLARATION
+#endif
 
 // TODO(anyone): Add more warning types as they become relevant.
 // Do not add warning types to suppress unless they are genuinely necessary.
