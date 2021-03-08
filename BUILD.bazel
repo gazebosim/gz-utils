@@ -1,0 +1,14 @@
+load(
+    "//ign_bazel:build_defs.bzl",
+    "IGNITION_FEATURES",
+    "IGNITION_VISIBILITY",
+)
+
+package(
+    default_visibility = IGNITION_VISIBILITY,
+    features = IGNITION_FEATURES,
+)
+
+licenses(["notice"])
+
+exports_files(["LICENSE"])
