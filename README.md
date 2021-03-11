@@ -12,7 +12,7 @@ Build | Status
 Test coverage | [![codecov](https://codecov.io/gh/ignitionrobotics/ign-utils/branch/main/graph/badge.svg)](https://codecov.io/gh/ignitionrobotics/ign-utils)
 Ubuntu Bionic | [![Build Status](https://build.osrfoundation.org/buildStatus/icon?job=ignition_utils-ci-main-bionic-amd64)](https://build.osrfoundation.org/job/ignition_utils-ci-main-bionic-amd64)
 Homebrew      | [![Build Status](https://build.osrfoundation.org/buildStatus/icon?job=ignition_utils-ci-main-homebrew-amd64)](https://build.osrfoundation.org/job/ignition_utils-ci-main-homebrew-amd64)
-Windows       | [![Build Status](https://build.osrfoundation.org/buildStatus/icon?job=ignition_utils-ci-main-windows7-amd64)](https://build.osrfoundation.org/job/ignition_utils-ci-main-windows7-amd64)
+Windows       | [![Build Status](https://build.osrfoundation.org/job/ign_utils-ci-win/badge/icon)](https://build.osrfoundation.org/job/ign_utils-ci-win/)
 
 Ignition Utils, a component of [Ignition
 Robotics](https://ignitionrobotics.org), provides general purpose
@@ -44,7 +44,9 @@ classes and functions designed for robotic applications.
 
 Ignition Utils provides a wide range of functionality, including:
 
-* TODO
+* A helper class to implement the PIMPL pattern
+* A command line parsing utility (vendored [CLI11](https://github.com/CLIUtils/CLI11/))
+* Macros to suppress warnings
 
 # Install
 
@@ -133,9 +135,9 @@ Please see
 
 This library uses [Semantic Versioning](https://semver.org/).
 Additionally, this library is part of the
-[Ignition Robotics project](https://ignitionrobotics.org) which periodically
+[Ignition project](https://ignitionrobotics.org) which periodically
 releases a versioned set of compatible and complimentary libraries. See the
-[Ignition Robotics website](https://ignitionrobotics.org) for version and
+[Ignition website](https://ignitionrobotics.org) for version and
 release information.
 
 # License
