@@ -14,3 +14,17 @@
  * limitations under the License.
  *
 */
+
+namespace ignition
+{
+namespace utils
+{
+inline namespace IGNITION_UTILS_VERSION_NAMESPACE
+{
+  /////////////////////////////////////////////
+  void foo()
+  {
+  }
+}
+}
+}
