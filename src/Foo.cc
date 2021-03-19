@@ -15,6 +15,8 @@
  *
 */
 
+#include "Foo.hh"
+
 namespace ignition
 {
 namespace utils
