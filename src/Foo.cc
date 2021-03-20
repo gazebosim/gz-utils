@@ -14,7 +14,8 @@
  * limitations under the License.
  *
 */
-#include "ignition/utils/Foo.hh"
+
+#include "Foo.hh"
 
 namespace ignition
 {

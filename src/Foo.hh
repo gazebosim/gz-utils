@@ -27,7 +27,14 @@ namespace utils
 {
 // Inline bracket to help doxygen filtering.
 inline namespace IGNITION_UTILS_VERSION_NAMESPACE {
-  /// \brief TODO: Remove!
+  /// \brief foo
+  /// \todo(anyone) Remove when/if ign-utils has real symbols
+  ///
+  /// This exists purely to guarantee that the core component is generated
+  /// via ign-cmake.  It may be removed once either ign-cmake has support
+  /// for a header-only core component, or ign-utils is no longer header-only.
+  ///
+  /// This is in now way part of the API and can be removed at anytime
   void IGNITION_UTILS_VISIBLE foo();
 }
 }
