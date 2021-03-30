@@ -2,7 +2,7 @@
 
 ## Ignition Utils 1.x.x (20XX-XX-XX)
 
-## Ignition Utils 1.0.0 (2021-XX-XX)
+## Ignition Utils 1.0.0 (2021-03-30)
 
 1. Add basic support for bazel build system.
     * [Pull request #14](https://github.com/ignitionrobotics/ign-utils/pull/14)
