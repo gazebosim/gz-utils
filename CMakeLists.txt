@@ -21,13 +21,20 @@ ign_configure_project(VERSION_SUFFIX)
 # Set project-specific options
 #============================================================================
 
-# ignition-utils currently has no options that are unique to it
+option(
+  IGN_UTILS_VENDOR_CLI11
+  "If true, use the vendored version of CLI11, otherwise use an external one"
+  true)
 
 #============================================================================
 # Search for project-specific dependencies
 #============================================================================
 
-# ignition-utils shouldn't have any dependencies besides ign-cmake
+if(NOT IGN_UTILS_VENDOR_CLI11)
+  # PKGCONFIG_IGNORE can be removed once pkg-config support in CLI11 (see
+  # https://github.com/CLIUtils/CLI11/pull/523) is released
+  ign_find_package(CLI11 REQUIRED_BY cli PKGCONFIG_IGNORE)
+endif()
 
 #============================================================================
 # Configure the build
