@@ -1,6 +1,15 @@
 ## Ignition Utils 1.x
 
-## Ignition Utils 1.x.x (20XX-XX-XX)
+## Ignition Utils 1.1.0 (2021-09-02)
+
+1. More complete bazel implementation
+    * [Pull request #21](https://github.com/ignitionrobotics/ign-utils/pull/21)
+
+1. Add IGN_UTILS_VENDOR_CLI11 CMake option to optionally use external CLI11
+    * [Pull request #19](https://github.com/ignitionrobotics/ign-utils/pull/19)
+
+1. Add an example program using CLI11
+    * [Pull request #23](https://github.com/ignitionrobotics/ign-utils/pull/23)
 
 ## Ignition Utils 1.0.0 (2021-03-30)
 
