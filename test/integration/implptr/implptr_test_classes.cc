@@ -17,16 +17,18 @@
 
 #include "implptr_test_classes.hh"
 
+#include <future>
 #include <string>
+#include <thread>
 
 using namespace ignition;
 using namespace ignition::implptr_test_classes;
 
 class ignition::implptr_test_classes::ObjectPrivate
 {
-  public: int TestFunc()
+  public: void TestFunc()
   {
-    return 1;
+    this->ivalue += 1;
   }
 
   public: int ivalue;
@@ -66,9 +68,12 @@ void CopyableObject::SetString(const std::string &_value)
 }
 
 //////////////////////////////////////////////////
-std::function<int()> CopyableObject::CreateFuncPointer()
+int CopyableObject::ThreadIncrementInt()
 {
-  return std::bind(&ObjectPrivate::TestFunc, this->dataPtr.Get());
+  this->SetInt(0);
+  auto thread = std::thread(&ObjectPrivate::TestFunc, this->dataPtr.Get());
+  thread.join();
+  return this->GetInt();
 }
 
 //////////////////////////////////////////////////
@@ -103,9 +108,12 @@ void MovableObject::SetString(const std::string &_value)
 }
 
 //////////////////////////////////////////////////
-std::function<int()> MovableObject::CreateFuncPointer() const
+int MovableObject::ThreadIncrementInt()
 {
-  return std::bind(&ObjectPrivate::TestFunc, this->dataPtr.get());
+  this->SetInt(0);
+  auto thread = std::thread(&ObjectPrivate::TestFunc, this->dataPtr.get());
+  thread.join();
+  return this->GetInt();
 }
 
 //////////////////////////////////////////////////

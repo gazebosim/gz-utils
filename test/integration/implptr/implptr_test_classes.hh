@@ -50,11 +50,10 @@ namespace ignition
       /// \brief Set the string value held by the pimpl
       public: void SetString(const std::string &_value);
 
-      /// \brief Create a pointer to a function within the private data
-      /// class.
-      /// \return The function pointer. The function should return a value
-      /// of 1.
-      public:std::function<int()> CreateFuncPointer();
+      /// \brief Uses a thread to increment the internal integer value from
+      /// 0 to 1.
+      /// \return The final internal integer value, which should be 1.
+      public: int ThreadIncrementInt();
 
       /// \brief Pointer to implementation
       /// This demonstrates using an implementation class that is
@@ -81,11 +80,10 @@ namespace ignition
       /// \brief Set the string value held by the pimpl
       public: void SetString(const std::string &_value);
 
-      /// \brief Create a pointer to a function within the private data
-      /// class.
-      /// \return The function pointer. The function should return a value
-      /// of 1.
-      public: std::function<int()> CreateFuncPointer() const;
+      /// \brief Uses a thread to increment the internal integer value from
+      /// 0 to 1.
+      /// \return The final internal integer value, which should be 1.
+      public: int ThreadIncrementInt();
 
       /// \brief Pointer to implementation
       /// This demonstrates using an implementation class that is

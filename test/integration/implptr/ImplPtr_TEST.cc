@@ -45,8 +45,9 @@ TEST(ImplPtr, CopyConstruct)
 TEST(ImplPtr, GetAccessor)
 {
   CopyableObject object(28, "golden_string");
-  auto func = object.CreateFuncPointer();
-  EXPECT_EQ(func(), 1);
+  int value = object.ThreadIncrementInt();
+  EXPECT_EQ(value, 1);
+  EXPECT_EQ(object.GetInt(), 1);
 }
 
 /////////////////////////////////////////////////
@@ -123,8 +124,9 @@ TEST(UniqueImplPtr, MoveConstruct)
 TEST(UniqueImplPtr, GetAccessor)
 {
   MovableObject object(28, "golden_string");
-  auto func = object.CreateFuncPointer();
-  EXPECT_EQ(func(), 1);
+  int value = object.ThreadIncrementInt();
+  EXPECT_EQ(value, 1);
+  EXPECT_EQ(object.GetInt(), 1);
 }
 
 /////////////////////////////////////////////////
