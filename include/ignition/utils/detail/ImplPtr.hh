@@ -111,6 +111,20 @@ namespace ignition
     }
 
     //////////////////////////////////////////////////
+    template <class T, class Deleter, class Operations>
+    T *ImplPtr<T, Deleter, Operations>::Get()
+    {
+      return ptr.get();
+    }
+
+    //////////////////////////////////////////////////
+    template <class T, class Deleter, class Operations>
+    const T *ImplPtr<T, Deleter, Operations>::Get() const
+    {
+      return ptr.get();
+    }
+
+    //////////////////////////////////////////////////
     template <class T, typename... Args>
     ImplPtr<T> MakeImpl(Args &&..._args)
     {

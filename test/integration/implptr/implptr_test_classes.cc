@@ -24,6 +24,11 @@ using namespace ignition::implptr_test_classes;
 
 class ignition::implptr_test_classes::ObjectPrivate
 {
+  public: int TestFunc()
+  {
+    return 1;
+  }
+
   public: int ivalue;
   public: std::string svalue;
 };
@@ -61,6 +66,12 @@ void CopyableObject::SetString(const std::string &_value)
 }
 
 //////////////////////////////////////////////////
+std::function<int()> CopyableObject::CreateFuncPointer()
+{
+  return std::bind(&ObjectPrivate::TestFunc, this->dataPtr.Get());
+}
+
+//////////////////////////////////////////////////
 MovableObject::MovableObject(const int _ivalue, const std::string &_svalue)
   : dataPtr(utils::MakeUniqueImpl<ObjectPrivate>(_ivalue, _svalue))
 {
@@ -89,6 +100,12 @@ const std::string &MovableObject::GetString() const
 void MovableObject::SetString(const std::string &_value)
 {
   (*dataPtr).svalue = _value;
+}
+
+//////////////////////////////////////////////////
+std::function<int()> MovableObject::CreateFuncPointer() const
+{
+  return std::bind(&ObjectPrivate::TestFunc, this->dataPtr.get());
 }
 
 //////////////////////////////////////////////////

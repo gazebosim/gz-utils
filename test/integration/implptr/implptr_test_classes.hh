@@ -21,6 +21,7 @@
 #include <ignition/utils/ImplPtr.hh>
 #include <ignition/utils/Export.hh>
 
+#include <functional>
 #include <string>
 
 namespace ignition
@@ -49,6 +50,12 @@ namespace ignition
       /// \brief Set the string value held by the pimpl
       public: void SetString(const std::string &_value);
 
+      /// \brief Create a pointer to a function within the private data
+      /// class.
+      /// \return The function pointer. The function should return a value
+      /// of 1.
+      public:std::function<int()> CreateFuncPointer();
+
       /// \brief Pointer to implementation
       /// This demonstrates using an implementation class that is
       /// forward-declared outside of this class.
@@ -73,6 +80,12 @@ namespace ignition
 
       /// \brief Set the string value held by the pimpl
       public: void SetString(const std::string &_value);
+
+      /// \brief Create a pointer to a function within the private data
+      /// class.
+      /// \return The function pointer. The function should return a value
+      /// of 1.
+      public: std::function<int()> CreateFuncPointer() const;
 
       /// \brief Pointer to implementation
       /// This demonstrates using an implementation class that is
