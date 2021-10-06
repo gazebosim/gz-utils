@@ -18,7 +18,7 @@ exports_files(["LICENSE"])
 
 PROJECT_NAME = "ignition-utils"
 
-PROJECT_MAJOR = 2
+PROJECT_MAJOR = 1
 
 PROJECT_MINOR = 0
 
