@@ -18,6 +18,7 @@
 #ifndef IGNITION_UTILS_ENVIRONMENT_HH_
 #define IGNITION_UTILS_ENVIRONMENT_HH_
 
+#include <ignition/utils/config.hh>
 #include <ignition/utils/Export.hh>
 
 #include <string>
@@ -26,6 +27,7 @@ namespace ignition
 {
 namespace utils
 {
+inline namespace IGNITION_UTILS_VERSION_NAMESPACE {
 
 /// \brief Find the environment variable '_name' and return its value.
 /// \param[in] _name Name of the environment variable.
@@ -35,7 +37,7 @@ namespace utils
 /// \return True if the variable was found or false otherwise.
 bool IGNITION_UTILS_VISIBLE env(
     const std::string &_name, std::string &_value,
-    bool _allowEmpty=false);
+    bool _allowEmpty = false);
 
 /// \brief Set the environment variable '_name'.
 ///
@@ -53,6 +55,7 @@ bool IGNITION_UTILS_VISIBLE setenv(
 /// \return True if the variable was unset or false otherwise.
 bool IGNITION_UTILS_VISIBLE unsetenv(const std::string &_name);
 
+}
 }  // namespace utils
 }  // namespace ignition
 
