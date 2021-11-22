@@ -48,6 +48,16 @@ TEST(ImplPtr, GetAccessor)
   int value = object.ThreadIncrementInt();
   EXPECT_EQ(value, 1);
   EXPECT_EQ(object.GetInt(), 1);
+
+  CopyableObject copied;
+  copied = object;
+  value = copied.ThreadIncrementInt();
+  EXPECT_EQ(value, 1);
+  EXPECT_EQ(copied.GetInt(), 1);
+
+  EXPECT_EQ(copied.ThreadIncrementInt(), object.ThreadIncrementInt());
+  EXPECT_EQ(copied.GetInt(), 1);
+  EXPECT_EQ(object.GetInt(), 1);
 }
 
 /////////////////////////////////////////////////
@@ -127,6 +137,12 @@ TEST(UniqueImplPtr, GetAccessor)
   int value = object.ThreadIncrementInt();
   EXPECT_EQ(value, 1);
   EXPECT_EQ(object.GetInt(), 1);
+
+  MovableObject moved;
+  moved = std::move(object);
+  value = moved.ThreadIncrementInt();
+  EXPECT_EQ(value, 1);
+  EXPECT_EQ(moved.GetInt(), 1);
 }
 
 /////////////////////////////////////////////////

@@ -17,7 +17,6 @@
 
 #include "implptr_test_classes.hh"
 
-#include <future>
 #include <string>
 #include <thread>
 

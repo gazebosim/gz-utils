@@ -30,6 +30,7 @@ namespace ignition
     {
       //////////////////////////////////////////////////
       template <class T, class CopyConstruct, class CopyAssign>
+      // cppcheck-suppress syntaxError
       template <class C, class A>
       CopyMoveDeleteOperations<T, CopyConstruct, CopyAssign>::
       CopyMoveDeleteOperations(C &&_construct, A &&_assign)
