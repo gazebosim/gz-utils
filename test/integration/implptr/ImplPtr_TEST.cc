@@ -42,6 +42,25 @@ TEST(ImplPtr, CopyConstruct)
 }
 
 /////////////////////////////////////////////////
+TEST(ImplPtr, GetAccessor)
+{
+  CopyableObject object(28, "golden_string");
+  int value = object.ThreadIncrementInt();
+  EXPECT_EQ(value, 1);
+  EXPECT_EQ(object.GetInt(), 1);
+
+  CopyableObject copied;
+  copied = object;
+  value = copied.ThreadIncrementInt();
+  EXPECT_EQ(value, 1);
+  EXPECT_EQ(copied.GetInt(), 1);
+
+  EXPECT_EQ(copied.ThreadIncrementInt(), object.ThreadIncrementInt());
+  EXPECT_EQ(copied.GetInt(), 1);
+  EXPECT_EQ(object.GetInt(), 1);
+}
+
+/////////////////////////////////////////////////
 TEST(ImplPtr, CopyAssign)
 {
   CopyableObject object{47, "some_object"};
@@ -109,6 +128,21 @@ TEST(UniqueImplPtr, MoveConstruct)
   MovableObject moved(std::move(object));
   EXPECT_EQ(other.GetInt(), moved.GetInt());
   EXPECT_EQ(other.GetString(), moved.GetString());
+}
+
+/////////////////////////////////////////////////
+TEST(UniqueImplPtr, GetAccessor)
+{
+  MovableObject object(28, "golden_string");
+  int value = object.ThreadIncrementInt();
+  EXPECT_EQ(value, 1);
+  EXPECT_EQ(object.GetInt(), 1);
+
+  MovableObject moved;
+  moved = std::move(object);
+  value = moved.ThreadIncrementInt();
+  EXPECT_EQ(value, 1);
+  EXPECT_EQ(moved.GetInt(), 1);
 }
 
 /////////////////////////////////////////////////
