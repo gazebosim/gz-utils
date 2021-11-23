@@ -30,6 +30,10 @@ namespace utils
 inline namespace IGNITION_UTILS_VERSION_NAMESPACE {
 
 /// \brief Find the environment variable '_name' and return its value.
+/// 
+/// Note: This function is not thread-safe and should not be called
+/// concurrently with `setenv` or `unsetenv`
+///
 /// \param[in] _name Name of the environment variable.
 /// \param[out] _value Value if the variable was found.
 /// \param[in] _allowEmpty Allow set-but-empty variables.
@@ -41,8 +45,11 @@ bool IGNITION_UTILS_VISIBLE env(
 
 /// \brief Set the environment variable '_name'.
 ///
-/// Note that on Windows setting an empty string (_value=="")
+/// Note: On Windows setting an empty string (_value=="")
 /// is the equivalent of unsetting the variable.
+//
+/// Note: This function is not thread-safe and should not be called
+/// concurrently with `env` or `unsetenv`
 ///
 /// \param[in] _name Name of the environment variable.
 /// \param[in] _value Value of the variable to be set.
@@ -51,6 +58,10 @@ bool IGNITION_UTILS_VISIBLE setenv(
     const std::string &_name, const std::string &_value);
 
 /// \brief Unset the environment variable '_name'.
+///
+/// Note: This function is not thread-safe and should not be called
+/// concurrently with `env` or `setenv`
+///
 /// \param[in] _name Name of the environment variable.
 /// \return True if the variable was unset or false otherwise.
 bool IGNITION_UTILS_VISIBLE unsetenv(const std::string &_name);
