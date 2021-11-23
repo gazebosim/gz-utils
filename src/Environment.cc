@@ -17,6 +17,8 @@
 
 #include <ignition/utils/Environment.hh>
 
+#include <cstdlib>
+
 /////////////////////////////////////////////////
 bool ignition::utils::env(const std::string &_name,
                           std::string &_value,
@@ -25,22 +27,21 @@ bool ignition::utils::env(const std::string &_name,
   std::string v;
   bool valid = false;
 #ifdef _WIN32
-  const DWORD buffSize = 32767;
-  static char buffer[buffSize];
-  if (GetEnvironmentVariable(_name.c_str(), buffer, buffSize))
+
+  size_t requiredSize;
+  getenv_s(&requiredSize, NULL, 0, _name.c_str());
+  if (requiredSize == 0)
   {
-    v = buffer;
+    // Variable _name doesn't exist
+    return false;
   }
 
-  if (!v.empty())
+  v.reserve(requiredSize);
+  auto err = getenv_s(&requiredSize, v.data(), requiredSize, _name.c_str());
+
+  if (!err && !_allowEmpty)
   {
     valid = true;
-  }
-
-  if (_allowEmpty)
-  {
-    // Reading environment variable with _allowEmpty is unsupported on Windows
-    return false;
   }
 
 #else
