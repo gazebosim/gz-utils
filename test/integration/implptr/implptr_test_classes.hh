@@ -21,6 +21,7 @@
 #include <ignition/utils/ImplPtr.hh>
 #include <ignition/utils/Export.hh>
 
+#include <functional>
 #include <string>
 
 namespace ignition
@@ -49,6 +50,11 @@ namespace ignition
       /// \brief Set the string value held by the pimpl
       public: void SetString(const std::string &_value);
 
+      /// \brief Uses a thread to increment the internal integer value from
+      /// 0 to 1.
+      /// \return The final internal integer value, which should be 1.
+      public: int ThreadIncrementInt();
+
       /// \brief Pointer to implementation
       /// This demonstrates using an implementation class that is
       /// forward-declared outside of this class.
@@ -73,6 +79,11 @@ namespace ignition
 
       /// \brief Set the string value held by the pimpl
       public: void SetString(const std::string &_value);
+
+      /// \brief Uses a thread to increment the internal integer value from
+      /// 0 to 1.
+      /// \return The final internal integer value, which should be 1.
+      public: int ThreadIncrementInt();
 
       /// \brief Pointer to implementation
       /// This demonstrates using an implementation class that is

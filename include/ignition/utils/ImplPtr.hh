@@ -128,6 +128,18 @@ namespace ignition
       /// \return Immutable access to the contained object's members.
       public: const T *operator->() const;
 
+      /// \brief Non-const member access function. This const-unqualified
+      /// operator ensures that logical const-correctness is followed by the
+      /// consumer class.
+      /// \return Mutable access to the contained object's members.
+      public: T *Get();
+
+      /// \brief Const member access function. This const-qualified operator
+      /// ensures that logical const-correctness is followed by the consumer
+      /// class.
+      /// \return Immutable access to the contained object's members.
+      public: const T *Get() const;
+
       /// \internal \brief Create a clone of this ImplPtr's contents. This is
       /// for internal use only. The copy constructor and copy assignment
       /// operators should suffice for consumers.

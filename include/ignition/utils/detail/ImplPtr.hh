@@ -30,6 +30,7 @@ namespace ignition
     {
       //////////////////////////////////////////////////
       template <class T, class CopyConstruct, class CopyAssign>
+      // cppcheck-suppress syntaxError
       template <class C, class A>
       CopyMoveDeleteOperations<T, CopyConstruct, CopyAssign>::
       CopyMoveDeleteOperations(C &&_construct, A &&_assign)
@@ -106,6 +107,20 @@ namespace ignition
     //////////////////////////////////////////////////
     template <class T, class Deleter, class Operations>
     const T *ImplPtr<T, Deleter, Operations>::operator->() const
+    {
+      return ptr.get();
+    }
+
+    //////////////////////////////////////////////////
+    template <class T, class Deleter, class Operations>
+    T *ImplPtr<T, Deleter, Operations>::Get()
+    {
+      return ptr.get();
+    }
+
+    //////////////////////////////////////////////////
+    template <class T, class Deleter, class Operations>
+    const T *ImplPtr<T, Deleter, Operations>::Get() const
     {
       return ptr.get();
     }
