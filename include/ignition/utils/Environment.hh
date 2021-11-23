@@ -30,7 +30,7 @@ namespace utils
 inline namespace IGNITION_UTILS_VERSION_NAMESPACE {
 
 /// \brief Find the environment variable '_name' and return its value.
-/// 
+///
 /// Note: This function is not thread-safe and should not be called
 /// concurrently with `setenv` or `unsetenv`
 ///
