@@ -18,33 +18,29 @@
 #include <ignition/utils/Environment.hh>
 
 #include <cstdlib>
+#include <iostream>
 
 /////////////////////////////////////////////////
 bool ignition::utils::env(const std::string &_name,
                           std::string &_value,
                           bool _allowEmpty)
 {
-  std::string v;
-  bool valid = false;
 #ifdef _WIN32
-
   size_t requiredSize;
   getenv_s(&requiredSize, NULL, 0, _name.c_str());
   if (requiredSize == 0)
   {
-    // Variable _name doesn't exist
     return false;
   }
 
-  v.reserve(requiredSize);
-  auto err = getenv_s(&requiredSize, v.data(), requiredSize, _name.c_str());
-
-  if (!err && !_allowEmpty)
-  {
-    valid = true;
-  }
-
+  char* env_value = new char[requiredSize];
+  getenv_s(&requiredSize, env_value, requiredSize, _name.c_str());
+  _value = std::string(env_value);
+  delete[] env_value;
+  return true;
 #else
+  bool valid = false;
+  std::string v;
   const char *cvar = std::getenv(_name.c_str());
   if (cvar != nullptr)
   {
@@ -56,13 +52,13 @@ bool ignition::utils::env(const std::string &_name,
       valid = false;
     }
   }
-#endif
   if (valid)
   {
     _value = v;
     return true;
   }
   return false;
+#endif
 }
 
 /////////////////////////////////////////////////
