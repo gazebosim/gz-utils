@@ -52,14 +52,16 @@ namespace utils
 ///
 /// The singleton pattern:
 /// @code
-/// class Singleton {
+/// class Singleton
+/// {
 ///  public:
 ///   Singleton(const Singleton&) = delete;
 ///   void operator=(const Singleton&) = delete;
 ///   Singleton(Singleton&&) = delete;
 ///   void operator=(Singleton&&) = delete;
 ///
-///   static Singleton& getInstance() {
+///   static Singleton& getInstance()
+///   {
 ///     static ignition::utils::NeverDestroyed<Singleton> instance;
 ///     return instance.access();
 ///   }
@@ -73,10 +75,13 @@ namespace utils
 /// reused thereafter:
 /// @code
 /// enum class Foo { kBar, kBaz };
-/// Foo ParseFoo(const std::string& foo_string) {
+/// Foo ParseFoo(const std::string& foo_string)
+/// {
 ///   using Dict = std::unordered_map<std::string, Foo>;
-///   static const ignition::utils::NeverDestroyed<Dict> string_to_enum{
-///     std::initializer_list<Dict::value_type>{
+///   static const ignition::utils::NeverDestroyed<Dict> string_to_enum
+///   {
+///     std::initializer_list<Dict::value_type>
+///     {
 ///       {"bar", Foo::kBar},
 ///       {"baz", Foo::kBaz},
 ///     }
@@ -88,17 +93,22 @@ namespace utils
 /// In cases where computing the static data is more complicated than an
 /// initializer_list, you can use a temporary lambda to populate the value:
 /// @code
-/// const std::vector<double>& GetConstantMagicNumbers() {
-///   static const ignition::utils::NeverDestroyed<std::vector<double>> result{
-///   []() {
+/// const std::vector<double>& GetConstantMagicNumbers()
+/// {
+///   static const ignition::utils::NeverDestroyed<std::vector<double>> result
+///   {
+///   []()
+///   {
 ///     std::vector<double> prototype;
 ///     std::mt19937 random_generator;
-///     for (int i = 0; i < 10; ++i) {
+///     for (int i = 0; i < 10; ++i)
+///     {
 ///       double new_value = random_generator();
 ///       prototype.push_back(new_value);
 ///     }
 ///     return prototype;
-///   }()};
+///   }()
+///   };
 ///   return result.access();
 /// }
 /// @endcode
@@ -107,47 +117,46 @@ namespace utils
 //
 // The above examples are repeated in the unit test; keep them in sync.
 template <typename T>
-class NeverDestroyed {
- public:
+class NeverDestroyed
+{
   /// Passes the constructor arguments along to T using perfect forwarding.
-  template <typename... Args>
-  explicit NeverDestroyed(Args&&... args) {
+  public: template <typename... Args>
+          explicit NeverDestroyed(Args &&... args)
+  {
     // Uses "placement new" to construct a `T` in `storage_`.
     new (&this->storage) T(std::forward<Args>(args)...);
   }
 
   /// Does nothing.  Guaranteed!
-  ~NeverDestroyed() = default;
+  public: ~NeverDestroyed() = default;
 
   /// \brief Deleted copy constructor
-  NeverDestroyed(const NeverDestroyed&) = delete;
+  public: NeverDestroyed(const NeverDestroyed &) = delete;
 
   /// \brief Deleted move constructor
-  NeverDestroyed(NeverDestroyed&&) = delete;
+  public: NeverDestroyed(NeverDestroyed &&) = delete;
 
   /// \brief Deleted copy assignment constructor
-  NeverDestroyed& operator=(const NeverDestroyed&) = delete;
+  public: NeverDestroyed &operator=(const NeverDestroyed &) = delete;
 
   /// \brief Deleted move assignment constructor
-  NeverDestroyed& operator=(NeverDestroyed&&) noexcept = delete;
+  public: NeverDestroyed &operator=(NeverDestroyed &&) noexcept = delete;
 
   /// Returns the underlying T reference.
-  T& Access()
+  public: T &Access()
   {
-    return *reinterpret_cast<T*>(&this->storage);
+    return *reinterpret_cast<T *>(&this->storage);
   }
 
-  const T& Access() const
+  public: const T &Access() const
   {
-    return *reinterpret_cast<const T*>(&this->storage);
+    return *reinterpret_cast<const T *>(&this->storage);
   }
 
- private:
-  typename std::aligned_storage<sizeof(T), alignof(T)>::type storage;
+  private: typename std::aligned_storage<sizeof(T), alignof(T)>::type storage;
 };
 
 }  // namespace utils
 }  // namespace ignition
 
 #endif  // IGNITION_UTILS_NEVERDESTROYED_HH_
-
