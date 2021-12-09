@@ -49,7 +49,7 @@ class Singleton {
 
   static Singleton& getInstance() {
     static ignition::utils::NeverDestroyed<Singleton> instance;
-    return instance.access();
+    return instance.Access();
   }
  private:
   friend ignition::utils::NeverDestroyed<Singleton>;
@@ -73,7 +73,7 @@ Foo ParseFoo(const std::string& foo_string) {
       {"baz", Foo::kBaz},
     }
   };
-  return string_to_enum.access().at(foo_string);
+  return string_to_enum.Access().at(foo_string);
 }
 
 GTEST_TEST(NeverDestroyedExample, ParseFoo) {
@@ -94,7 +94,7 @@ const std::vector<double>& GetConstantMagicNumbers() {
     }
     return prototype;
   }()};
-  return result.access();
+  return result.Access();
 }
 
 GTEST_TEST(NeverDestroyedExample, GetConstantMagicNumbers) {
