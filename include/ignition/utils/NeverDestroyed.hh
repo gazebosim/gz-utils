@@ -29,7 +29,7 @@ namespace utils
 
 /// Originally copied from https://github.com/RobotLocomotion/drake/blob/v0.36.0/common/never_destroyed.h
 /// Originally licensed BSD 3-Clause (https://github.com/RobotLocomotion/drake/blob/v0.36.0/LICENSE.TXT)
-/// Re-licensed Apache-2.0 with permission from: 
+/// Re-licensed Apache-2.0 with permission from:
 /// @jwnimmer-tri (https://github.com/ignitionrobotics/ign-utils/pull/31#issuecomment-989173512)
 ///
 /// Wraps an underlying type T such that its storage is a direct member field
