@@ -7,7 +7,15 @@
 
 class Boom : public std::exception { };
 struct DtorGoesBoom {
+#ifdef _WIN32
+// Disable warning C4722 which is triggered by the exception thrown in the dtor
+#pragma warning(push)
+#pragma warning(disable : 4722)
+#endif
   ~DtorGoesBoom() noexcept(false) { throw Boom(); }
+#ifdef _WIN32
+#pragma warning(pop)
+#endif
 };
 
 // Confirm that we see booms by default.
