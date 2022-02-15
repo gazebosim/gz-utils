@@ -23,6 +23,8 @@ jobs:
       - name: Compile and test
         id: ci
         uses: ignition-tooling/action-ignition-ci@focal
+        with:
+          enable-cpplint: true
   jammy-ci:
     runs-on: ubuntu-latest
     name: Ubuntu Jammy CI
