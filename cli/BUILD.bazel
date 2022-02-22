@@ -1,32 +1,34 @@
 load(
-    "//ign_bazel:build_defs.bzl",
+    "@ignition//tools/workspace:build_defs.bzl",
+    "IGNITION_FEATURES",
     "IGNITION_VISIBILITY",
 )
 
 package(
     default_visibility = IGNITION_VISIBILITY,
+    features = IGNITION_FEATURES,
 )
 
 public_headers = [
-    "include/ignition/utils/cli/App.hpp",
-    "include/ignition/utils/cli/CLI.hpp",
-    "include/ignition/utils/cli/ConfigFwd.hpp",
-    "include/ignition/utils/cli/Config.hpp",
-    "include/ignition/utils/cli/Error.hpp",
-    "include/ignition/utils/cli/FormatterFwd.hpp",
-    "include/ignition/utils/cli/Formatter.hpp",
-    "include/ignition/utils/cli/Macros.hpp",
-    "include/ignition/utils/cli/Option.hpp",
-    "include/ignition/utils/cli/Split.hpp",
-    "include/ignition/utils/cli/StringTools.hpp",
-    "include/ignition/utils/cli/Timer.hpp",
-    "include/ignition/utils/cli/TypeTools.hpp",
-    "include/ignition/utils/cli/Validators.hpp",
-    "include/ignition/utils/cli/Version.hpp",
+    "include/vendored-cli/ignition/utils/cli/App.hpp",
+    "include/vendored-cli/ignition/utils/cli/CLI.hpp",
+    "include/vendored-cli/ignition/utils/cli/ConfigFwd.hpp",
+    "include/vendored-cli/ignition/utils/cli/Config.hpp",
+    "include/vendored-cli/ignition/utils/cli/Error.hpp",
+    "include/vendored-cli/ignition/utils/cli/FormatterFwd.hpp",
+    "include/vendored-cli/ignition/utils/cli/Formatter.hpp",
+    "include/vendored-cli/ignition/utils/cli/Macros.hpp",
+    "include/vendored-cli/ignition/utils/cli/Option.hpp",
+    "include/vendored-cli/ignition/utils/cli/Split.hpp",
+    "include/vendored-cli/ignition/utils/cli/StringTools.hpp",
+    "include/vendored-cli/ignition/utils/cli/Timer.hpp",
+    "include/vendored-cli/ignition/utils/cli/TypeTools.hpp",
+    "include/vendored-cli/ignition/utils/cli/Validators.hpp",
+    "include/vendored-cli/ignition/utils/cli/Version.hpp",
 ]
 
 cc_library(
     name = "cli",
     hdrs = public_headers,
-    includes = ["include"],
+    includes = ["include/vendored-cli"],
 )
