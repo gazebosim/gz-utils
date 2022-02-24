@@ -1,5 +1,13 @@
 ## Ignition Utils 1.x
 
+## Ignition Utils 1.3.0 (2022-02-24)
+
+1. Fix inline namespace issue with clang6 
+    * [Pull request #39](https://github.com/ignitionrobotics/ign-utils/pull/39)
+
+1. Move ExtraTestMacros from ign-cmake
+    * [Pull request #37](https://github.com/ignitionrobotics/ign-utils/pull/37)
+
 ## Ignition Utils 1.2.0 (2022-01-28)
 
 1. Enable cpplint on focal 
