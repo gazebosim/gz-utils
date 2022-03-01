@@ -4,6 +4,20 @@
 
 ## Ignition Utils 1.x
 
+## Ignition Utils 1.2.0 (2022-01-28)
+
+1. Enable cpplint on focal 
+    * [Pull request #32](https://github.com/ignitionrobotics/ign-utils/pull/32)
+
+1. Add NeverDestroyed utility class
+    * [Pull request #31](https://github.com/ignitionrobotics/ign-utils/pull/31)
+
+1. Move environment functionality to utils 
+    * [Pull request #30](https://github.com/ignitionrobotics/ign-utils/pull/30)
+     
+1. ImplPtr Get method 
+    * [Pull request #27](https://github.com/ignitionrobotics/ign-utils/pull/27)
+
 ## Ignition Utils 1.1.0 (2021-09-02)
 
 1. More complete bazel implementation

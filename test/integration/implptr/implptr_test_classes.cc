@@ -18,12 +18,18 @@
 #include "implptr_test_classes.hh"
 
 #include <string>
+#include <thread>
 
 using namespace ignition;
 using namespace ignition::implptr_test_classes;
 
 class ignition::implptr_test_classes::ObjectPrivate
 {
+  public: void TestFunc()
+  {
+    this->ivalue += 1;
+  }
+
   public: int ivalue;
   public: std::string svalue;
 };
@@ -61,6 +67,15 @@ void CopyableObject::SetString(const std::string &_value)
 }
 
 //////////////////////////////////////////////////
+int CopyableObject::ThreadIncrementInt()
+{
+  this->SetInt(0);
+  auto thread = std::thread(&ObjectPrivate::TestFunc, this->dataPtr.Get());
+  thread.join();
+  return this->GetInt();
+}
+
+//////////////////////////////////////////////////
 MovableObject::MovableObject(const int _ivalue, const std::string &_svalue)
   : dataPtr(utils::MakeUniqueImpl<ObjectPrivate>(_ivalue, _svalue))
 {
@@ -89,6 +104,15 @@ const std::string &MovableObject::GetString() const
 void MovableObject::SetString(const std::string &_value)
 {
   (*dataPtr).svalue = _value;
+}
+
+//////////////////////////////////////////////////
+int MovableObject::ThreadIncrementInt()
+{
+  this->SetInt(0);
+  auto thread = std::thread(&ObjectPrivate::TestFunc, this->dataPtr.get());
+  thread.join();
+  return this->GetInt();
 }
 
 //////////////////////////////////////////////////
