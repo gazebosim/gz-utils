@@ -24,7 +24,7 @@ jobs:
         id: ci
         uses: ignition-tooling/action-ignition-ci@focal
         with:
-          enable-cpplint: true
+          cpplint-enabled: true
   jammy-ci:
     runs-on: ubuntu-latest
     name: Ubuntu Jammy CI
