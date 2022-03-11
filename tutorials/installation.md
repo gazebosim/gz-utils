@@ -53,7 +53,12 @@ necessary prerequisites followed by building from source.
 
 ### Building from source
 
-1. Clone the repository
+1. Install tools
+  ```
+  sudo apt install -y build-essential cmake git gnupg lsb-release wget
+  ```
+
+2. Clone the repository
 
     ```
     git clone https://github.com/ignitionrobotics/ign-utils -b ign-utils<#>
@@ -61,21 +66,20 @@ necessary prerequisites followed by building from source.
     Be sure to replace `<#>` with a number value, such as 1 or 2, depending on
     which version you need.
 
-2. Install dependencies
+3. Install dependencies
 
     ```
-    export SYSTEM_VERSION=bionic
     sudo apt -y install \
-      $(sort -u $(find . -iname 'packages-'$SYSTEM_VERSION'.apt' -o -iname 'packages.apt') | tr '\n' ' ')
+      $(sort -u $(find . -iname 'packages-'`lsb_release -cs`'.apt' -o -iname 'packages.apt' | tr '\n' ' '))
     ```
 
-3. Configure and build
+4. Configure and build
 
     ```
     cd ign-utils; mkdir build; cd build; cmake ..; make
     ```
 
-4. Optionally, install Ignition Utils
+5. Optionally, install Ignition Utils
 
     ```
     sudo make install
