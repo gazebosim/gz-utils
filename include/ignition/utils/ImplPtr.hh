@@ -48,8 +48,8 @@ namespace ignition
     /// };
     /// \endcode
     ///
-    /// When constructing the \code{dataPtr} object, pass it
-    /// \code{MakeImpl<Implementation>(/* ... args ... */)} in the
+    /// When constructing the `dataPtr` object, pass it
+    /// `MakeImpl<Implementation>(/* ... args ... */)` in the
     /// initialization list of your class. \sa MakeImpl<T>()
     ///
     /// This class was inspired by the following blog post:
@@ -224,7 +224,7 @@ namespace ignition
     /// UniqueImplPtr object's constructor will efficiently move this newly
     /// created object into it.
     template <class T, typename... Args>
-    UniqueImplPtr<T> MakeUniqueImpl(Args &&...args);
+    UniqueImplPtr<T> MakeUniqueImpl(Args &&..._args);
   }  // namespace utils
 }  // namespace ignition
 
