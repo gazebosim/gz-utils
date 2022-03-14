@@ -25,6 +25,7 @@ jobs:
         uses: ignition-tooling/action-ignition-ci@focal
         with:
           cpplint-enabled: true
+          doxygen-enabled: true
   jammy-ci:
     runs-on: ubuntu-latest
     name: Ubuntu Jammy CI
