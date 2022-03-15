@@ -10,7 +10,7 @@
 Build | Status
 -- | --
 Test coverage | [![codecov](https://codecov.io/gh/ignitionrobotics/ign-utils/branch/main/graph/badge.svg)](https://codecov.io/gh/ignitionrobotics/ign-utils)
-Ubuntu Bionic | [![Build Status](https://build.osrfoundation.org/buildStatus/icon?job=ignition_utils-ci-main-bionic-amd64)](https://build.osrfoundation.org/job/ignition_utils-ci-main-bionic-amd64)
+Ubuntu Focal | [![Build Status](https://build.osrfoundation.org/buildStatus/icon?job=ignition_utils-ci-main-focal-amd64)](https://build.osrfoundation.org/job/ignition_utils-ci-main-focal-amd64)
 Homebrew      | [![Build Status](https://build.osrfoundation.org/buildStatus/icon?job=ignition_utils-ci-main-homebrew-amd64)](https://build.osrfoundation.org/job/ignition_utils-ci-main-homebrew-amd64)
 Windows       | [![Build Status](https://build.osrfoundation.org/job/ign_utils-ci-win/badge/icon)](https://build.osrfoundation.org/job/ign_utils-ci-win/)
 
