@@ -1,8 +1,25 @@
 ## Ignition Utils 1.x
 
+## Ignition Utils 1.4.0 (2022-03-29)
+
+1. Enable cpplint
+    * [Pull request #41](https://github.com/ignitionrobotics/ign-utils/pull/41)
+
+1. Add doxygen linters
+    * [Pull request #44](https://github.com/ignitionrobotics/ign-utils/pull/44)
+
+1. Custom Ignition CLI11 formatter
+    * [Pull request #42](https://github.com/ignitionrobotics/ign-utils/pull/42)
+
+1. Drop all main functions from gtest files
+    * [Pull request #45](https://github.com/ignitionrobotics/ign-utils/pull/45)
+
+1. Improvements to enable "-Wconversion" 
+    * [Pull request #46](https://github.com/ignitionrobotics/ign-utils/pull/46)
+
 ## Ignition Utils 1.3.0 (2022-02-24)
 
-1. Fix inline namespace issue with clang6 
+1. Fix inline namespace issue with clang6
     * [Pull request #39](https://github.com/ignitionrobotics/ign-utils/pull/39)
 
 1. Move ExtraTestMacros from ign-cmake
@@ -10,16 +27,16 @@
 
 ## Ignition Utils 1.2.0 (2022-01-28)
 
-1. Enable cpplint on focal 
+1. Enable cpplint on focal
     * [Pull request #32](https://github.com/ignitionrobotics/ign-utils/pull/32)
 
 1. Add NeverDestroyed utility class
     * [Pull request #31](https://github.com/ignitionrobotics/ign-utils/pull/31)
 
-1. Move environment functionality to utils 
+1. Move environment functionality to utils
     * [Pull request #30](https://github.com/ignitionrobotics/ign-utils/pull/30)
-     
-1. ImplPtr Get method 
+
+1. ImplPtr Get method
     * [Pull request #27](https://github.com/ignitionrobotics/ign-utils/pull/27)
 
 ## Ignition Utils 1.1.0 (2021-09-02)
