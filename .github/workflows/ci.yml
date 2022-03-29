@@ -15,6 +15,7 @@ jobs:
         with:
           codecov-enabled: true
           cpplint-enabled: true
+          doxygen-enabled: true
   jammy-ci:
     runs-on: ubuntu-latest
     name: Ubuntu Jammy CI
