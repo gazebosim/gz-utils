@@ -165,10 +165,3 @@ TEST(UniqueImplPtr, MoveAssign)
   EXPECT_EQ(other.GetInt(), moved.GetInt());
   EXPECT_EQ(other.GetString(), moved.GetString());
 }
-
-/////////////////////////////////////////////////
-int main(int argc, char **argv)
-{
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}
