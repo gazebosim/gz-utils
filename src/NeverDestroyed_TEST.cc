@@ -124,16 +124,17 @@ GTEST_TEST(NeverDestroyedExample, ParseFoo)
 
 // This is an example from the class overview API docs; we repeat it here to
 // ensure it remains valid.
-const std::vector<double> &GetConstantMagicNumbers()
+using Result = std::vector<std::uint_fast32_t>;
+const Result &GetConstantMagicNumbers()
 {
-  static const ignition::utils::NeverDestroyed<std::vector<double>> result{
+  static const ignition::utils::NeverDestroyed<Result> result{
       []()
       {
-        std::vector<double> prototype;
+        Result prototype;
         std::mt19937 random_generator;
         for (int i = 0; i < 10; ++i)
         {
-          double new_value = random_generator();
+          auto new_value = random_generator();
           prototype.push_back(new_value);
         }
         return prototype;
