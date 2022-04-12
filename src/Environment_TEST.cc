@@ -19,7 +19,7 @@
 
 #include <ignition/utils/Environment.hh>
 
-using namespace ignition;
+using namespace gz;
 
 /////////////////////////////////////////////////
 TEST(Environment, emptyENV)

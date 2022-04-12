@@ -23,7 +23,7 @@
 
 #include <string>
 
-namespace ignition
+namespace gz
 {
 namespace utils
 {
@@ -68,7 +68,7 @@ bool IGNITION_UTILS_VISIBLE unsetenv(const std::string &_name);
 
 }
 }  // namespace utils
-}  // namespace ignition
+}  // namespace gz
 
 #endif  // IGNITION_UTILS_ENVIRONMENT_HH_
 

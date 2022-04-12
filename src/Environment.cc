@@ -21,7 +21,7 @@
 #include <iostream>
 
 
-namespace ignition
+namespace gz
 {
 namespace utils
 {

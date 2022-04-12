@@ -20,10 +20,11 @@
 
 #include <type_traits>
 
-namespace ignition
+namespace gz
 {
   namespace utils
   {
+    inline namespace IGNITION_UTILS_VERSION_NAMESPACE {
     namespace detail
     {
       //////////////////////////////////////////////////
@@ -76,9 +77,10 @@ namespace ignition
         public: CopyConstruct construct;
         public: CopyAssign assign;
       };
+    }
     }  // namespace detail
   }  // namespace utils
-}  // namespace ignition
+}  // namespace gz
 
 #endif  // IGNITION_UTILS__DETAIL__DEFAULTOPS_HH_
 

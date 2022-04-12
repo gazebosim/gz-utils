@@ -24,7 +24,7 @@
 #include <functional>
 #include <string>
 
-namespace ignition
+namespace gz
 {
   namespace implptr_test_classes
   {
@@ -117,6 +117,6 @@ namespace ignition
     };
 
   }  // namespace implptr_test_classes
-}  // namespace ignition
+}  // namespace gz
 
 #endif  // IGNITION_UTILS_TEST_IMPLPTR_TEST_CLASSES_HH_

@@ -63,7 +63,7 @@ GTEST_TEST(NeverDestroyed, NoBoomTest)
   try
   {
     {
-      ignition::utils::NeverDestroyed<DtorGoesBoom> foo;
+      gz::utils::NeverDestroyed<DtorGoesBoom> foo;
     }
     ASSERT_TRUE(true);
   }
@@ -83,11 +83,11 @@ class Singleton
   public: void operator=(Singleton &&) = delete;
   public: static Singleton &getInstance()
   {
-    static ignition::utils::NeverDestroyed<Singleton> instance;
+    static gz::utils::NeverDestroyed<Singleton> instance;
     return instance.Access();
   }
 
-  private: friend ignition::utils::NeverDestroyed<Singleton>;
+  private: friend gz::utils::NeverDestroyed<Singleton>;
   private: Singleton() = default;
 };
 
@@ -108,7 +108,7 @@ enum class Foo
 Foo ParseFoo(const std::string &foo_string)
 {
   using Dict = std::unordered_map<std::string, Foo>;
-  static const ignition::utils::NeverDestroyed<Dict> string_to_enum{
+  static const gz::utils::NeverDestroyed<Dict> string_to_enum{
       std::initializer_list<Dict::value_type>{
           {"bar", Foo::kBar},
           {"baz", Foo::kBaz},
@@ -127,7 +127,7 @@ GTEST_TEST(NeverDestroyedExample, ParseFoo)
 using Result = std::vector<std::uint_fast32_t>;
 const Result &GetConstantMagicNumbers()
 {
-  static const ignition::utils::NeverDestroyed<Result> result{
+  static const gz::utils::NeverDestroyed<Result> result{
       []()
       {
         Result prototype;
