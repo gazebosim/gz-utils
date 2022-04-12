@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Open Source Robotics Foundation
+ * Copyright (C) 2022 Open Source Robotics Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,9 @@
 
 #include <ignition/utils/ImplPtr.hh>
 #include <ignition/utils/NeverDestroyed.hh>
+#include <ignition/utils/SuppressWarning.hh>
+
+IGN_UTILS_WARN_IGNORE__DEPRECATED_DECLARATION
 
 /////////////////////////////////////////////////
 TEST(Deprecated, IgnitionNamespace)
@@ -26,3 +29,5 @@ TEST(Deprecated, IgnitionNamespace)
   auto impl = ignition::utils::MakeImpl<int>();
   ignition::utils::NeverDestroyed<int> neverDestroyed;
 }
+
+IGN_UTILS_WARN_RESUME__DEPRECATED_DECLARATION
