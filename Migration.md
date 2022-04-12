@@ -5,6 +5,11 @@ Deprecated code produces compile-time warnings. These warning serve as
 notification to users that their code should be upgraded. The next major
 release will remove the deprecated code.
 
+## Ignition Utils 1.X to 2.X
+
+* The `ignition` namespace is deprecated and will be removed in future versions.
+  Use `gz` instead.
+
 ## Ignition Utils 1.2 to 1.3
 
 Recommended migration:
