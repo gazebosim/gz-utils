@@ -24,6 +24,7 @@
 IGN_UTILS_WARN_IGNORE__DEPRECATED_DECLARATION
 
 /////////////////////////////////////////////////
+// Make sure the ignition namespace still works
 TEST(Deprecated, IgnitionNamespace)
 {
   auto impl = ignition::utils::MakeImpl<int>();
