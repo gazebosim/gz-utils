@@ -15,11 +15,11 @@
  *
  */
 
-#ifndef IGNITION_UTILS_ENVIRONMENT_HH_
-#define IGNITION_UTILS_ENVIRONMENT_HH_
+#ifndef GZ_UTILS_ENVIRONMENT_HH_
+#define GZ_UTILS_ENVIRONMENT_HH_
 
-#include <ignition/utils/config.hh>
-#include <ignition/utils/Export.hh>
+#include <gz/utils/config.hh>
+#include <gz/utils/Export.hh>
 
 #include <string>
 
@@ -70,5 +70,5 @@ bool IGNITION_UTILS_VISIBLE unsetenv(const std::string &_name);
 }  // namespace utils
 }  // namespace ignition
 
-#endif  // IGNITION_UTILS_ENVIRONMENT_HH_
+#endif  // GZ_UTILS_ENVIRONMENT_HH_
 

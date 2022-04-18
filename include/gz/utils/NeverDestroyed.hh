@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef IGNITION_UTILS_NEVERDESTROYED_HH_
-#define IGNITION_UTILS_NEVERDESTROYED_HH_
+#ifndef GZ_UTILS_NEVERDESTROYED_HH_
+#define GZ_UTILS_NEVERDESTROYED_HH_
 
 #include <new>
 #include <type_traits>
@@ -159,4 +159,4 @@ class NeverDestroyed
 }  // namespace utils
 }  // namespace ignition
 
-#endif  // IGNITION_UTILS_NEVERDESTROYED_HH_
+#endif  // GZ_UTILS_NEVERDESTROYED_HH_

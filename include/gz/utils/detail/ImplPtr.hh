@@ -15,10 +15,10 @@
  *
  */
 
-#ifndef IGNITION_UTILS__DETAIL__IMPLPTR_HH_
-#define IGNITION_UTILS__DETAIL__IMPLPTR_HH_
+#ifndef GZ_UTILS__DETAIL__IMPLPTR_HH_
+#define GZ_UTILS__DETAIL__IMPLPTR_HH_
 
-#include <ignition/utils/ImplPtr.hh>
+#include <gz/utils/ImplPtr.hh>
 
 #include <utility>
 
@@ -148,4 +148,4 @@ namespace ignition
   }  // namespace utils
 }  // namespace ignition
 
-#endif  // IGNITION_UTILS__DETAIL__IMPLPTR_HH_
+#endif  // GZ_UTILS__DETAIL__IMPLPTR_HH_

@@ -15,10 +15,10 @@
  *
  */
 
-#ifndef IGNITION_UTILS_DETAIL_EXTRATESTMACROS_HH
-#define IGNITION_UTILS_DETAIL_EXTRATESTMACROS_HH
+#ifndef GZ_UTILS_DETAIL_EXTRATESTMACROS_HH
+#define GZ_UTILS_DETAIL_EXTRATESTMACROS_HH
 
-#include <ignition/utils/SuppressWarning.hh>
+#include <gz/utils/SuppressWarning.hh>
 
 #define DETAIL_IGN_UTILS_ADD_DISABLED_PREFIX(x) DISABLED_##x
 
@@ -59,4 +59,4 @@
 #endif  // defined __linux__
 
 
-#endif  // IGNITION_UTILS_DETAIL_EXTRATESTMACROS_HH
+#endif  // GZ_UTILS_DETAIL_EXTRATESTMACROS_HH
