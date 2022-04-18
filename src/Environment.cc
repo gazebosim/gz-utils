@@ -20,10 +20,15 @@
 #include <cstdlib>
 #include <iostream>
 
+
+namespace ignition
+{
+namespace utils
+{
+inline namespace IGNITION_UTILS_VERSION_NAMESPACE {
+
 /////////////////////////////////////////////////
-bool ignition::utils::env(const std::string &_name,
-                          std::string &_value,
-                          bool _allowEmpty)
+bool env(const std::string &_name, std::string &_value, bool _allowEmpty)
 {
 #ifdef _WIN32
   size_t requiredSize;
@@ -62,8 +67,7 @@ bool ignition::utils::env(const std::string &_name,
 }
 
 /////////////////////////////////////////////////
-bool ignition::utils::setenv(const std::string &_name,
-                             const std::string &_value)
+bool setenv(const std::string &_name, const std::string &_value)
 {
 #ifdef _WIN32
   if (0 != _putenv_s(_name.c_str(), _value.c_str()))
@@ -80,7 +84,7 @@ bool ignition::utils::setenv(const std::string &_name,
 }
 
 /////////////////////////////////////////////////
-bool ignition::utils::unsetenv(const std::string &_name)
+bool unsetenv(const std::string &_name)
 {
 #ifdef _WIN32
   if (0 != _putenv_s(_name.c_str(), ""))
@@ -94,4 +98,7 @@ bool ignition::utils::unsetenv(const std::string &_name)
   }
 #endif
   return true;
+}
+}
+}
 }

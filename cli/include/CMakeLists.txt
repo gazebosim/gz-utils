@@ -14,3 +14,5 @@ else()
     INTERFACE 
     "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/cli/include/external-cli>")
 endif()
+
+add_subdirectory(ignition/utils)
