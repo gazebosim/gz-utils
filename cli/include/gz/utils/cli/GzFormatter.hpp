@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef IGNITION_UTILS_CLI_IGNITION_FORMATTER_HPP_
-#define IGNITION_UTILS_CLI_IGNITION_FORMATTER_HPP_
+#ifndef GZ_UTILS_CLI_IGNITION_FORMATTER_HPP_
+#define GZ_UTILS_CLI_IGNITION_FORMATTER_HPP_
 
 #include <algorithm>
 #include <string>
@@ -24,8 +24,8 @@
 #include <vector>
 #include <unordered_map>
 
-#include "ignition/utils/cli/App.hpp"
-#include "ignition/utils/cli/FormatterFwd.hpp"
+#include "gz/utils/cli/App.hpp"
+#include "gz/utils/cli/FormatterFwd.hpp"
 
 //////////////////////////////////////////////////
 /// \brief CLI Formatter class that implements custom Ignition-specific
@@ -167,4 +167,4 @@ private: std::unordered_multimap<std::string, std::string> needs;
 private: std::unordered_multimap<std::string, std::string> needed_by;
 };
 
-#endif  // IGNITION_UTILS_CLI_IGNITION_FORMATTER_HPP_
+#endif  // GZ_UTILS_CLI_IGNITION_FORMATTER_HPP_

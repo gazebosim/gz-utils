@@ -15,15 +15,15 @@
  *
  */
 
-#ifndef IGNITION_UTILS__IMPLPTR_HH_
-#define IGNITION_UTILS__IMPLPTR_HH_
+#ifndef GZ_UTILS__IMPLPTR_HH_
+#define GZ_UTILS__IMPLPTR_HH_
 
 #include <memory>
 #include <utility>
 
-#include <ignition/utils/detail/DefaultOps.hh>
-#include <ignition/utils/SuppressWarning.hh>
-#include <ignition/utils/Export.hh>
+#include <gz/utils/detail/DefaultOps.hh>
+#include <gz/utils/SuppressWarning.hh>
+#include <gz/utils/Export.hh>
 
 namespace ignition
 {
@@ -255,6 +255,6 @@ namespace ignition
   IGN_UTILS_UNIQUE_IMPL_PTR_FWD(Implementation, memberName)
 
 
-#include <ignition/utils/detail/ImplPtr.hh>
+#include <gz/utils/detail/ImplPtr.hh>
 
-#endif  // IGNITION_UTILS__IMPLPTR_HH_
+#endif  // GZ_UTILS__IMPLPTR_HH_
