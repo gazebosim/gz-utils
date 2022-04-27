@@ -15,10 +15,10 @@
  *
  */
 
-#ifndef IGNITION_UTILS_EXTRATESTMACROS_HH
-#define IGNITION_UTILS_EXTRATESTMACROS_HH
+#ifndef GZ_UTILS_EXTRATESTMACROS_HH
+#define GZ_UTILS_EXTRATESTMACROS_HH
 
-#include <ignition/utils/detail/ExtraTestMacros.hh>
+#include <gz/utils/detail/ExtraTestMacros.hh>
 
 /// \brief Restrict the execution of the test for the Windows platform.
 /// The test will be compiled on Windows too but will never be run as
@@ -44,4 +44,4 @@
 #define IGN_UTILS_TEST_ENABLED_ONLY_ON_LINUX(TestName) \
   DETAIL_IGN_UTILS_TEST_ENABLED_ONLY_ON_LINUX(TestName)
 
-#endif  // IGNITION_UTILS_EXTRATESTMACROS_HH
+#endif  // GZ_UTILS_EXTRATESTMACROS_HH

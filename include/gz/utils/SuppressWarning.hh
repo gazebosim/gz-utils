@@ -15,10 +15,10 @@
  *
  */
 
-#ifndef IGNITION_UTILS__SUPPRESSWARNING_HH_
-#define IGNITION_UTILS__SUPPRESSWARNING_HH_
+#ifndef GZ_UTILS__SUPPRESSWARNING_HH_
+#define GZ_UTILS__SUPPRESSWARNING_HH_
 
-#include <ignition/utils/detail/SuppressWarning.hh>
+#include <gz/utils/detail/SuppressWarning.hh>
 
 // This header contains cross-platform macros for suppressing warnings. Please
 // only use these macros responsibly when you are certain that the compiler is
@@ -88,4 +88,4 @@
 // TODO(anyone): Add more warning types as they become relevant.
 // Do not add warning types to suppress unless they are genuinely necessary.
 
-#endif  // IGNITION_UTILS__SUPPRESSWARNING_HH_
+#endif  // GZ_UTILS__SUPPRESSWARNING_HH_
