@@ -15,7 +15,9 @@ find_package(ignition-cmake3 REQUIRED)
 # Configure the project
 #============================================================================
 set(c++standard 17)
-ign_configure_project(VERSION_SUFFIX pre1)
+ign_configure_project(
+  REPLACE_IGNITION_INCLUDE_PATH gz/utils
+  VERSION_SUFFIX pre1)
 
 #============================================================================
 # Set project-specific options
