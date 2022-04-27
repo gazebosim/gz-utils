@@ -15,8 +15,8 @@
  *
  */
 
-#include <ignition/utils/cli/CLI.hpp>
-#include <ignition/utils/config.hh>
+#include <gz/utils/cli/CLI.hpp>
+#include <gz/utils/config.hh>
 
 /* 
  * At this point, all functionality of CLI11 will be available.
