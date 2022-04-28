@@ -15,4 +15,4 @@
  *
  */
 
-#include <external-cli/gz/utils/cli/Split.hpp>
+#include <gz/utils/cli/Split.hpp>

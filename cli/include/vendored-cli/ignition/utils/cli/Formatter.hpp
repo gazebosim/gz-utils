@@ -15,4 +15,4 @@
  *
  */
 
-#include <vendored-cli/gz/utils/cli/Formatter.hpp>
+#include <gz/utils/cli/Formatter.hpp>

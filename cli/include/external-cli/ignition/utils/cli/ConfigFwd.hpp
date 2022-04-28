@@ -15,4 +15,4 @@
  *
  */
 
-#include <external-cli/gz/utils/cli/ConfigFwd.hpp>
+#include <gz/utils/cli/ConfigFwd.hpp>

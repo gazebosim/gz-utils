@@ -15,4 +15,4 @@
  *
  */
 
-#include <vendored-cli/gz/utils/cli/Error.hpp>
+#include <gz/utils/cli/Error.hpp>

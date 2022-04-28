@@ -15,4 +15,4 @@
  *
  */
 
-#include <vendored-cli/gz/utils/cli/Macros.hpp>
+#include <gz/utils/cli/Macros.hpp>
