@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef GZ_UTILS_CLI_IGNITION_FORMATTER_HPP_
-#define GZ_UTILS_CLI_IGNITION_FORMATTER_HPP_
+#ifndef GZ_UTILS_CLI_GZ_FORMATTER_HPP_
+#define GZ_UTILS_CLI_GZ_FORMATTER_HPP_
 
 #include <algorithm>
 #include <string>
@@ -167,4 +167,4 @@ private: std::unordered_multimap<std::string, std::string> needs;
 private: std::unordered_multimap<std::string, std::string> needed_by;
 };
 
-#endif  // GZ_UTILS_CLI_IGNITION_FORMATTER_HPP_
+#endif  // GZ_UTILS_CLI_GZ_FORMATTER_HPP_
