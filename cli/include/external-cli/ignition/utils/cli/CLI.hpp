@@ -15,4 +15,4 @@
  *
  */
 
-#include <external-cli/gz/utils/cli/CLI.hpp>
+#include <gz/utils/cli/CLI.hpp>

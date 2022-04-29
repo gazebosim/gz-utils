@@ -15,4 +15,4 @@
  *
  */
 
-#include <gz/utils/utils.hh>
+#include <gz/utils/detail/Export.hh>

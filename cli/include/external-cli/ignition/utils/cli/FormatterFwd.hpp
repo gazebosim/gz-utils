@@ -15,4 +15,4 @@
  *
  */
 
-#include <external-cli/gz/utils/cli/FormatterFwd.hpp>
+#include <gz/utils/cli/FormatterFwd.hpp>

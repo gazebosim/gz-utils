@@ -15,4 +15,4 @@
  *
  */
 
-#include <vendored-cli/gz/utils/cli/CLI.hpp>
+#include <gz/utils/cli/CLI.hpp>

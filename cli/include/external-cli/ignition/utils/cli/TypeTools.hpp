@@ -15,4 +15,4 @@
  *
  */
 
-#include <external-cli/gz/utils/cli/TypeTools.hpp>
+#include <gz/utils/cli/TypeTools.hpp>

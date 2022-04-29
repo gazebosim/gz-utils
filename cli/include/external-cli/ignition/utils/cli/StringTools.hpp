@@ -15,4 +15,4 @@
  *
  */
 
-#include <external-cli/gz/utils/cli/StringTools.hpp>
+#include <gz/utils/cli/StringTools.hpp>
