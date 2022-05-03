@@ -16,7 +16,7 @@ licenses(["notice"])
 
 exports_files(["LICENSE"])
 
-PROJECT_NAME = "ignition-utils"
+PROJECT_NAME = "gz-utils"
 
 PROJECT_MAJOR = 2
 
