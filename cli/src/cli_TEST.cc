@@ -86,7 +86,7 @@ std::shared_ptr<TestOptions> addFlags(CLI::App &_app)
   excludesB->excludes(excludesA);
 
   _app.add_option("--default-value", opt->defaultValueOption,
-      "Option with default value", true);
+      "Option with default value")->capture_default_str();
 
   return opt;
 }
