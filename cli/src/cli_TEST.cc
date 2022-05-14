@@ -19,8 +19,8 @@
 
 #include <memory>
 
-#include <ignition/utils/cli/CLI.hpp>
-#include <ignition/utils/cli/IgnitionFormatter.hpp>
+#include <gz/utils/cli/CLI.hpp>
+#include <gz/utils/cli/GzFormatter.hpp>
 
 /////////////////////////////////////////////////
 struct TestOptions
