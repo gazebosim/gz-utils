@@ -15,8 +15,8 @@
  *
 */
 
-#ifndef IGNITION_UTILS_TEST_IMPLPTR_TEST_CLASSES_HH_
-#define IGNITION_UTILS_TEST_IMPLPTR_TEST_CLASSES_HH_
+#ifndef GZ_UTILS_TEST_IMPLPTR_TEST_CLASSES_HH_
+#define GZ_UTILS_TEST_IMPLPTR_TEST_CLASSES_HH_
 
 #include <ignition/utils/ImplPtr.hh>
 #include <ignition/utils/Export.hh>
@@ -119,4 +119,4 @@ namespace gz
   }  // namespace implptr_test_classes
 }  // namespace gz
 
-#endif  // IGNITION_UTILS_TEST_IMPLPTR_TEST_CLASSES_HH_
+#endif  // GZ_UTILS_TEST_IMPLPTR_TEST_CLASSES_HH_
