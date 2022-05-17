@@ -27,7 +27,7 @@ namespace ignition
 {
 namespace utils
 {
-inline namespace IGNITION_UTILS_VERSION_NAMESPACE {
+inline namespace GZ_UTILS_VERSION_NAMESPACE {
 
 /// \brief Find the environment variable '_name' and return its value.
 ///

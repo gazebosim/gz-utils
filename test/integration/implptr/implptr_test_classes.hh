@@ -15,8 +15,8 @@
  *
 */
 
-#ifndef IGNITION_UTILS_TEST_IMPLPTR_TEST_CLASSES_HH_
-#define IGNITION_UTILS_TEST_IMPLPTR_TEST_CLASSES_HH_
+#ifndef GZ_UTILS_TEST_IMPLPTR_TEST_CLASSES_HH_
+#define GZ_UTILS_TEST_IMPLPTR_TEST_CLASSES_HH_
 
 #include <gz/utils/ImplPtr.hh>
 #include <gz/utils/Export.hh>
@@ -32,7 +32,7 @@ namespace ignition
     class ObjectPrivate;
 
     /// \brief A PIMPL test class that can be copied.
-    class IGNITION_UTILS_VISIBLE CopyableObject
+    class GZ_UTILS_VISIBLE CopyableObject
     {
       /// \brief Constructor
       public: CopyableObject(int _ivalue = 0,
@@ -62,7 +62,7 @@ namespace ignition
     };
 
     /// \brief A PIMPL test class that cannot be copied; it can only be moved.
-    class IGNITION_UTILS_VISIBLE MovableObject
+    class GZ_UTILS_VISIBLE MovableObject
     {
       /// \brief Constructor
       public: MovableObject(int _ivalue = 0,
@@ -92,7 +92,7 @@ namespace ignition
     };
 
     /// \brief A PIMPL test class that can be copied (alternate definition)
-    class IGNITION_UTILS_VISIBLE CopyableObjectAlt
+    class GZ_UTILS_VISIBLE CopyableObjectAlt
     {
       /// \brief Constructor
       public: CopyableObjectAlt(int _ivalue = 0,
@@ -119,4 +119,4 @@ namespace ignition
   }  // namespace implptr_test_classes
 }  // namespace ignition
 
-#endif  // IGNITION_UTILS_TEST_IMPLPTR_TEST_CLASSES_HH_
+#endif  // GZ_UTILS_TEST_IMPLPTR_TEST_CLASSES_HH_
