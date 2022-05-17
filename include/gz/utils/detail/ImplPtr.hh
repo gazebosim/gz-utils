@@ -22,10 +22,11 @@
 
 #include <utility>
 
-namespace ignition
+namespace gz
 {
   namespace utils
   {
+    inline namespace IGNITION_UTILS_VERSION_NAMESPACE {
     namespace detail
     {
       //////////////////////////////////////////////////
@@ -145,7 +146,8 @@ namespace ignition
             new T{std::forward<Args>(args)...},
             &detail::DefaultDelete<T>);
     }
+  }
   }  // namespace utils
-}  // namespace ignition
+}  // namespace gz
 
 #endif  // GZ_UTILS__DETAIL__IMPLPTR_HH_

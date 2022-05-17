@@ -22,15 +22,15 @@
 #include <type_traits>
 #include <utility>
 
-namespace ignition
+namespace gz
 {
 namespace utils
 {
-
+inline namespace IGNITION_UTILS_VERSION_NAMESPACE {
 /// Originally copied from https://github.com/RobotLocomotion/drake/blob/v0.36.0/common/never_destroyed.h
 /// Originally licensed BSD 3-Clause (https://github.com/RobotLocomotion/drake/blob/v0.36.0/LICENSE.TXT)
 /// Re-licensed Apache-2.0 with permission from:
-/// jwnimmer-tri (https://github.com/ignitionrobotics/ign-utils/pull/31#issuecomment-989173512)
+/// jwnimmer-tri (https://github.com/gzrobotics/ign-utils/pull/31#issuecomment-989173512)
 ///
 /// Wraps an underlying type T such that its storage is a direct member field
 /// of this object (i.e., without any indirection into the heap), but *unlike*
@@ -62,11 +62,11 @@ namespace utils
 ///
 ///   static Singleton& getInstance()
 ///   {
-///     static ignition::utils::NeverDestroyed<Singleton> instance;
+///     static gz::utils::NeverDestroyed<Singleton> instance;
 ///     return instance.access();
 ///   }
 ///  private:
-///   friend ignition::utils::NeverDestroyed<Singleton>;
+///   friend gz::utils::NeverDestroyed<Singleton>;
 ///   Singleton() = default;
 /// };
 /// @endcode
@@ -78,7 +78,7 @@ namespace utils
 /// Foo ParseFoo(const std::string& foo_string)
 /// {
 ///   using Dict = std::unordered_map<std::string, Foo>;
-///   static const ignition::utils::NeverDestroyed<Dict> string_to_enum
+///   static const gz::utils::NeverDestroyed<Dict> string_to_enum
 ///   {
 ///     std::initializer_list<Dict::value_type>
 ///     {
@@ -95,7 +95,7 @@ namespace utils
 /// @code
 /// const std::vector<double>& GetConstantMagicNumbers()
 /// {
-///   static const ignition::utils::NeverDestroyed<std::vector<double>> result
+///   static const gz::utils::NeverDestroyed<std::vector<double>> result
 ///   {
 ///   []()
 ///   {
@@ -155,8 +155,8 @@ class NeverDestroyed
 
   private: typename std::aligned_storage<sizeof(T), alignof(T)>::type storage;
 };
-
+}
 }  // namespace utils
-}  // namespace ignition
+}  // namespace gz
 
 #endif  // GZ_UTILS_NEVERDESTROYED_HH_
