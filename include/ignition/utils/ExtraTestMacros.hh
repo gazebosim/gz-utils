@@ -16,3 +16,4 @@
  */
 
 #include <gz/utils/ExtraTestMacros.hh>
+#include <ignition/utils/config.hh>

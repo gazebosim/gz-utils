@@ -16,3 +16,4 @@
  */
 
 #include <gz/utils/cli.hh>
+#include <ignition/utils/config.hh>

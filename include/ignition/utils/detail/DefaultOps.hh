@@ -16,3 +16,4 @@
  */
 
 #include <gz/utils/detail/DefaultOps.hh>
+#include <ignition/utils/config.hh>

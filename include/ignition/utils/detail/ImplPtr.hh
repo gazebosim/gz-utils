@@ -16,3 +16,4 @@
  */
 
 #include <gz/utils/detail/ImplPtr.hh>
+#include <ignition/utils/config.hh>

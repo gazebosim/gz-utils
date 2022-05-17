@@ -15,6 +15,9 @@
  *
  */
 
+#ifndef IGNITION_UTILS__CONFIG_HH_
+#define IGNITION_UTILS__CONFIG_HH_
+
 #include <gz/utils/config.hh>
 
 #ifndef IGNITION_UTILS_CONFIG_HH_
