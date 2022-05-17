@@ -36,15 +36,9 @@
 #cmakedefine IGNITION_UTILS_BUILD_TYPE_DEBUG 1
 #cmakedefine IGNITION_UTILS_BUILD_TYPE_RELEASE 1
 
-namespace gz
+namespace [[deprecated("Use gz namespace.")]]  ignition
 {
+  using namespace gz;
 }
-
-// TODO(chapulina) Turn on warnings after entire stack has migrated to gz
-// namespace [[deprecated("Use gz namespace.")]]  ignition
-// {
-//   using namespace gz;
-// }
-namespace ignition = gz;
 
 #endif
