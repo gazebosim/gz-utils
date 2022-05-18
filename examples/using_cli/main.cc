@@ -29,7 +29,7 @@ int main(int argc, char** argv)
   CLI::App app{"Using ignition-utils CLI wrapper"};
 
   app.add_flag_callback("-v,--version", [](){
-      std::cout << IGNITION_UTILS_VERSION_FULL << std::endl;
+      std::cout << GZ_UTILS_VERSION_FULL << std::endl;
       throw CLI::Success();
   });
 

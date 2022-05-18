@@ -27,7 +27,7 @@ namespace ignition
 {
 namespace utils
 {
-inline namespace IGNITION_UTILS_VERSION_NAMESPACE {
+inline namespace GZ_UTILS_VERSION_NAMESPACE {
 
 /// \brief Find the environment variable '_name' and return its value.
 ///
@@ -39,7 +39,7 @@ inline namespace IGNITION_UTILS_VERSION_NAMESPACE {
 /// \param[in] _allowEmpty Allow set-but-empty variables.
 ///           (Unsupported on Windows)
 /// \return True if the variable was found or false otherwise.
-bool IGNITION_UTILS_VISIBLE env(
+bool GZ_UTILS_VISIBLE env(
     const std::string &_name, std::string &_value,
     bool _allowEmpty = false);
 
@@ -54,7 +54,7 @@ bool IGNITION_UTILS_VISIBLE env(
 /// \param[in] _name Name of the environment variable.
 /// \param[in] _value Value of the variable to be set.
 /// \return True if the variable was set or false otherwise.
-bool IGNITION_UTILS_VISIBLE setenv(
+bool GZ_UTILS_VISIBLE setenv(
     const std::string &_name, const std::string &_value);
 
 /// \brief Unset the environment variable '_name'.
@@ -64,7 +64,7 @@ bool IGNITION_UTILS_VISIBLE setenv(
 ///
 /// \param[in] _name Name of the environment variable.
 /// \return True if the variable was unset or false otherwise.
-bool IGNITION_UTILS_VISIBLE unsetenv(const std::string &_name);
+bool GZ_UTILS_VISIBLE unsetenv(const std::string &_name);
 
 }
 }  // namespace utils

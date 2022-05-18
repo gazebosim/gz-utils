@@ -25,7 +25,7 @@ namespace ignition
 {
 namespace utils
 {
-inline namespace IGNITION_UTILS_VERSION_NAMESPACE {
+inline namespace GZ_UTILS_VERSION_NAMESPACE {
 
 /////////////////////////////////////////////////
 bool env(const std::string &_name, std::string &_value, bool _allowEmpty)
