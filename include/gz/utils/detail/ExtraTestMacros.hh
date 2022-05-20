@@ -20,41 +20,41 @@
 
 #include <gz/utils/SuppressWarning.hh>
 
-#define DETAIL_IGN_UTILS_ADD_DISABLED_PREFIX(x) DISABLED_##x
+#define DETAIL_GZ_UTILS_ADD_DISABLED_PREFIX(x) DISABLED_##x
 
 #if defined _WIN32
 
-  #define DETAIL_IGN_UTILS_TEST_DISABLED_ON_WIN32(TestName) \
-      DETAIL_IGN_UTILS_ADD_DISABLED_PREFIX(TestName)
+  #define DETAIL_GZ_UTILS_TEST_DISABLED_ON_WIN32(TestName) \
+      DETAIL_GZ_UTILS_ADD_DISABLED_PREFIX(TestName)
 
 #else
 
-  #define DETAIL_IGN_UTILS_TEST_DISABLED_ON_WIN32(TestName) \
+  #define DETAIL_GZ_UTILS_TEST_DISABLED_ON_WIN32(TestName) \
       TestName
 
 #endif  // defined _WIN32
 
 #if defined __APPLE__
 
-  #define DETAIL_IGN_UTILS_TEST_DISABLED_ON_MAC(TestName) \
-      DETAIL_IGN_UTILS_ADD_DISABLED_PREFIX(TestName)
+  #define DETAIL_GZ_UTILS_TEST_DISABLED_ON_MAC(TestName) \
+      DETAIL_GZ_UTILS_ADD_DISABLED_PREFIX(TestName)
 
 #else
 
-  #define DETAIL_IGN_UTILS_TEST_DISABLED_ON_MAC(TestName) \
+  #define DETAIL_GZ_UTILS_TEST_DISABLED_ON_MAC(TestName) \
       TestName
 
 #endif  // defined __APPLE__
 
 #if defined __linux__
 
-  #define DETAIL_IGN_UTILS_TEST_ENABLED_ONLY_ON_LINUX(TestName) \
+  #define DETAIL_GZ_UTILS_TEST_ENABLED_ONLY_ON_LINUX(TestName) \
       TestName
 
 #else
 
-  #define DETAIL_IGN_UTILS_TEST_ENABLED_ONLY_ON_LINUX(TestName) \
-      DETAIL_IGN_UTILS_ADD_DISABLED_PREFIX(TestName)
+  #define DETAIL_GZ_UTILS_TEST_ENABLED_ONLY_ON_LINUX(TestName) \
+      DETAIL_GZ_UTILS_ADD_DISABLED_PREFIX(TestName)
 
 #endif  // defined __linux__
 
