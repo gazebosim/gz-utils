@@ -30,3 +30,5 @@ TEST(Deprecated, IgnitionNamespace)
   auto impl = ignition::utils::MakeImpl<int>();
   ignition::utils::NeverDestroyed<int> neverDestroyed;
 }
+
+#undef SUPPRESS_IGNITION_HEADER_DEPRECATION
