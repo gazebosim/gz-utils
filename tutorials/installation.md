@@ -61,7 +61,7 @@ necessary prerequisites followed by building from source.
 2. Clone the repository
 
     ```
-    git clone https://github.com/ignitionrobotics/ign-utils -b ign-utils<#>
+    git clone https://github.com/gazebosim/gz-utils -b ign-utils<#>
     ```
     Be sure to replace `<#>` with a number value, such as 1 or 2, depending on
     which version you need.

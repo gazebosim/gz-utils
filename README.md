@@ -2,14 +2,14 @@
 
 **Maintainer:** addisu AT openrobotics DOT org
 
-[![GitHub open issues](https://img.shields.io/github/issues-raw/ignitionrobotics/ign-utils.svg)](https://github.com/ignitionrobotics/ign-utils/issues)
-[![GitHub open pull requests](https://img.shields.io/github/issues-pr-raw/ignitionrobotics/ign-utils.svg)](https://github.com/ignitionrobotics/ign-utils/pulls)
+[![GitHub open issues](https://img.shields.io/github/issues-raw/gazebosim/gz-utils.svg)](https://github.com/gazebosim/gz-utils/issues)
+[![GitHub open pull requests](https://img.shields.io/github/issues-pr-raw/gazebosim/gz-utils.svg)](https://github.com/gazebosim/gz-utils/pulls)
 [![Discourse topics](https://img.shields.io/discourse/https/community.gazebosim.org/topics.svg)](https://community.gazebosim.org)
 [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 Build | Status
 -- | --
-Test coverage | [![codecov](https://codecov.io/gh/ignitionrobotics/ign-utils/branch/main/graph/badge.svg)](https://codecov.io/gh/ignitionrobotics/ign-utils)
+Test coverage | [![codecov](https://codecov.io/gh/gazebosim/gz-utils/branch/main/graph/badge.svg)](https://codecov.io/gh/gazebosim/gz-utils)
 Ubuntu Focal | [![Build Status](https://build.osrfoundation.org/buildStatus/icon?job=ignition_utils-ci-main-focal-amd64)](https://build.osrfoundation.org/job/ignition_utils-ci-main-focal-amd64)
 Homebrew      | [![Build Status](https://build.osrfoundation.org/buildStatus/icon?job=ignition_utils-ci-main-homebrew-amd64)](https://build.osrfoundation.org/job/ignition_utils-ci-main-homebrew-amd64)
 Windows       | [![Build Status](https://build.osrfoundation.org/job/ign_utils-ci-win/badge/icon)](https://build.osrfoundation.org/job/ign_utils-ci-win/)
@@ -54,7 +54,7 @@ See the [installation tutorial](https://ignitionrobotics.org/api/utils/0.1/insta
 
 # Usage
 
-Please refer to the [examples directory](https://github.com/ignitionrobotics/ign-utils/blob/main/examples/).
+Please refer to the [examples directory](https://github.com/gazebosim/gz-utils/blob/main/examples/).
 
 # Documentation
 
@@ -71,7 +71,7 @@ You can also generate the documentation from a clone of this repository by follo
 2. Clone the repository
 
     ```
-    git clone https://github.com/ignitionrobotics/ign-utils
+    git clone https://github.com/gazebosim/gz-utils
     ```
 
 3. Configure and build the documentation.
@@ -129,7 +129,7 @@ Please see
 # Code of Conduct
 
 Please see
-[CODE_OF_CONDUCT.md](https://github.com/ignitionrobotics/ign-utils/blob/main/CODE_OF_CONDUCT.md)
+[CODE_OF_CONDUCT.md](https://github.com/gazebosim/gz-utils/blob/main/CODE_OF_CONDUCT.md)
 
 # Versioning
 
@@ -145,6 +145,6 @@ release information.
 This library is licensed under
 [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 See also the
-[LICENSE](https://github.com/ignitionrobotics/ign-utils/blob/main/LICENSE)
+[LICENSE](https://github.com/gazebosim/gz-utils/blob/main/LICENSE)
 file.
 
