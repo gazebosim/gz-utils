@@ -1,4 +1,4 @@
-# Ignition Utils : Classes and functions for robot applications
+# Gazebo Utils : Classes and functions for robot applications
 
 **Maintainer:** addisu AT openrobotics DOT org
 
@@ -14,7 +14,7 @@ Ubuntu Focal | [![Build Status](https://build.osrfoundation.org/buildStatus/icon
 Homebrew      | [![Build Status](https://build.osrfoundation.org/buildStatus/icon?job=ignition_utils-ci-main-homebrew-amd64)](https://build.osrfoundation.org/job/ignition_utils-ci-main-homebrew-amd64)
 Windows       | [![Build Status](https://build.osrfoundation.org/job/ign_utils-ci-win/badge/icon)](https://build.osrfoundation.org/job/ign_utils-ci-win/)
 
-Ignition Utils, a component of [Ignition
+Gazebo Utils, a component of [Ignition
 Robotics](https://ignitionrobotics.org), provides general purpose
 classes and functions designed for robotic applications.
 
@@ -42,7 +42,7 @@ classes and functions designed for robotic applications.
 
 # Features
 
-Ignition Utils provides a wide range of functionality, including:
+Gazebo Utils provides a wide range of functionality, including:
 
 * A helper class to implement the PIMPL pattern
 * A command line parsing utility (vendored [CLI11](https://github.com/CLIUtils/CLI11/))

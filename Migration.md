@@ -5,7 +5,7 @@ Deprecated code produces compile-time warnings. These warning serve as
 notification to users that their code should be upgraded. The next major
 release will remove the deprecated code.
 
-## Ignition Utils 1.X to 2.X
+## Gazebo Utils 1.X to 2.X
 
 * The `ignition` namespace is deprecated and will be removed in future versions.
   Use `gz` instead.
@@ -13,7 +13,7 @@ release will remove the deprecated code.
 * Header files under `ignition/...` are deprecated and will be removed in future versions.
   Use `gz/...` instead.
 
-## Ignition Utils 1.2 to 1.3
+## Gazebo Utils 1.2 to 1.3
 
 Recommended migration:
 Utils 1.3.0 introduces the `ExtraTestMacros.hh` headers that are also in ign-cmake.
@@ -21,4 +21,4 @@ This is an effort to remove all headers from ign-cmake and locate them in ign-ut
 To update, replace all instances of `ignition/utilities/ExtraTestMacros.hh` with `ignition/utils/ExtraTestMacros.hh`
 In the future, `ignition/utilities/ExtraTestMacros.hh` will be removed from ign-cmake.
 
-## Ignition Utils 0.X to 1.X
+## Gazebo Utils 0.X to 1.X

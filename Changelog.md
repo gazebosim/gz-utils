@@ -1,10 +1,10 @@
-## Ignition Utils 2.x
+## Gazebo Utils 2.x
 
-## Ignition Utils 2.0.0 (20XX-XX-XX)
+## Gazebo Utils 2.0.0 (20XX-XX-XX)
 
-## Ignition Utils 1.x
+## Gazebo Utils 1.x
 
-## Ignition Utils 1.4.0 (2022-03-29)
+## Gazebo Utils 1.4.0 (2022-03-29)
 
 1. Enable cpplint
     * [Pull request #41](https://github.com/gazebosim/gz-utils/pull/41)
@@ -12,7 +12,7 @@
 1. Add doxygen linters
     * [Pull request #44](https://github.com/gazebosim/gz-utils/pull/44)
 
-1. Custom Ignition CLI11 formatter
+1. Custom Gazebo CLI11 formatter
     * [Pull request #42](https://github.com/gazebosim/gz-utils/pull/42)
 
 1. Drop all main functions from gtest files
@@ -21,7 +21,7 @@
 1. Improvements to enable "-Wconversion" 
     * [Pull request #46](https://github.com/gazebosim/gz-utils/pull/46)
 
-## Ignition Utils 1.3.0 (2022-02-24)
+## Gazebo Utils 1.3.0 (2022-02-24)
 
 1. Fix inline namespace issue with clang6
     * [Pull request #39](https://github.com/gazebosim/gz-utils/pull/39)
@@ -29,7 +29,7 @@
 1. Move ExtraTestMacros from ign-cmake
     * [Pull request #37](https://github.com/gazebosim/gz-utils/pull/37)
 
-## Ignition Utils 1.2.0 (2022-01-28)
+## Gazebo Utils 1.2.0 (2022-01-28)
 
 1. Enable cpplint on focal
     * [Pull request #32](https://github.com/gazebosim/gz-utils/pull/32)
@@ -43,7 +43,7 @@
 1. ImplPtr Get method
     * [Pull request #27](https://github.com/gazebosim/gz-utils/pull/27)
 
-## Ignition Utils 1.1.0 (2021-09-02)
+## Gazebo Utils 1.1.0 (2021-09-02)
 
 1. More complete bazel implementation
     * [Pull request #21](https://github.com/gazebosim/gz-utils/pull/21)
@@ -54,12 +54,12 @@
 1. Add an example program using CLI11
     * [Pull request #23](https://github.com/gazebosim/gz-utils/pull/23)
 
-## Ignition Utils 1.0.0 (2021-03-30)
+## Gazebo Utils 1.0.0 (2021-03-30)
 
 1. Add basic support for bazel build system.
     * [Pull request #14](https://github.com/gazebosim/gz-utils/pull/14)
 
-1. Ignition ImplPtr
+1. Gazebo ImplPtr
     * [Pull request 1](https://github.com/gazebosim/gz-utils/pull/1)
     * [Pull request 4](https://github.com/gazebosim/gz-utils/pull/4)
 

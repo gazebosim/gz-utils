@@ -2,7 +2,7 @@
 
 # Overview
 
-This tutorial describes how to install Ignition Utils on Linux, Mac OS X and
+This tutorial describes how to install Gazebo Utils on Linux, Mac OS X and
 Windows via either a binary distribution or from source.
 
 [Install](#install)
@@ -37,7 +37,7 @@ Setup keys:
 wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 ```
 
-Install Ignition Utils:
+Install Gazebo Utils:
 
 ```
 sudo apt install libignition-utils<#>-dev
@@ -79,7 +79,7 @@ necessary prerequisites followed by building from source.
     cd ign-utils; mkdir build; cd build; cmake ..; make
     ```
 
-5. Optionally, install Ignition Utils
+5. Optionally, install Gazebo Utils
 
     ```
     sudo make install
