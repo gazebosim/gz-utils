@@ -24,7 +24,6 @@ namespace gz
 {
   namespace utils
   {
-    inline namespace IGNITION_UTILS_VERSION_NAMESPACE {
     namespace detail
     {
       //////////////////////////////////////////////////
@@ -77,7 +76,6 @@ namespace gz
         public: CopyConstruct construct;
         public: CopyAssign assign;
       };
-    }
     }  // namespace detail
   }  // namespace utils
 }  // namespace gz

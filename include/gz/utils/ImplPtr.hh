@@ -29,7 +29,6 @@ namespace gz
 {
   namespace utils
   {
-    inline namespace IGNITION_UTILS_VERSION_NAMESPACE {
     //////////////////////////////////////////////////
     /// \brief The ImplPtr class provides a convenient away to achieve the
     /// <a href="http://en.cppreference.com/w/cpp/language/rule_of_three">
@@ -226,7 +225,6 @@ namespace gz
     /// created object into it.
     template <class T, typename... Args>
     UniqueImplPtr<T> MakeUniqueImpl(Args &&..._args);
-  }
   }  // namespace utils
 }  // namespace gz
 

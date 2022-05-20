@@ -26,7 +26,6 @@ namespace gz
 {
   namespace utils
   {
-    inline namespace IGNITION_UTILS_VERSION_NAMESPACE {
     namespace detail
     {
       //////////////////////////////////////////////////
@@ -146,7 +145,6 @@ namespace gz
             new T{std::forward<Args>(args)...},
             &detail::DefaultDelete<T>);
     }
-  }
   }  // namespace utils
 }  // namespace gz
 

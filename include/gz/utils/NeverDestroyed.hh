@@ -26,7 +26,6 @@ namespace gz
 {
 namespace utils
 {
-inline namespace IGNITION_UTILS_VERSION_NAMESPACE {
 /// Originally copied from https://github.com/RobotLocomotion/drake/blob/v0.36.0/common/never_destroyed.h
 /// Originally licensed BSD 3-Clause (https://github.com/RobotLocomotion/drake/blob/v0.36.0/LICENSE.TXT)
 /// Re-licensed Apache-2.0 with permission from:
@@ -155,7 +154,6 @@ class NeverDestroyed
 
   private: typename std::aligned_storage<sizeof(T), alignof(T)>::type storage;
 };
-}
 }  // namespace utils
 }  // namespace gz
 
