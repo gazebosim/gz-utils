@@ -16,3 +16,4 @@
  */
 
 #include <gz/utils/cli/Macros.hpp>
+#include <ignition/utils/config.hh>

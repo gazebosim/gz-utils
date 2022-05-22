@@ -16,3 +16,4 @@
  */
 
 #include <gz/utils/cli/App.hpp>
+#include <ignition/utils/config.hh>
