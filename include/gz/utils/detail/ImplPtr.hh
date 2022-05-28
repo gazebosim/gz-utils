@@ -22,7 +22,7 @@
 
 #include <utility>
 
-namespace ignition
+namespace gz
 {
   namespace utils
   {
@@ -146,6 +146,6 @@ namespace ignition
             &detail::DefaultDelete<T>);
     }
   }  // namespace utils
-}  // namespace ignition
+}  // namespace gz
 
 #endif  // GZ_UTILS__DETAIL__IMPLPTR_HH_

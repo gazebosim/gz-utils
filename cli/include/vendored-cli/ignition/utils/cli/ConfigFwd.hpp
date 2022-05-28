@@ -16,3 +16,4 @@
  */
 
 #include <gz/utils/cli/ConfigFwd.hpp>
+#include <ignition/utils/config.hh>

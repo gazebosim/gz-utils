@@ -16,3 +16,4 @@
  */
 
 #include <gz/utils/cli/StringTools.hpp>
+#include <ignition/utils/config.hh>

@@ -20,10 +20,10 @@
 #include <string>
 #include <thread>
 
-using namespace ignition;
-using namespace ignition::implptr_test_classes;
+using namespace gz;
+using namespace gz::implptr_test_classes;
 
-class ignition::implptr_test_classes::ObjectPrivate
+class gz::implptr_test_classes::ObjectPrivate
 {
   public: void TestFunc()
   {
