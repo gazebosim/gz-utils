@@ -230,29 +230,29 @@ namespace gz
 
 /// \brief Add a private ImplPtr to a class as dataPtr.
 ///  This variant takes a forward-declared ImplementationClass as the impl.
-#define IGN_UTILS_IMPL_PTR_FWD(ImplementationClass, memberName) \
-  IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING \
+#define GZ_UTILS_IMPL_PTR_FWD(ImplementationClass, memberName) \
+  GZ_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING \
   private: ::gz::utils::ImplPtr<ImplementationClass> memberName; \
-  IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
+  GZ_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
 
 /// \brief Add a private UniqueImplPtr to a class as dataPtr.
 ///  This variant takes a forward-declared ImplementationClass as the impl.
-#define IGN_UTILS_UNIQUE_IMPL_PTR_FWD(ImplementationClass, memberName) \
-  IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING \
+#define GZ_UTILS_UNIQUE_IMPL_PTR_FWD(ImplementationClass, memberName) \
+  GZ_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING \
   private: ::gz::utils::UniqueImplPtr<ImplementationClass> memberName; \
-  IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
+  GZ_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
 
 /// \brief Add a private ImplPtr to a class as dataPtr.
 ///  This variant forward-declares Class::Implementation as the impl.
-#define IGN_UTILS_IMPL_PTR(memberName) \
+#define GZ_UTILS_IMPL_PTR(memberName) \
   public: class Implementation; \
-  IGN_UTILS_IMPL_PTR_FWD(Implementation, memberName)
+  GZ_UTILS_IMPL_PTR_FWD(Implementation, memberName)
 
 /// \brief Add a private UniqueImplPtr to a class as dataPtr.
 ///  This variant forward-declares Class::Implementation as the impl.
-#define IGN_UTILS_UNIQUE_IMPL_PTR(memberName) \
+#define GZ_UTILS_UNIQUE_IMPL_PTR(memberName) \
   public: class Implementation; \
-  IGN_UTILS_UNIQUE_IMPL_PTR_FWD(Implementation, memberName)
+  GZ_UTILS_UNIQUE_IMPL_PTR_FWD(Implementation, memberName)
 
 
 #include <gz/utils/detail/ImplPtr.hh>

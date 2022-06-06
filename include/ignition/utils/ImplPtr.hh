@@ -17,3 +17,15 @@
 
 #include <gz/utils/ImplPtr.hh>
 #include <ignition/utils/config.hh>
+
+#define IGN_UTILS_IMPL_PTR_FWD(ImplementationClass, memberName) \
+  GZ_UTILS_IMPL_PTR_FWD(ImplementationClass, memberName)
+
+#define IGN_UTILS_UNIQUE_IMPL_PTR_FWD(ImplementationClass, memberName) \
+  GZ_UTILS_UNIQUE_IMPL_PTR_FWD(ImplementationClass, memberName)
+
+#define IGN_UTILS_IMPL_PTR(memberName) \
+  GZ_UTILS_IMPL_PTR(memberName)
+
+#define IGN_UTILS_UNIQUE_IMPL_PTR(memberName) \
+  GZ_UTILS_UNIQUE_IMPL_PTR(memberName)

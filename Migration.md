@@ -12,6 +12,20 @@ release will remove the deprecated code.
 
 * Header files under `ignition/...` are deprecated and will be removed in future versions.
   Use `gz/...` instead.
+  
+* The following `IGN_` prefixed macros are deprecated and will be removed in future versions.
+  Use the `GZ_` prefix instead.
+  * `IGN_UTILS_TEST_DISABLED_ON_WIN32`
+  * `IGN_UTILS_TEST_DISABLED_ON_MAC`
+  * `IGN_UTILS_TEST_DISABLED_ONLY_ON_LINUX`
+  * `IGN_UTILS_IMPL_PTR_FWD`
+  * `IGN_UTILS_UNIQUE_IMPL_PTR_FWD`
+  * `IGN_UTILS_IMPL_PTR`
+  * `IGN_UTILS_UNIQUE_IMPL_PTR`
+  *  `IGN_UTILS_WARN_IGNORE__NON_VIRTUAL_DESTRUCTOR`, `IGN_UTILS_WARN_RESUME__NON_VIRTUAL_DESTRUCTOR`
+  * `IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING`, `IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING`
+  * `IGN_UTILS_WARN_IGNORE__DEPRECATED_DECLARATION`, `IGN_UTILS_WARN_RESUME__DEPRECATED_DECLARATION`
+
 
 ## Gazebo Utils 1.2 to 1.3
 
