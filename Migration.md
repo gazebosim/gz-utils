@@ -12,8 +12,9 @@ release will remove the deprecated code.
 
 * Header files under `ignition/...` are deprecated and will be removed in future versions.
   Use `gz/...` instead.
-  
+
 * The following `IGN_` prefixed macros are deprecated and will be removed in future versions.
+  Additionally, they will only be available when including the corresponding `ignition/...` header.
   Use the `GZ_` prefix instead.
   * `IGN_UTILS_TEST_DISABLED_ON_WIN32`
   * `IGN_UTILS_TEST_DISABLED_ON_MAC`
