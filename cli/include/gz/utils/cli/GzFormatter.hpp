@@ -28,7 +28,7 @@
 #include "gz/utils/cli/FormatterFwd.hpp"
 
 //////////////////////////////////////////////////
-/// \brief CLI Formatter class that implements custom Ignition-specific
+/// \brief CLI Formatter class that implements custom Gazebo-specific
 /// formatting.
 ///
 /// More information on custom formatters:
