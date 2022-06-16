@@ -2,7 +2,7 @@
 # to support the vendored and not vendored case, we need to manually call
 # add_subdirectory of the correct directory, and
 # target_include_directories(@tgt@ INTERFACE "$<BUILD_INTERFACE:@incl_dirs>")
-# that for the usual include directories are handled by ign_add_component
+# that for the usual include directories are handled by gz_add_component
 if(IGN_UTILS_VENDOR_CLI11)
   add_subdirectory(vendored-cli)
   target_include_directories(${gz_utils_cli_target_name}
