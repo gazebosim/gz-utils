@@ -1,5 +1,5 @@
 load(
-    "//ign_bazel:build_defs.bzl",
+    "//gz_bazel:build_defs.bzl",
     "IGNITION_FEATURES",
     "IGNITION_VISIBILITY",
     "generate_include_header",
@@ -60,7 +60,7 @@ public_headers = public_headers_no_gen + [
 ]
 
 cc_library(
-    name = "ign_utils",
+    name = "gz_utils",
     hdrs = public_headers,
     includes = ["include"],
 )
@@ -75,7 +75,7 @@ cc_library(
         "test/integration/implptr/implptr_test_classes.hh",
     ],
     includes = ["test/integration/implptr"],
-    deps = ["ign_utils"],
+    deps = ["gz_utils"],
 )
 
 cc_test(
