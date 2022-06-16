@@ -16,3 +16,4 @@
  */
 
 #include <gz/utils/NeverDestroyed.hh>
+#include <ignition/utils/config.hh>

@@ -20,7 +20,7 @@
 
 #include <type_traits>
 
-namespace ignition
+namespace gz
 {
   namespace utils
   {
@@ -78,7 +78,6 @@ namespace ignition
       };
     }  // namespace detail
   }  // namespace utils
-}  // namespace ignition
+}  // namespace gz
 
 #endif  // GZ_UTILS__DETAIL__DEFAULTOPS_HH_
-

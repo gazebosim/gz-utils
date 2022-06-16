@@ -16,3 +16,4 @@
  */
 
 #include <gz/utils/SuppressWarning.hh>
+#include <ignition/utils/config.hh>

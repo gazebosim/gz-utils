@@ -16,3 +16,4 @@
  */
 
 #include <gz/utils/cli/Validators.hpp>
+#include <ignition/utils/config.hh>

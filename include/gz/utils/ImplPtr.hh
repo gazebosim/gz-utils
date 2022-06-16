@@ -25,7 +25,7 @@
 #include <gz/utils/SuppressWarning.hh>
 #include <gz/utils/Export.hh>
 
-namespace ignition
+namespace gz
 {
   namespace utils
   {
@@ -226,20 +226,20 @@ namespace ignition
     template <class T, typename... Args>
     UniqueImplPtr<T> MakeUniqueImpl(Args &&..._args);
   }  // namespace utils
-}  // namespace ignition
+}  // namespace gz
 
 /// \brief Add a private ImplPtr to a class as dataPtr.
 ///  This variant takes a forward-declared ImplementationClass as the impl.
 #define IGN_UTILS_IMPL_PTR_FWD(ImplementationClass, memberName) \
   IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING \
-  private: ::ignition::utils::ImplPtr<ImplementationClass> memberName; \
+  private: ::gz::utils::ImplPtr<ImplementationClass> memberName; \
   IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
 
 /// \brief Add a private UniqueImplPtr to a class as dataPtr.
 ///  This variant takes a forward-declared ImplementationClass as the impl.
 #define IGN_UTILS_UNIQUE_IMPL_PTR_FWD(ImplementationClass, memberName) \
   IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING \
-  private: ::ignition::utils::UniqueImplPtr<ImplementationClass> memberName; \
+  private: ::gz::utils::UniqueImplPtr<ImplementationClass> memberName; \
   IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
 
 /// \brief Add a private ImplPtr to a class as dataPtr.

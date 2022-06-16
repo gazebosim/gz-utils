@@ -16,3 +16,4 @@
  */
 
 #include <gz/utils/cli/Version.hpp>
+#include <ignition/utils/config.hh>

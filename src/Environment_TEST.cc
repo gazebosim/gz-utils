@@ -17,9 +17,9 @@
 
 #include <gtest/gtest.h>
 
-#include <ignition/utils/Environment.hh>
+#include <gz/utils/Environment.hh>
 
-using namespace ignition;
+using namespace gz;
 
 /////////////////////////////////////////////////
 TEST(Environment, emptyENV)

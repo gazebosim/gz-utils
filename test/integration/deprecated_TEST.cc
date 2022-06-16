@@ -13,7 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- */
+*/
 
-#include <gz/utils/cli/Formatter.hpp>
-#include <ignition/utils/config.hh>
+#include <gtest/gtest.h>
+
+#define SUPPRESS_IGNITION_HEADER_DEPRECATION
+
+#include <ignition/utils/SuppressWarning.hh>
+#include <ignition/utils/ImplPtr.hh>
+#include <ignition/utils/NeverDestroyed.hh>
+
+/////////////////////////////////////////////////
+// Make sure the ignition namespace still works
+TEST(Deprecated, IgnitionNamespace)
+{
+  auto impl = ignition::utils::MakeImpl<int>();
+  ignition::utils::NeverDestroyed<int> neverDestroyed;
+}
+
+#undef SUPPRESS_IGNITION_HEADER_DEPRECATION

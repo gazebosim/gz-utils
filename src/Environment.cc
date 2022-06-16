@@ -15,17 +15,17 @@
  *
  */
 
-#include <ignition/utils/Environment.hh>
+#include <gz/utils/Environment.hh>
 
 #include <cstdlib>
 #include <iostream>
 
 
-namespace ignition
+namespace gz
 {
 namespace utils
 {
-inline namespace IGNITION_UTILS_VERSION_NAMESPACE {
+inline namespace GZ_UTILS_VERSION_NAMESPACE {
 
 /////////////////////////////////////////////////
 bool env(const std::string &_name, std::string &_value, bool _allowEmpty)

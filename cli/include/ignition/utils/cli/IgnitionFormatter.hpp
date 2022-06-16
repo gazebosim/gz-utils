@@ -16,3 +16,4 @@
  */
 
 #include <gz/utils/cli/GzFormatter.hpp>
+#include <ignition/utils/config.hh>
