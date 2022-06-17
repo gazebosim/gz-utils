@@ -11,7 +11,7 @@ target_compile_definitions(
   -Dignition_utils${PROJECT_VERSION_MAJOR}_EXPORTS
 )
 
-ign_build_tests(TYPE INTEGRATION SOURCES ImplPtr_TEST.cc)
+gz_build_tests(TYPE INTEGRATION SOURCES ImplPtr_TEST.cc)
 
 target_link_libraries(INTEGRATION_ImplPtr_TEST
   implptr_test_classes

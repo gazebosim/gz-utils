@@ -15,7 +15,7 @@ find_package(ignition-cmake3 REQUIRED)
 # Configure the project
 #============================================================================
 set(c++standard 17)
-ign_configure_project(
+gz_configure_project(
   REPLACE_IGNITION_INCLUDE_PATH gz/utils
   VERSION_SUFFIX pre1)
 
@@ -35,19 +35,19 @@ option(
 if(NOT IGN_UTILS_VENDOR_CLI11)
   # PKGCONFIG_IGNORE can be removed once pkg-config support in CLI11 (see
   # https://github.com/CLIUtils/CLI11/pull/523) is released
-  ign_find_package(CLI11 REQUIRED_BY cli PKGCONFIG_IGNORE)
+  gz_find_package(CLI11 REQUIRED_BY cli PKGCONFIG_IGNORE)
 endif()
 
 #============================================================================
 # Configure the build
 #============================================================================
-ign_configure_build(QUIT_IF_BUILD_ERRORS
+gz_configure_build(QUIT_IF_BUILD_ERRORS
   COMPONENTS cli)
 
 #============================================================================
 # Create package information
 #============================================================================
-ign_create_packages()
+gz_create_packages()
 
 #============================================================================
 # Configure documentation
@@ -55,6 +55,6 @@ ign_create_packages()
 configure_file(${CMAKE_SOURCE_DIR}/api.md.in ${CMAKE_BINARY_DIR}/api.md)
 configure_file(${CMAKE_SOURCE_DIR}/tutorials.md.in ${CMAKE_BINARY_DIR}/tutorials.md)
 
-ign_create_docs(
+gz_create_docs(
   API_MAINPAGE_MD "${CMAKE_BINARY_DIR}/api.md"
   TUTORIALS_MAINPAGE_MD "${CMAKE_BINARY_DIR}/tutorials.md")
