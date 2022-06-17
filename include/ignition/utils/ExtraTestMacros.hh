@@ -17,3 +17,12 @@
 
 #include <gz/utils/ExtraTestMacros.hh>
 #include <ignition/utils/config.hh>
+
+#define IGN_UTILS_TEST_DISABLED_ON_WIN32(TestName) \
+  GZ_UTILS_TEST_ENABLED_ONLY_ON_LINUX(TestName)
+
+#define IGN_UTILS_TEST_DISABLED_ON_MAC(TestName) \
+  GZ_UTILS_TEST_ENABLED_ONLY_ON_LINUX(TestName)
+
+#define IGN_UTILS_TEST_ENABLED_ONLY_ON_LINUX(TestName) \
+  GZ_UTILS_TEST_ENABLED_ONLY_ON_LINUX(TestName)

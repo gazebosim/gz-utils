@@ -58,7 +58,7 @@ namespace gz
       /// \brief Pointer to implementation
       /// This demonstrates using an implementation class that is
       /// forward-declared outside of this class.
-      IGN_UTILS_IMPL_PTR_FWD(ObjectPrivate, dataPtr)
+      GZ_UTILS_IMPL_PTR_FWD(ObjectPrivate, dataPtr)
     };
 
     /// \brief A PIMPL test class that cannot be copied; it can only be moved.
@@ -88,7 +88,7 @@ namespace gz
       /// \brief Pointer to implementation
       /// This demonstrates using an implementation class that is
       /// forward-declared outside of this class.
-      IGN_UTILS_UNIQUE_IMPL_PTR_FWD(ObjectPrivate, dataPtr)
+      GZ_UTILS_UNIQUE_IMPL_PTR_FWD(ObjectPrivate, dataPtr)
     };
 
     /// \brief A PIMPL test class that can be copied (alternate definition)
@@ -113,7 +113,7 @@ namespace gz
       /// \brief Pointer to implementation
       /// This will automatically forward declare a class named
       /// "Implementation" inline
-      IGN_UTILS_IMPL_PTR(dataPtr)
+      GZ_UTILS_IMPL_PTR(dataPtr)
     };
 
   }  // namespace implptr_test_classes

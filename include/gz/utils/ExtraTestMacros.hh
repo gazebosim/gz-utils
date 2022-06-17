@@ -25,7 +25,7 @@
 /// part of the test suite. The macro uses the Disabled_ prefix provided
 /// by googletest. See
 /// https://chromium.googlesource.com/external/github.com/google/googletest/+/HEAD/googletest/docs/advanced.md
-#define IGN_UTILS_TEST_DISABLED_ON_WIN32(TestName) \
+#define GZ_UTILS_TEST_DISABLED_ON_WIN32(TestName) \
   DETAIL_GZ_UTILS_TEST_DISABLED_ON_WIN32(TestName)
 
 /// \brief Restrict the execution of the test for the Mac platform.
@@ -33,7 +33,7 @@
 /// part of the test suite. The macro uses the Disabled_ prefix provided
 /// by googletest. See
 /// https://chromium.googlesource.com/external/github.com/google/googletest/+/HEAD/googletest/docs/advanced.md
-#define IGN_UTILS_TEST_DISABLED_ON_MAC(TestName) \
+#define GZ_UTILS_TEST_DISABLED_ON_MAC(TestName) \
   DETAIL_GZ_UTILS_TEST_DISABLED_ON_MAC(TestName)
 
 /// \brief Restrict the execution of the test to just the Linux platform
@@ -41,7 +41,7 @@
 /// as part of the test suite execution.
 /// The macro uses the Disabled_ prefix provided by googletest. See
 /// https://chromium.googlesource.com/external/github.com/google/googletest/+/HEAD/googletest/docs/advanced.md
-#define IGN_UTILS_TEST_ENABLED_ONLY_ON_LINUX(TestName) \
+#define GZ_UTILS_TEST_ENABLED_ONLY_ON_LINUX(TestName) \
   DETAIL_GZ_UTILS_TEST_ENABLED_ONLY_ON_LINUX(TestName)
 
 #endif  // GZ_UTILS_EXTRATESTMACROS_HH
