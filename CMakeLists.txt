@@ -3,13 +3,13 @@ cmake_minimum_required(VERSION 3.10.2 FATAL_ERROR)
 #============================================================================
 # Initialize the project
 #============================================================================
-project(ignition-utils2 VERSION 2.0.0)
+project(gz-utils2 VERSION 2.0.0)
 
 #============================================================================
 # Find ignition-cmake
 #============================================================================
 # If you get an error at this line, you need to install ignition-cmake
-find_package(ignition-cmake3 REQUIRED)
+find_package(gz-cmake3 REQUIRED)
 
 #============================================================================
 # Configure the project
