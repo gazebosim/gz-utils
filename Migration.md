@@ -23,10 +23,16 @@ release will remove the deprecated code.
   * `IGN_UTILS_UNIQUE_IMPL_PTR_FWD`
   * `IGN_UTILS_IMPL_PTR`
   * `IGN_UTILS_UNIQUE_IMPL_PTR`
-  *  `IGN_UTILS_WARN_IGNORE__NON_VIRTUAL_DESTRUCTOR`, `IGN_UTILS_WARN_RESUME__NON_VIRTUAL_DESTRUCTOR`
+  * `IGN_UTILS_WARN_IGNORE__NON_VIRTUAL_DESTRUCTOR`, `IGN_UTILS_WARN_RESUME__NON_VIRTUAL_DESTRUCTOR`
   * `IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING`, `IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING`
   * `IGN_UTILS_WARN_IGNORE__DEPRECATED_DECLARATION`, `IGN_UTILS_WARN_RESUME__DEPRECATED_DECLARATION`
 
+* The project name has been changed to use the `gz-` prefix, you **must** use the `gz` prefix!
+  * This also means that any generated code that use the project name (e.g. CMake variables, in-source macros) would have to be migrated.
+  * Some non-exhaustive examples of this include:
+    * `GZ_<PROJECT>_<VISIBLE/HIDDEN>`
+    * CMake `-config` files
+    * Paths that depend on the project name
 
 ## Gazebo Utils 1.2 to 1.3
 
