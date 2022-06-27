@@ -31,9 +31,9 @@ release will remove the deprecated code.
 ## Gazebo Utils 1.2 to 1.3
 
 Recommended migration:
-Utils 1.3.0 introduces the `ExtraTestMacros.hh` headers that are also in ign-cmake.
-This is an effort to remove all headers from ign-cmake and locate them in ign-utils.
+Utils 1.3.0 introduces the `ExtraTestMacros.hh` headers that are also in gz-cmake.
+This is an effort to remove all headers from gz-cmake and locate them in gz-utils.
 To update, replace all instances of `ignition/utilities/ExtraTestMacros.hh` with `ignition/utils/ExtraTestMacros.hh`
-In the future, `ignition/utilities/ExtraTestMacros.hh` will be removed from ign-cmake.
+In the future, `ignition/utilities/ExtraTestMacros.hh` will be removed from gz-cmake.
 
 ## Gazebo Utils 0.X to 1.X

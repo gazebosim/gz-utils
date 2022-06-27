@@ -61,7 +61,7 @@ necessary prerequisites followed by building from source.
 2. Clone the repository
 
     ```
-    git clone https://github.com/gazebosim/gz-utils -b ign-utils<#>
+    git clone https://github.com/gazebosim/gz-utils -b gz-utils<#>
     ```
     Be sure to replace `<#>` with a number value, such as 1 or 2, depending on
     which version you need.
@@ -76,7 +76,7 @@ necessary prerequisites followed by building from source.
 4. Configure and build
 
     ```
-    cd ign-utils; mkdir build; cd build; cmake ..; make
+    cd gz-utils; mkdir build; cd build; cmake ..; make
     ```
 
 5. Optionally, install Gazebo Utils
