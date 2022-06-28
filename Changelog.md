@@ -26,7 +26,7 @@
 1. Fix inline namespace issue with clang6
     * [Pull request #39](https://github.com/gazebosim/gz-utils/pull/39)
 
-1. Move ExtraTestMacros from ign-cmake
+1. Move ExtraTestMacros from gz-cmake
     * [Pull request #37](https://github.com/gazebosim/gz-utils/pull/37)
 
 ## Gazebo Utils 1.2.0 (2022-01-28)

@@ -23,17 +23,23 @@ release will remove the deprecated code.
   * `IGN_UTILS_UNIQUE_IMPL_PTR_FWD`
   * `IGN_UTILS_IMPL_PTR`
   * `IGN_UTILS_UNIQUE_IMPL_PTR`
-  *  `IGN_UTILS_WARN_IGNORE__NON_VIRTUAL_DESTRUCTOR`, `IGN_UTILS_WARN_RESUME__NON_VIRTUAL_DESTRUCTOR`
+  * `IGN_UTILS_WARN_IGNORE__NON_VIRTUAL_DESTRUCTOR`, `IGN_UTILS_WARN_RESUME__NON_VIRTUAL_DESTRUCTOR`
   * `IGN_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING`, `IGN_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING`
   * `IGN_UTILS_WARN_IGNORE__DEPRECATED_DECLARATION`, `IGN_UTILS_WARN_RESUME__DEPRECATED_DECLARATION`
 
+* The project name has been changed to use the `gz-` prefix, you **must** use the `gz` prefix!
+  * This also means that any generated code that use the project name (e.g. CMake variables, in-source macros) would have to be migrated.
+  * Some non-exhaustive examples of this include:
+    * `GZ_<PROJECT>_<VISIBLE/HIDDEN>`
+    * CMake `-config` files
+    * Paths that depend on the project name
 
 ## Gazebo Utils 1.2 to 1.3
 
 Recommended migration:
-Utils 1.3.0 introduces the `ExtraTestMacros.hh` headers that are also in ign-cmake.
-This is an effort to remove all headers from ign-cmake and locate them in ign-utils.
+Utils 1.3.0 introduces the `ExtraTestMacros.hh` headers that are also in gz-cmake.
+This is an effort to remove all headers from gz-cmake and locate them in gz-utils.
 To update, replace all instances of `ignition/utilities/ExtraTestMacros.hh` with `ignition/utils/ExtraTestMacros.hh`
-In the future, `ignition/utilities/ExtraTestMacros.hh` will be removed from ign-cmake.
+In the future, `ignition/utilities/ExtraTestMacros.hh` will be removed from gz-cmake.
 
 ## Gazebo Utils 0.X to 1.X

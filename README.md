@@ -14,8 +14,7 @@ Ubuntu Focal | [![Build Status](https://build.osrfoundation.org/buildStatus/icon
 Homebrew      | [![Build Status](https://build.osrfoundation.org/buildStatus/icon?job=ignition_utils-ci-main-homebrew-amd64)](https://build.osrfoundation.org/job/ignition_utils-ci-main-homebrew-amd64)
 Windows       | [![Build Status](https://build.osrfoundation.org/job/ign_utils-ci-win/badge/icon)](https://build.osrfoundation.org/job/ign_utils-ci-win/)
 
-Gazebo Utils, a component of [Ignition
-Robotics](https://gazebosim.org), provides general purpose
+Gazebo Utils, a component of [Gazebo](https://gazebosim.org), provides general purpose
 classes and functions designed for robotic applications.
 
 # Table of Contents
@@ -77,7 +76,7 @@ You can also generate the documentation from a clone of this repository by follo
 3. Configure and build the documentation.
 
     ```
-    cd ign-utils; mkdir build; cd build; cmake ../; make doc
+    cd gz-utils; mkdir build; cd build; cmake ../; make doc
     ```
 
 4. View the documentation by running the following command from the build directory.
@@ -109,7 +108,7 @@ Follow these steps to run tests and static code analysis in your clone of this r
 Refer to the following table for information about important directories and files in this repository.
 
 ```
-ign-utils
+gz-utils
 ├── examples                 Example programs.
 ├── include/ignition/utils   Header files.
 ├── src                      Source files and unit tests.
@@ -135,9 +134,9 @@ Please see
 
 This library uses [Semantic Versioning](https://semver.org/).
 Additionally, this library is part of the
-[Ignition project](https://gazebosim.org) which periodically
+[Gazebo project](https://gazebosim.org) which periodically
 releases a versioned set of compatible and complimentary libraries. See the
-[Ignition website](https://gazebosim.org) for version and
+[Gazebo website](https://gazebosim.org) for version and
 release information.
 
 # License
@@ -147,4 +146,3 @@ This library is licensed under
 See also the
 [LICENSE](https://github.com/gazebosim/gz-utils/blob/main/LICENSE)
 file.
-
