@@ -14,7 +14,9 @@ find_package(gz-cmake3 REQUIRED)
 #============================================================================
 # Configure the project
 #============================================================================
-set(c++standard 17)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 gz_configure_project(
   REPLACE_IGNITION_INCLUDE_PATH gz/utils
   VERSION_SUFFIX pre1)
@@ -22,7 +24,6 @@ gz_configure_project(
 #============================================================================
 # Set project-specific options
 #============================================================================
-
 option(
   IGN_UTILS_VENDOR_CLI11
   "If true, use the vendored version of CLI11, otherwise use an external one"
