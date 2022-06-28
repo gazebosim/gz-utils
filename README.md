@@ -14,8 +14,7 @@ Ubuntu Focal | [![Build Status](https://build.osrfoundation.org/buildStatus/icon
 Homebrew      | [![Build Status](https://build.osrfoundation.org/buildStatus/icon?job=ignition_utils-ci-main-homebrew-amd64)](https://build.osrfoundation.org/job/ignition_utils-ci-main-homebrew-amd64)
 Windows       | [![Build Status](https://build.osrfoundation.org/job/ign_utils-ci-win/badge/icon)](https://build.osrfoundation.org/job/ign_utils-ci-win/)
 
-Gazebo Utils, a component of [Gazebo
-Robotics](https://gazebosim.org), provides general purpose
+Gazebo Utils, a component of [Gazebo](https://gazebosim.org), provides general purpose
 classes and functions designed for robotic applications.
 
 # Table of Contents
@@ -147,4 +146,3 @@ This library is licensed under
 See also the
 [LICENSE](https://github.com/gazebosim/gz-utils/blob/main/LICENSE)
 file.
-
