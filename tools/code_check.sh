@@ -73,7 +73,7 @@ if [ $CPPCHECK_LT_157 -eq 0 ]; then
   # use --language argument if 1.57 or greater (issue #907)
   CPPCHECK_BASE="$CPPCHECK_BASE --language=c++"
 fi
-CPPCHECK_INCLUDES="-I ./include -I $builddir -I test -I ./include/ignition/utils"
+CPPCHECK_INCLUDES="-I ./include -I $builddir -I test -I ./include/gz/utils"
 CPPCHECK_RULES="-UM_PI"\
 " --rule-file=./tools/cppcheck_rules/header_guard.rule"\
 " --rule-file=./tools/cppcheck_rules/namespace_AZ.rule"

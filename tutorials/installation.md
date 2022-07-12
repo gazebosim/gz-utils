@@ -40,7 +40,7 @@ wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 Install Gazebo Utils:
 
 ```
-sudo apt install libignition-utils<#>-dev
+sudo apt install libgz-utils<#>-dev
 ```
 
 Be sure to replace `<#>` with a number value, such as 1 or 2, depending on

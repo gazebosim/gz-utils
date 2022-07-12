@@ -8,7 +8,7 @@ project(gz-utils2 VERSION 2.0.0)
 #============================================================================
 # Find gz-cmake
 #============================================================================
-# If you get an error at this line, you need to install ignition-cmake
+# If you get an error at this line, you need to install gz-cmake
 find_package(gz-cmake3 REQUIRED)
 
 #============================================================================
@@ -17,15 +17,13 @@ find_package(gz-cmake3 REQUIRED)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-gz_configure_project(
-  REPLACE_IGNITION_INCLUDE_PATH gz/utils
-  VERSION_SUFFIX pre1)
+gz_configure_project(VERSION_SUFFIX pre1)
 
 #============================================================================
 # Set project-specific options
 #============================================================================
 option(
-  IGN_UTILS_VENDOR_CLI11
+  GZ_UTILS_VENDOR_CLI11
   "If true, use the vendored version of CLI11, otherwise use an external one"
   true)
 
@@ -33,7 +31,7 @@ option(
 # Search for project-specific dependencies
 #============================================================================
 
-if(NOT IGN_UTILS_VENDOR_CLI11)
+if(NOT GZ_UTILS_VENDOR_CLI11)
   # PKGCONFIG_IGNORE can be removed once pkg-config support in CLI11 (see
   # https://github.com/CLIUtils/CLI11/pull/523) is released
   gz_find_package(CLI11 REQUIRED_BY cli PKGCONFIG_IGNORE)

@@ -6,7 +6,7 @@ gz_add_component(
 
 # Make sure that the name is visible also in cli/include/CMakeLists.txt
 set(gz_utils_cli_target_name ${gz_utils_cli_target_name} PARENT_SCOPE)
-if(NOT IGN_UTILS_VENDOR_CLI11)
+if(NOT GZ_UTILS_VENDOR_CLI11)
   target_link_libraries(${gz_utils_cli_target_name} INTERFACE CLI11::CLI11)
 endif()
 

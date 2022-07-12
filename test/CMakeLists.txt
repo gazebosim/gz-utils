@@ -5,7 +5,7 @@ include_directories (
 )
 
 #============================================================================
-# Do a fake install of ign-utils in order to test the examples.
+# Do a fake install of gz-utils in order to test the examples.
 #============================================================================
 set(FAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/fake/install")
 file(MAKE_DIRECTORY ${FAKE_INSTALL_PREFIX})

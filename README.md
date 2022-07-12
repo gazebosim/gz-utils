@@ -110,7 +110,7 @@ Refer to the following table for information about important directories and fil
 ```
 gz-utils
 ├── examples                 Example programs.
-├── include/ignition/utils   Header files.
+├── include/gz/utils   Header files.
 ├── src                      Source files and unit tests.
 ├── test
 │    ├── integration         Integration tests.
