@@ -36,7 +36,7 @@
  *
  */
 
-// Be sure to call the IGN_UTILS_WARN_RESUME__XXXXX macro at the end of the
+// Be sure to call the GZ_UTILS_WARN_RESUME__XXXXX macro at the end of the
 // block of code where the warning suppression is needed. Otherwise, you might
 // inadvertently suppress legitimate warnings.
 

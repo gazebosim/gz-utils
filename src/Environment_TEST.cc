@@ -32,7 +32,7 @@ TEST(Environment, emptyENV)
 /////////////////////////////////////////////////
 TEST(Environment, envSet)
 {
-  const auto key = "IGN_ENV_SET";
+  const auto key = "GZ_ENV_SET";
   ASSERT_TRUE(utils::setenv(key, "VALUE"));
 
   // Check set var
@@ -65,7 +65,7 @@ TEST(Environment, envSet)
 /////////////////////////////////////////////////
 TEST(Environment, envUnset)
 {
-  const auto key = "IGN_ENV_UNSET";
+  const auto key = "GZ_ENV_UNSET";
   ASSERT_TRUE(utils::unsetenv(key));
 
   // Check unset var (default)
@@ -94,7 +94,7 @@ TEST(Environment, envUnset)
 /////////////////////////////////////////////////
 TEST(Util_TEST, envSetEmpty)
 {
-  const auto key = "IGN_ENV_SET_EMPTY";
+  const auto key = "GZ_ENV_SET_EMPTY";
 
   ASSERT_TRUE(utils::setenv(key, ""));
   ASSERT_FALSE(utils::setenv("", ""));
