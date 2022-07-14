@@ -26,6 +26,7 @@
 
 #include "gz/utils/cli/App.hpp"
 #include "gz/utils/cli/FormatterFwd.hpp"
+#include "gz/utils/Export.hh"
 
 //////////////////////////////////////////////////
 /// \brief CLI Formatter class that implements custom Gazebo-specific
@@ -33,10 +34,10 @@
 ///
 /// More information on custom formatters:
 /// https://cliutils.github.io/CLI11/book/chapters/formatting.html
-class IgnitionFormatter: public CLI::Formatter {
+class GzFormatter: public CLI::Formatter {
 
 //////////////////////////////////////////////////
-public: explicit IgnitionFormatter(const CLI::App *_app)
+public: explicit GzFormatter(const CLI::App *_app)
 {
   // find needs/needed_by for root options
   for (const CLI::Option *appOpt: _app->get_options())
@@ -166,5 +167,12 @@ private: std::unordered_multimap<std::string, std::string> needs;
 /// \brief Track dependent options (inverse)
 private: std::unordered_multimap<std::string, std::string> needed_by;
 };
+
+// TODO(CH3): Deprecated. Remove on tock.
+#ifdef _WIN32
+  using IgnitionFormatter = GzFormatter;
+#else
+  using IgnitionFormatter GZ_DEPRECATED(2) = GzFormatter;
+#endif
 
 #endif  // GZ_UTILS_CLI_GZ_FORMATTER_HPP_

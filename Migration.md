@@ -34,6 +34,8 @@ release will remove the deprecated code.
     * CMake `-config` files
     * Paths that depend on the project name
 
+* The `IgnitionFormatter` class is deprecated and will be removed in future versions. Use `GzFormatter` instead.
+
 ## Gazebo Utils 1.2 to 1.3
 
 Recommended migration:
