@@ -130,7 +130,7 @@ TEST(cli, options)
       EXPECT_EQ(3u, opt->multistringOption.size()) << opt->multistringOption[0];
   });
 
-  app.formatter(std::make_shared<IgnitionFormatter>(&app));
+  app.formatter(std::make_shared<GzFormatter>(&app));
   EXPECT_NO_THROW(app.help());
   EXPECT_NO_THROW(app.parse(argv));
 }
@@ -143,7 +143,7 @@ TEST(cli, help_text)
   auto opt = addFlags(app);
   app.callback([opt](){});
 
-  app.formatter(std::make_shared<IgnitionFormatter>(&app));
+  app.formatter(std::make_shared<GzFormatter>(&app));
   std::cout << app.help();
 }
 
