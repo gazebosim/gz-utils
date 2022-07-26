@@ -26,11 +26,15 @@
 
   #define DETAIL_GZ_UTILS_TEST_DISABLED_ON_WIN32(TestName) \
       DETAIL_GZ_UTILS_ADD_DISABLED_PREFIX(TestName)
+  #define DETAIL_GZ_UTILS_TEST_ENABLED_ONLY_ON_WIN32(TestName) \
+      TestName
 
 #else
 
   #define DETAIL_GZ_UTILS_TEST_DISABLED_ON_WIN32(TestName) \
       TestName
+  #define DETAIL_GZ_UTILS_TEST_ENABLED_ONLY_ON_WIN32(TestName) \
+      DETAIL_GZ_UTILS_ADD_DISABLED_PREFIX(TestName)
 
 #endif  // defined _WIN32
 
@@ -38,21 +42,29 @@
 
   #define DETAIL_GZ_UTILS_TEST_DISABLED_ON_MAC(TestName) \
       DETAIL_GZ_UTILS_ADD_DISABLED_PREFIX(TestName)
+  #define DETAIL_GZ_UTILS_TEST_ENABLED_ONLY_ON_MAC(TestName) \
+      TestName
 
 #else
 
   #define DETAIL_GZ_UTILS_TEST_DISABLED_ON_MAC(TestName) \
       TestName
+  #define DETAIL_GZ_UTILS_TEST_ENABLED_ONLY_ON_MAC(TestName) \
+      DETAIL_GZ_UTILS_ADD_DISABLED_PREFIX(TestName)
 
 #endif  // defined __APPLE__
 
 #if defined __linux__
 
+  #define DETAIL_GZ_UTILS_TEST_DISABLED_ON_LINUX(TestName) \
+      DETAIL_GZ_UTILS_ADD_DISABLED_PREFIX(TestName)
   #define DETAIL_GZ_UTILS_TEST_ENABLED_ONLY_ON_LINUX(TestName) \
       TestName
 
 #else
 
+  #define DETAIL_GZ_UTILS_TEST_DISABLED_ON_LINUX(TestName) \
+      TestName
   #define DETAIL_GZ_UTILS_TEST_ENABLED_ONLY_ON_LINUX(TestName) \
       DETAIL_GZ_UTILS_ADD_DISABLED_PREFIX(TestName)
 
