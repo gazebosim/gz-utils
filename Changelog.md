@@ -1,3 +1,7 @@
+## Gazebo Utils 3.x
+
+## Gazebo Utils 3.0.0 (20XX-XX-XX)
+
 ## Gazebo Utils 2.x
 
 ## Gazebo Utils 2.0.0 (20XX-XX-XX)
