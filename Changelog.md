@@ -2,6 +2,44 @@
 
 ## Gazebo Utils 2.0.0 (20XX-XX-XX)
 
+1. Fix CXX_STANDARD in core library
+    * [Pull request #77](https://github.com/gazebosim/gz-utils/pull/77)
+
+1. Round out ExtraTestMacros
+    * [Pull request #74](https://github.com/gazebosim/gz-utils/pull/74)
+
+1. Update GoogleTest to latest version
+    * [Pull request #63](https://github.com/gazebosim/gz-utils/pull/63)
+
+1. cli_TEST: Fix compatibility with CLI11 2.0
+    * [Pull request #60](https://github.com/gazebosim/gz-utils/pull/60)
+
+1. Include `<functional>` in FormatterFwd
+    * [Pull request #58](https://github.com/gazebosim/gz-utils/pull/58)
+
+1. `ign` to `gz` Migration
+    * [Pull request #53](https://github.com/gazebosim/gz-utils/pull/53)
+    * [Pull request #55](https://github.com/gazebosim/gz-utils/pull/55)
+    * [Pull request #57](https://github.com/gazebosim/gz-utils/pull/57)
+    * [Pull request #59](https://github.com/gazebosim/gz-utils/pull/59)
+    * [Pull request #61](https://github.com/gazebosim/gz-utils/pull/61)
+    * [Pull request #62](https://github.com/gazebosim/gz-utils/pull/62)
+    * [Pull request #64](https://github.com/gazebosim/gz-utils/pull/64)
+    * [Pull request #65](https://github.com/gazebosim/gz-utils/pull/65)
+    * [Pull request #67](https://github.com/gazebosim/gz-utils/pull/67)
+    * [Pull request #69](https://github.com/gazebosim/gz-utils/pull/69)
+    * [Pull request #70](https://github.com/gazebosim/gz-utils/pull/70)
+
+1. Infrastructure
+    * [Pull request #38](https://github.com/gazebosim/gz-utils/pull/38)
+    * [Pull request #43](https://github.com/gazebosim/gz-utils/pull/43)
+    * [Pull request #47](https://github.com/gazebosim/gz-utils/pull/47)
+    * [Pull request #49](https://github.com/gazebosim/gz-utils/pull/49)
+    * [Pull request #71](https://github.com/gazebosim/gz-utils/pull/71)
+    * [Pull request #72](https://github.com/gazebosim/gz-utils/pull/72)
+    * [Pull request #75](https://github.com/gazebosim/gz-utils/pull/75)
+    * [Pull request #78](https://github.com/gazebosim/gz-utils/pull/78)
+
 ## Gazebo Utils 1.x
 
 ## Gazebo Utils 1.4.0 (2022-03-29)
