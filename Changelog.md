@@ -2,6 +2,9 @@
 
 ## Gazebo Utils 2.0.0 (20XX-XX-XX)
 
+1. Improve install instructions
+    * [Pull request #80](https://github.com/gazebosim/gz-utils/pull/80)
+
 1. Round out ExtraTestMacros
     * [Pull request #74](https://github.com/gazebosim/gz-utils/pull/74)
 
