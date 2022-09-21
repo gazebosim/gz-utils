@@ -124,7 +124,7 @@ necessary prerequisites followed by building from source.
 
 1. Clone the repository
   ```
-  git clone https://github.com/gazebosim/gz-utils -b ign-utils<#>
+  git clone https://github.com/gazebosim/gz-utils -b gz-utils<#>
   ```
   Be sure to replace `<#>` with a number value, such as 1 or 2, depending on
   which version you need.
