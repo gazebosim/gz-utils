@@ -46,12 +46,47 @@ sudo apt install libgz-utils<#>-dev
 Be sure to replace `<#>` with a number value, such as 1 or 2, depending on
 which version you need.
 
+### macOS
+
+On macOS, add OSRF packages:
+  ```
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  brew tap osrf/simulation
+  ```
+
+Install Gazebo utils:
+  ```
+  brew install gz-utils<#>
+  ```
+
+Be sure to replace `<#>` with a number value, such as 1 or 2, depending on
+which version you need.
+
+### Windows
+
+Install [Conda package management system](https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html).
+Miniconda suffices.
+
+Create if necessary, and activate a Conda environment:
+```
+conda create -n gz-ws
+conda activate gz-ws
+```
+
+Install `gz-utils`:
+```
+conda install libgz-utils<#> --channel conda-forge
+```
+
+Be sure to replace `<#>` with a number value, such as 1 or 2, depending on
+which version you need.
+
 ## Source Install
 
 Source installation can be performed in UNIX systems by first installing the
 necessary prerequisites followed by building from source.
 
-### Building from source
+### Ubuntu
 
 1. Install tools
   ```
@@ -84,3 +119,102 @@ necessary prerequisites followed by building from source.
     ```
     sudo make install
     ```
+
+### macOS
+
+1. Clone the repository
+  ```
+  git clone https://github.com/gazebosim/gz-utils -b ign-utils<#>
+  ```
+  Be sure to replace `<#>` with a number value, such as 1 or 2, depending on
+  which version you need.
+
+2. Install dependencies
+  ```
+  brew install --only-dependencies gz-utils<#>
+  ```
+  Be sure to replace `<#>` with a number value, such as 1 or 2, depending on
+  which version you need.
+
+3. Configure and build
+  ```
+  cd gz-utils
+  mkdir build
+  cd build
+  cmake ..
+  make
+  ```
+
+4. Optionally, install
+  ```
+  sudo make install
+  ```
+### Windows
+
+This assumes you have created and activated a Conda environment while installing the Prerequisites.
+
+1. Navigate to where you would like to build the library, and clone the repository.
+  ```
+  # Optionally, append `-b gz-utils#` (replace # with a number) to check out a specific version
+  git clone https://github.com/gazebosim/gz-utils.git
+  ```
+
+2. Configure and build
+  ```
+  cd gz-utils
+  mkdir build
+  cd build
+  cmake .. -DBUILD_TESTING=OFF  # Optionally, -DCMAKE_INSTALL_PREFIX=path\to\install
+  cmake --build . --config Release
+  ```
+
+3. Optionally, install
+  ```
+  cmake --install . --config Release
+  ```
+
+# Documentation
+
+API and tutorials can be found at [https://gazebosim.org/libs/utils](https://gazebosim.org/libs/utils).
+
+You can also generate the documentation from a clone of this repository by following these steps.
+
+1. You will need Doxygen. On Ubuntu Doxygen can be installed using
+  ```
+  sudo apt-get install doxygen
+  ```
+
+2. Clone the repository
+  ```
+  git clone https://github.com/gazebosim/gz-utils
+  ```
+
+3. Configure and build the documentation.
+  ```
+  cd gz-utils
+  mkdir build
+  cd build
+  cmake ../
+  make doc
+  ```
+
+4. View the documentation by running the following command from the build directory.
+  ```
+  firefox doxygen/html/index.html
+  ```
+
+# Testing
+
+Follow these steps to run tests and static code analysis in your clone of this repository.
+
+1. Follow the [source install instruction](#source-install).
+
+2. Run tests.
+  ```
+  make test
+  ```
+
+3. Static code checker.
+  ```
+  make codecheck
+  ```
