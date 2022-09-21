@@ -2,14 +2,12 @@
 
 ## Gazebo Utils 2.0.0 (20XX-XX-XX)
 
-1. Fix CXX_STANDARD in core library
-    * [Pull request #77](https://github.com/gazebosim/gz-utils/pull/77)
-
 1. Round out ExtraTestMacros
     * [Pull request #74](https://github.com/gazebosim/gz-utils/pull/74)
 
 1. Update GoogleTest to latest version
     * [Pull request #63](https://github.com/gazebosim/gz-utils/pull/63)
+    * [Pull request #77](https://github.com/gazebosim/gz-utils/pull/77)
 
 1. cli_TEST: Fix compatibility with CLI11 2.0
     * [Pull request #60](https://github.com/gazebosim/gz-utils/pull/60)
@@ -31,14 +29,9 @@
     * [Pull request #70](https://github.com/gazebosim/gz-utils/pull/70)
 
 1. Infrastructure
-    * [Pull request #38](https://github.com/gazebosim/gz-utils/pull/38)
     * [Pull request #43](https://github.com/gazebosim/gz-utils/pull/43)
-    * [Pull request #47](https://github.com/gazebosim/gz-utils/pull/47)
     * [Pull request #49](https://github.com/gazebosim/gz-utils/pull/49)
-    * [Pull request #71](https://github.com/gazebosim/gz-utils/pull/71)
     * [Pull request #72](https://github.com/gazebosim/gz-utils/pull/72)
-    * [Pull request #75](https://github.com/gazebosim/gz-utils/pull/75)
-    * [Pull request #78](https://github.com/gazebosim/gz-utils/pull/78)
 
 ## Gazebo Utils 1.x
 
