@@ -1,5 +1,16 @@
 ## Ignition Utils 1.x
 
+## Ignition Utils 1.4.1 (2022-11-17)
+
+1. Include <functional> in FormatterFwd.
+    * [Pull request #58](https://github.com/ignitionrobotics/ign-utils/pull/58)
+
+1. cli_TEST: Fix compatibility with CLI11 2.0.
+    * [Pull request #60](https://github.com/ignitionrobotics/ign-utils/pull/60)
+
+1. Add code coverage ignore file.
+    * [Pull request #72](https://github.com/ignitionrobotics/ign-utils/pull/72)
+
 ## Ignition Utils 1.4.0 (2022-03-29)
 
 1. Enable cpplint
