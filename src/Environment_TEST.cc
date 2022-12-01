@@ -25,7 +25,7 @@ using namespace ignition;
 TEST(Environment, emptyENV)
 {
   std::string var;
-  EXPECT_FALSE(utils::env("!!SHOULD_NOT_EXIST!!", var));
+  EXPECT_FALSE(gz::utils::env("!!SHOULD_NOT_EXIST!!", var));
   EXPECT_TRUE(var.empty());
 }
 

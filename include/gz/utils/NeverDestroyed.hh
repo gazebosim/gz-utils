@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef IGNITION_UTILS_NEVERDESTROYED_HH_
-#define IGNITION_UTILS_NEVERDESTROYED_HH_
+#ifndef GZ_UTILS_NEVERDESTROYED_HH_
+#define GZ_UTILS_NEVERDESTROYED_HH_
 
 #include <new>
 #include <type_traits>
@@ -26,11 +26,10 @@ namespace ignition
 {
 namespace utils
 {
-
 /// Originally copied from https://github.com/RobotLocomotion/drake/blob/v0.36.0/common/never_destroyed.h
 /// Originally licensed BSD 3-Clause (https://github.com/RobotLocomotion/drake/blob/v0.36.0/LICENSE.TXT)
 /// Re-licensed Apache-2.0 with permission from:
-/// jwnimmer-tri (https://github.com/ignitionrobotics/ign-utils/pull/31#issuecomment-989173512)
+/// jwnimmer-tri (https://github.com/gazebosim/gz-utils/pull/31#issuecomment-989173512)
 ///
 /// Wraps an underlying type T such that its storage is a direct member field
 /// of this object (i.e., without any indirection into the heap), but *unlike*
@@ -155,8 +154,7 @@ class NeverDestroyed
 
   private: typename std::aligned_storage<sizeof(T), alignof(T)>::type storage;
 };
-
 }  // namespace utils
 }  // namespace ignition
 
-#endif  // IGNITION_UTILS_NEVERDESTROYED_HH_
+#endif  // GZ_UTILS_NEVERDESTROYED_HH_

@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef IGNITION_UTILS_CLI_IGNITION_FORMATTER_HPP_
-#define IGNITION_UTILS_CLI_IGNITION_FORMATTER_HPP_
+#ifndef GZ_UTILS_CLI_GZ_FORMATTER_HPP_
+#define GZ_UTILS_CLI_GZ_FORMATTER_HPP_
 
 #include <algorithm>
 #include <string>
@@ -24,11 +24,12 @@
 #include <vector>
 #include <unordered_map>
 
-#include "ignition/utils/cli/App.hpp"
-#include "ignition/utils/cli/FormatterFwd.hpp"
+#include "gz/utils/cli/App.hpp"
+#include "gz/utils/cli/FormatterFwd.hpp"
+#include "gz/utils/Export.hh"
 
 //////////////////////////////////////////////////
-/// \brief CLI Formatter class that implements custom Ignition-specific
+/// \brief CLI Formatter class that implements custom Gazebo-specific
 /// formatting.
 ///
 /// More information on custom formatters:
@@ -167,4 +168,7 @@ private: std::unordered_multimap<std::string, std::string> needs;
 private: std::unordered_multimap<std::string, std::string> needed_by;
 };
 
-#endif  // IGNITION_UTILS_CLI_IGNITION_FORMATTER_HPP_
+// Do not merge forward.
+using GzFormatter = IgnitionFormatter;
+
+#endif  // GZ_UTILS_CLI_GZ_FORMATTER_HPP_

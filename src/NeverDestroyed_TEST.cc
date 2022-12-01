@@ -22,6 +22,8 @@
 #include <random>
 #include <unordered_map>
 
+using namespace ignition;
+
 class Boom : public std::exception
 {
 };
@@ -63,7 +65,7 @@ GTEST_TEST(NeverDestroyed, NoBoomTest)
   try
   {
     {
-      ignition::utils::NeverDestroyed<DtorGoesBoom> foo;
+      utils::NeverDestroyed<DtorGoesBoom> foo;
     }
     ASSERT_TRUE(true);
   }
@@ -83,11 +85,11 @@ class Singleton
   public: void operator=(Singleton &&) = delete;
   public: static Singleton &getInstance()
   {
-    static ignition::utils::NeverDestroyed<Singleton> instance;
+    static utils::NeverDestroyed<Singleton> instance;
     return instance.Access();
   }
 
-  private: friend ignition::utils::NeverDestroyed<Singleton>;
+  private: friend utils::NeverDestroyed<Singleton>;
   private: Singleton() = default;
 };
 
@@ -108,7 +110,7 @@ enum class Foo
 Foo ParseFoo(const std::string &foo_string)
 {
   using Dict = std::unordered_map<std::string, Foo>;
-  static const ignition::utils::NeverDestroyed<Dict> string_to_enum{
+  static const utils::NeverDestroyed<Dict> string_to_enum{
       std::initializer_list<Dict::value_type>{
           {"bar", Foo::kBar},
           {"baz", Foo::kBaz},
@@ -127,7 +129,7 @@ GTEST_TEST(NeverDestroyedExample, ParseFoo)
 using Result = std::vector<std::uint_fast32_t>;
 const Result &GetConstantMagicNumbers()
 {
-  static const ignition::utils::NeverDestroyed<Result> result{
+  static const utils::NeverDestroyed<Result> result{
       []()
       {
         Result prototype;
