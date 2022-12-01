@@ -18,8 +18,8 @@
 #ifndef IGNITION_UTILS_TEST_IMPLPTR_TEST_CLASSES_HH_
 #define IGNITION_UTILS_TEST_IMPLPTR_TEST_CLASSES_HH_
 
-#include <ignition/utils/ImplPtr.hh>
-#include <ignition/utils/Export.hh>
+#include <gz/utils/ImplPtr.hh>
+#include <gz/utils/Export.hh>
 
 #include <functional>
 #include <string>

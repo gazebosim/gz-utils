@@ -15,7 +15,7 @@
  *
  */
 
-#include "ignition/utils/NeverDestroyed.hh"
+#include "gz/utils/NeverDestroyed.hh"
 
 #include <gtest/gtest.h>
 

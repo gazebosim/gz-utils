@@ -15,7 +15,7 @@
  *
  */
 
-#include <ignition/utils/Environment.hh>
+#include <gz/utils/Environment.hh>
 
 #include <cstdlib>
 #include <iostream>
