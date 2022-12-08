@@ -18,7 +18,7 @@
 #include <ignition/utils/cli/CLI.hpp>
 #include <ignition/utils/config.hh>
 
-/* 
+/*
  * At this point, all functionality of CLI11 will be available.
  * Consult https://github.com/CLIUtils/CLI11 for usage
  */

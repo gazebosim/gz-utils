@@ -15,4 +15,5 @@
  *
  */
 
-#include <CLI/Timer.hpp>
+#include <gz/utils/cli/Timer.hpp>
+#include <ignition/utils/config.hh>

@@ -15,7 +15,10 @@ find_package(ignition-cmake2 2.14.0 REQUIRED)
 # Configure the project
 #============================================================================
 set(c++standard 17)
-ign_configure_project(VERSION_SUFFIX)
+ign_configure_project(
+  REPLACE_IGNITION_INCLUDE_PATH gz/utils
+  VERSION_SUFFIX
+)
 
 #============================================================================
 # Set project-specific options

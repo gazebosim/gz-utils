@@ -17,7 +17,7 @@
 
 #include <gtest/gtest.h>
 
-#include <ignition/utils/ImplPtr.hh>
+#include <gz/utils/ImplPtr.hh>
 #include "implptr_test_classes.hh"
 
 using namespace ignition::implptr_test_classes;

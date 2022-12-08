@@ -1,4 +1,4 @@
-Ignition CLI component
+Gazebo CLI component
 
 Vendored from https://github.com/CLIUtils/CLI11/
 

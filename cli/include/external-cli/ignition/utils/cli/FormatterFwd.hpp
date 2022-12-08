@@ -15,4 +15,5 @@
  *
  */
 
-#include <CLI/FormatterFwd.hpp>
+#include <gz/utils/cli/FormatterFwd.hpp>
+#include <ignition/utils/config.hh>
