@@ -1,5 +1,13 @@
 ## Gazebo Utils 1.x
 
+## Gazebo Utils 1.5.0 (2022-12-08)
+
+1. Ignition to Gazebo header migration.
+    * [Pull request #84](https://github.com/gazebosim/gz-utils/pull/84)
+
+1. CI workflow: use checkout v3.
+    * [Pull request #85](https://github.com/gazebosim/gz-utils/pull/85)
+
 ## Gazebo Utils 1.4.1 (2022-11-17)
 
 1. Include <functional> in FormatterFwd.
