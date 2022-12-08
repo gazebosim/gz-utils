@@ -15,4 +15,5 @@
  *
  */
 
-#include <CLI/Macros.hpp>
+#include <gz/utils/cli/Macros.hpp>
+#include <ignition/utils/config.hh>

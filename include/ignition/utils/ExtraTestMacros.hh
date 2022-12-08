@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 Open Source Robotics Foundation
+ * Copyright (C) 2022 Open Source Robotics Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,33 +15,5 @@
  *
  */
 
-#ifndef IGNITION_UTILS_EXTRATESTMACROS_HH
-#define IGNITION_UTILS_EXTRATESTMACROS_HH
-
-#include <ignition/utils/detail/ExtraTestMacros.hh>
-
-/// \brief Restrict the execution of the test for the Windows platform.
-/// The test will be compiled on Windows too but will never be run as
-/// part of the test suite. The macro uses the Disabled_ prefix provided
-/// by googletest. See
-/// https://chromium.googlesource.com/external/github.com/google/googletest/+/HEAD/googletest/docs/advanced.md
-#define IGN_UTILS_TEST_DISABLED_ON_WIN32(TestName) \
-  DETAIL_IGN_UTILS_TEST_DISABLED_ON_WIN32(TestName)
-
-/// \brief Restrict the execution of the test for the Mac platform.
-/// The test will be compiled on Windows too but will never be run as
-/// part of the test suite. The macro uses the Disabled_ prefix provided
-/// by googletest. See
-/// https://chromium.googlesource.com/external/github.com/google/googletest/+/HEAD/googletest/docs/advanced.md
-#define IGN_UTILS_TEST_DISABLED_ON_MAC(TestName) \
-  DETAIL_IGN_UTILS_TEST_DISABLED_ON_MAC(TestName)
-
-/// \brief Restrict the execution of the test to just the Linux platform
-/// Other platforms will get the test compiled but it won't be run
-/// as part of the test suite execution.
-/// The macro uses the Disabled_ prefix provided by googletest. See
-/// https://chromium.googlesource.com/external/github.com/google/googletest/+/HEAD/googletest/docs/advanced.md
-#define IGN_UTILS_TEST_ENABLED_ONLY_ON_LINUX(TestName) \
-  DETAIL_IGN_UTILS_TEST_ENABLED_ONLY_ON_LINUX(TestName)
-
-#endif  // IGNITION_UTILS_EXTRATESTMACROS_HH
+#include <gz/utils/ExtraTestMacros.hh>
+#include <ignition/utils/config.hh>

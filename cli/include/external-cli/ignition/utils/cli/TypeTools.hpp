@@ -15,4 +15,5 @@
  *
  */
 
-#include <CLI/TypeTools.hpp>
+#include <gz/utils/cli/TypeTools.hpp>
+#include <ignition/utils/config.hh>

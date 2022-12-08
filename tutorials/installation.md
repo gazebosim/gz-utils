@@ -2,7 +2,7 @@
 
 # Overview
 
-This tutorial describes how to install Ignition Utils on Linux, Mac OS X and
+This tutorial describes how to install Gazebo Utils on Linux, Mac OS X and
 Windows via either a binary distribution or from source.
 
 [Install](#install)
@@ -37,7 +37,7 @@ Setup keys:
 wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 ```
 
-Install Ignition Utils:
+Install Gazebo Utils:
 
 ```
 sudo apt install libignition-utils<#>-dev
@@ -56,7 +56,7 @@ necessary prerequisites followed by building from source.
 1. Clone the repository
 
     ```
-    git clone https://github.com/ignitionrobotics/ign-utils -b ign-utils<#>
+    git clone https://github.com/gazebosim/gz-utils -b ign-utils<#>
     ```
     Be sure to replace `<#>` with a number value, such as 1 or 2, depending on
     which version you need.
@@ -75,7 +75,7 @@ necessary prerequisites followed by building from source.
     cd ign-utils; mkdir build; cd build; cmake ..; make
     ```
 
-4. Optionally, install Ignition Utils
+4. Optionally, install Gazebo Utils
 
     ```
     sudo make install

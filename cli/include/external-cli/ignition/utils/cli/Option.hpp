@@ -15,4 +15,5 @@
  *
  */
 
-#include <CLI/Option.hpp>
+#include <gz/utils/cli/Option.hpp>
+#include <ignition/utils/config.hh>
