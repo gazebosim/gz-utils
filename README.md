@@ -49,7 +49,7 @@ Gazebo Utils provides a wide range of functionality, including:
 
 # Install
 
-See the [installation tutorial](https://gazebosim.org/api/utils/0.1/install.html).
+See the [installation tutorial](https://gazebosim.org/api/utils/2.0/install.html).
 
 # Usage
 
