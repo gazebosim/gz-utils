@@ -1,5 +1,10 @@
 ## Gazebo Utils 1.x
 
+## Gazebo Utils 1.5.1 (2022-12-15)
+
+1. Add missing config.hh include to gz headers
+    * [Pull request #90](https://github.com/gazebosim/gz-utils/pull/90)
+
 ## Gazebo Utils 1.5.0 (2022-12-08)
 
 1. Ignition to Gazebo header migration.
