@@ -21,6 +21,7 @@
 #include <memory>
 #include <utility>
 
+#include <gz/utils/config.hh>
 #include <gz/utils/detail/DefaultOps.hh>
 #include <gz/utils/SuppressWarning.hh>
 #include <gz/utils/Export.hh>

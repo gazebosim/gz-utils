@@ -22,6 +22,8 @@
 #include <type_traits>
 #include <utility>
 
+#include <gz/utils/config.hh>
+
 namespace ignition
 {
 namespace utils
