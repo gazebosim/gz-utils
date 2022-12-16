@@ -6,7 +6,65 @@
 
 ## Gazebo Utils 2.0.0 (20XX-XX-XX)
 
+1. Improve install instructions
+    * [Pull request #80](https://github.com/gazebosim/gz-utils/pull/80)
+
+1. Round out ExtraTestMacros
+    * [Pull request #74](https://github.com/gazebosim/gz-utils/pull/74)
+
+1. Update GoogleTest to latest version
+    * [Pull request #63](https://github.com/gazebosim/gz-utils/pull/63)
+    * [Pull request #77](https://github.com/gazebosim/gz-utils/pull/77)
+
+1. cli_TEST: Fix compatibility with CLI11 2.0
+    * [Pull request #60](https://github.com/gazebosim/gz-utils/pull/60)
+
+1. Include `<functional>` in FormatterFwd
+    * [Pull request #58](https://github.com/gazebosim/gz-utils/pull/58)
+
+1. `ign` to `gz` Migration
+    * [Pull request #53](https://github.com/gazebosim/gz-utils/pull/53)
+    * [Pull request #55](https://github.com/gazebosim/gz-utils/pull/55)
+    * [Pull request #57](https://github.com/gazebosim/gz-utils/pull/57)
+    * [Pull request #59](https://github.com/gazebosim/gz-utils/pull/59)
+    * [Pull request #61](https://github.com/gazebosim/gz-utils/pull/61)
+    * [Pull request #62](https://github.com/gazebosim/gz-utils/pull/62)
+    * [Pull request #64](https://github.com/gazebosim/gz-utils/pull/64)
+    * [Pull request #65](https://github.com/gazebosim/gz-utils/pull/65)
+    * [Pull request #67](https://github.com/gazebosim/gz-utils/pull/67)
+    * [Pull request #69](https://github.com/gazebosim/gz-utils/pull/69)
+    * [Pull request #70](https://github.com/gazebosim/gz-utils/pull/70)
+
+1. Infrastructure
+    * [Pull request #43](https://github.com/gazebosim/gz-utils/pull/43)
+    * [Pull request #49](https://github.com/gazebosim/gz-utils/pull/49)
+    * [Pull request #72](https://github.com/gazebosim/gz-utils/pull/72)
+
 ## Gazebo Utils 1.x
+
+## Gazebo Utils 1.5.1 (2022-12-15)
+
+1. Add missing config.hh include to gz headers
+    * [Pull request #90](https://github.com/gazebosim/gz-utils/pull/90)
+
+## Gazebo Utils 1.5.0 (2022-12-08)
+
+1. Ignition to Gazebo header migration.
+    * [Pull request #84](https://github.com/gazebosim/gz-utils/pull/84)
+
+1. CI workflow: use checkout v3.
+    * [Pull request #85](https://github.com/gazebosim/gz-utils/pull/85)
+
+## Gazebo Utils 1.4.1 (2022-11-17)
+
+1. Include <functional> in FormatterFwd.
+    * [Pull request #58](https://github.com/gazebosim/gz-utils/pull/58)
+
+1. cli_TEST: Fix compatibility with CLI11 2.0.
+    * [Pull request #60](https://github.com/gazebosim/gz-utils/pull/60)
+
+1. Add code coverage ignore file.
+    * [Pull request #72](https://github.com/gazebosim/gz-utils/pull/72)
 
 ## Gazebo Utils 1.4.0 (2022-03-29)
 
