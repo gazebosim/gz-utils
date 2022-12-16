@@ -10,7 +10,7 @@
 Build | Status
 -- | --
 Test coverage | [![codecov](https://codecov.io/gh/gazebosim/gz-utils/branch/main/graph/badge.svg)](https://codecov.io/gh/gazebosim/gz-utils)
-Ubuntu Focal | [![Build Status](https://build.osrfoundation.org/buildStatus/icon?job=ignition_utils-ci-main-focal-amd64)](https://build.osrfoundation.org/job/ignition_utils-ci-main-focal-amd64)
+Ubuntu Focal  | [![Build Status](https://build.osrfoundation.org/buildStatus/icon?job=ignition_utils-ci-main-focal-amd64)](https://build.osrfoundation.org/job/ignition_utils-ci-main-focal-amd64)
 Homebrew      | [![Build Status](https://build.osrfoundation.org/buildStatus/icon?job=ignition_utils-ci-main-homebrew-amd64)](https://build.osrfoundation.org/job/ignition_utils-ci-main-homebrew-amd64)
 Windows       | [![Build Status](https://build.osrfoundation.org/job/ign_utils-ci-win/badge/icon)](https://build.osrfoundation.org/job/ign_utils-ci-win/)
 
@@ -49,7 +49,7 @@ Gazebo Utils provides a wide range of functionality, including:
 
 # Install
 
-See the [installation tutorial](https://gazebosim.org/api/utils/0.1/install.html).
+See the [installation tutorial](https://gazebosim.org/api/utils/2.0/install.html).
 
 # Usage
 
@@ -110,7 +110,7 @@ Refer to the following table for information about important directories and fil
 ```
 gz-utils
 ├── examples                 Example programs.
-├── include/gz/utils   Header files.
+├── include/gz/utils         Header files.
 ├── src                      Source files and unit tests.
 ├── test
 │    ├── integration         Integration tests.
