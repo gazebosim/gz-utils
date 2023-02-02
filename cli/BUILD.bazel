@@ -1,32 +1,21 @@
 load(
-    "//gz_bazel:build_defs.bzl",
+    "@gz//bazel/skylark:build_defs.bzl",
     "GZ_VISIBILITY",
 )
 
-package(
-    default_visibility = GZ_VISIBILITY,
-)
-
 public_headers = [
-    "include/gz/utils/cli/App.hpp",
-    "include/gz/utils/cli/CLI.hpp",
-    "include/gz/utils/cli/ConfigFwd.hpp",
-    "include/gz/utils/cli/Config.hpp",
-    "include/gz/utils/cli/Error.hpp",
-    "include/gz/utils/cli/FormatterFwd.hpp",
-    "include/gz/utils/cli/Formatter.hpp",
-    "include/gz/utils/cli/Macros.hpp",
-    "include/gz/utils/cli/Option.hpp",
-    "include/gz/utils/cli/Split.hpp",
-    "include/gz/utils/cli/StringTools.hpp",
-    "include/gz/utils/cli/Timer.hpp",
-    "include/gz/utils/cli/TypeTools.hpp",
-    "include/gz/utils/cli/Validators.hpp",
-    "include/gz/utils/cli/Version.hpp",
-]
+    "include/gz/utils/cli/GzFormatter.hpp",
+] + glob([
+    "include/external-cli/gz/utils/cli/*.hpp",
+])
 
 cc_library(
     name = "cli",
     hdrs = public_headers,
-    includes = ["include"],
+    includes = [
+        "include",
+        "include/external-cli",
+    ],
+    visibility = GZ_VISIBILITY,
+    deps = ["@cli11"],
 )
