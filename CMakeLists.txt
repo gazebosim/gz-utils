@@ -17,7 +17,15 @@ find_package(gz-cmake3 REQUIRED)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-gz_configure_project(VERSION_SUFFIX)
+gz_configure_project(
+  CONFIG_EXTRAS "extras.cmake.in"
+)
+
+# Install cmake support files
+install(
+  DIRECTORY cmake/
+  DESTINATION "lib/cmake/${PROJECT_NAME}"
+)
 
 #============================================================================
 # Set project-specific options
