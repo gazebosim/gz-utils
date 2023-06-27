@@ -11,4 +11,14 @@ endif()
 
 gz_build_tests(TYPE INTEGRATION SOURCES ${tests})
 
+add_executable(subprocess_executable subprocess/subprocess_main.cc )
+target_include_directories(subprocess_executable PUBLIC
+  ${PROJECT_SOURCE_DIR}/cli/include/
+  ${PROJECT_SOURCE_DIR}/cli/include/vendored-cli/)
+
+if(TARGET INTEGRATION_subprocess_TEST)
+  target_compile_definitions(INTEGRATION_subprocess_TEST PRIVATE
+    "SUBPROCESS_EXECUTABLE_PATH=\"$<TARGET_FILE:subprocess_executable>\"")
+endif()
+
 add_subdirectory(implptr)
