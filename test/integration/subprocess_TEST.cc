@@ -39,7 +39,7 @@ TEST(Subprocess, CreateValid)
   auto proc = Subprocess({kExecutablePath, "--help"});
 
   // Sleep for just a bit to guarantee executable finishes
-  std::this_thread::sleep_for(std::chrono::milliseconds(5));
+  std::this_thread::sleep_for(std::chrono::milliseconds(100));
   EXPECT_FALSE(proc.Alive());
 
   auto cout = proc.Stdout();
@@ -91,4 +91,43 @@ TEST(Subprocess, Cerr)
   auto cerr = proc.Stderr();
   EXPECT_TRUE(cout.empty());
   EXPECT_FALSE(cerr.empty());
+}
+
+/////////////////////////////////////////////////
+TEST(Subprocess, Environment)
+{
+  {
+    auto proc = Subprocess({kExecutablePath, "--output=cout"},
+                           {"ENV_VAR=foobar"});
+    // Block until the executable is done
+    auto ret = proc.Join();
+    EXPECT_EQ(0u, ret);
+
+    auto cout = proc.Stdout();
+    EXPECT_NE(std::string::npos, cout.find("ENV_VAR=foobar"));
+  }
+
+  {
+    auto proc = Subprocess({kExecutablePath, "--output=cerr"},
+                           {"ENV_VAR=foobar2"});
+    // Block until the executable is done
+    auto ret = proc.Join();
+    EXPECT_EQ(0u, ret);
+
+    auto cerr = proc.Stderr();
+    EXPECT_NE(std::string::npos, cerr.find("ENV_VAR=foobar2"));
+  }
+
+  {
+    auto proc = Subprocess({kExecutablePath},
+                           {"ENV_VAR=foobar3"});
+    // Block until the executable is done
+    auto ret = proc.Join();
+    EXPECT_EQ(0u, ret);
+
+    auto cout = proc.Stdout();
+    auto cerr = proc.Stderr();
+    EXPECT_EQ(std::string::npos, cerr.find("ENV_VAR=foobar3"));
+    EXPECT_EQ(std::string::npos, cout.find("ENV_VAR=foobar3"));
+  }
 }

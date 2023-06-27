@@ -19,6 +19,7 @@
 #include <string>
 #include <thread>
 
+#include <gz/utils/Environment.hh>
 #include <gz/utils/cli/CLI.hpp>
 
 class OutputSink
@@ -53,10 +54,10 @@ int main(int argc, char **argv)
   std::string output;
   app.add_option("--output", output, "output destination");
 
-  int iters;
+  int iters = 0;
   app.add_option("--iterations", iters, "number of iterations to run");
 
-  int iter_ms;
+  int iter_ms = 0;
   app.add_option("--iteration-ms", iter_ms, "length of one iteration");
 
   CLI11_PARSE(app, argc, argv);
@@ -68,4 +69,9 @@ int main(int argc, char **argv)
     std::this_thread::sleep_for(std::chrono::milliseconds(iter_ms));
   }
 
+  std::string env_var;
+  if(gz::utils::env("ENV_VAR", env_var))
+  {
+    sink.Write("ENV_VAR=" + env_var);
+  }
 }

@@ -34,10 +34,22 @@ namespace utils
 
 class Subprocess
 {
-  public: Subprocess(std::vector<std::string> _commandLine):
+  public: Subprocess(const std::vector<std::string> &_commandLine,
+                     const std::vector<std::string> &_environment = {}):
     commandLine(_commandLine),
-    process(new subprocess_s)
+    environment(_environment)
   {
+    this->Create();
+
+  }
+
+  private: void Create()
+  {
+    if (this->process)
+        return;
+
+    this->process = new subprocess_s;
+
     std::vector<const char*> commandLineCstr;
     for (const auto &val : this->commandLine)
     {
@@ -45,7 +57,23 @@ class Subprocess
     }
     commandLineCstr.push_back(nullptr);
 
-    auto ret = subprocess_create(commandLineCstr.data(), 0, this->process);
+    std::vector<const char*> environmentCstr;
+    for (const auto &val : this->environment)
+    {
+      environmentCstr.push_back(val.c_str());
+    }
+    environmentCstr.push_back(nullptr);
+
+    int ret = -1;
+    if (this->environment.size())
+    {
+      ret = subprocess_create_ex(commandLineCstr.data(), 0, environmentCstr.data(), this->process);
+    }
+    else
+    {
+      ret = subprocess_create(commandLineCstr.data(), 0, this->process);
+    }
+
     if (0 != ret)
     {
       std::cerr << "failed to create subprocess" << std::endl;
@@ -121,14 +149,13 @@ class Subprocess
         std::cerr << "Failed to join subprocess" << std::endl;
       }
     }
-    else
-    {
-    }
 
     return return_code;
   }
 
   protected: std::vector<std::string> commandLine;
+
+  protected: std::vector<std::string> environment;
 
   protected: subprocess_s * process {nullptr};
 };
