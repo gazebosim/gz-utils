@@ -67,7 +67,8 @@ class Subprocess
     int ret = -1;
     if (this->environment.size())
     {
-      ret = subprocess_create_ex(commandLineCstr.data(), 0, environmentCstr.data(), this->process);
+      ret = subprocess_create_ex(commandLineCstr.data(),
+                                 0, environmentCstr.data(), this->process);
     }
     else
     {
