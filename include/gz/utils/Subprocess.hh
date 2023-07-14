@@ -40,7 +40,6 @@ class Subprocess
     environment(_environment)
   {
     this->Create();
-
   }
 
   private: void Create()
@@ -92,7 +91,7 @@ class Subprocess
 
   public: std::string Stdout()
   {
-    std::string result = "";
+    std::string result{""};
     if (this->process)
     {
       auto p_stdout = subprocess_stdout(this->process);
@@ -108,7 +107,7 @@ class Subprocess
 
   public: std::string Stderr()
   {
-    std::string result = "";
+    std::string result{""};
     if (this->process)
     {
       auto p_stdout = subprocess_stderr(this->process);

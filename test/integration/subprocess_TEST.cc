@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Open Source Robotics Foundation
+ * Copyright (C) 2023 Open Source Robotics Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,8 +38,10 @@ TEST(Subprocess, CreateValid)
 {
   auto proc = Subprocess({kExecutablePath, "--help"});
 
-  // Sleep for just a bit to guarantee executable finishes
-  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  // Block until the executable is done
+  auto ret = proc.Join();
+  EXPECT_EQ(0u, ret);
+
   EXPECT_FALSE(proc.Alive());
 
   auto cout = proc.Stdout();
@@ -47,9 +49,6 @@ TEST(Subprocess, CreateValid)
 
   EXPECT_FALSE(cout.empty());
   EXPECT_TRUE(cerr.empty());
-
-  auto ret = proc.Join();
-  EXPECT_EQ(0u, ret);
 }
 
 /////////////////////////////////////////////////
@@ -60,7 +59,6 @@ TEST(Subprocess, Cout)
                           "--iterations=10",
                           "--iteration-ms=10"});
 
-  // Sleep for just a bit to guarantee executable finishes
   EXPECT_TRUE(proc.Alive());
 
   // Block until the executable is done
