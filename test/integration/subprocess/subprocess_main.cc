@@ -74,4 +74,5 @@ int main(int argc, char **argv)
   {
     sink.Write("ENV_VAR=" + env_var);
   }
+  return 0;
 }
