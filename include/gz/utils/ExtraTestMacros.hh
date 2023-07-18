@@ -77,7 +77,7 @@
   DETAIL_GZ_UTILS_TEST_ENABLED_ONLY_ON_ARM32(TestName)
 
 /// \brief Restrict the execution of the test for the ARM32 architecture
-/// The test will be compiled on Linux too but will never be run as
+/// The test will be compiled on ARM32 too but will never be run as
 /// part of the test suite. The macro uses the Disabled_ prefix provided
 /// by googletest. See
 /// https://chromium.googlesource.com/external/github.com/google/googletest/+/HEAD/googletest/docs/advanced.md
