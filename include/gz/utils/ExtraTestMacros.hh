@@ -68,4 +68,36 @@
 #define GZ_UTILS_TEST_DISABLED_ON_LINUX(TestName) \
   DETAIL_GZ_UTILS_TEST_DISABLED_ON_LINUX(TestName)
 
+/// \brief Restrict the execution of the test to just the ARM32 architecture
+/// Other platforms will get the test compiled but it won't be run
+/// as part of the test suite execution.
+/// The macro uses the Disabled_ prefix provided by googletest. See
+/// https://chromium.googlesource.com/external/github.com/google/googletest/+/HEAD/googletest/docs/advanced.md
+#define GZ_UTILS_TEST_ENABLED_ONLY_ON_ARM32(TestName) \
+  DETAIL_GZ_UTILS_TEST_ENABLED_ONLY_ON_ARM32(TestName)
+
+/// \brief Restrict the execution of the test for the ARM32 architecture
+/// The test will be compiled on ARM32 too but will never be run as
+/// part of the test suite. The macro uses the Disabled_ prefix provided
+/// by googletest. See
+/// https://chromium.googlesource.com/external/github.com/google/googletest/+/HEAD/googletest/docs/advanced.md
+#define GZ_UTILS_TEST_DISABLED_ON_ARM32(TestName) \
+  DETAIL_GZ_UTILS_TEST_DISABLED_ON_ARM32(TestName)
+
+/// \brief Restrict the execution of the test to just the ARM64 architecture
+/// Other platforms will get the test compiled but it won't be run
+/// as part of the test suite execution.
+/// The macro uses the Disabled_ prefix provided by googletest. See
+/// https://chromium.googlesource.com/external/github.com/google/googletest/+/HEAD/googletest/docs/advanced.md
+#define GZ_UTILS_TEST_ENABLED_ONLY_ON_ARM64(TestName) \
+  DETAIL_GZ_UTILS_TEST_ENABLED_ONLY_ON_ARM64(TestName)
+
+/// \brief Restrict the execution of the test for the ARM64 architecture
+/// The test will be compiled on Linux too but will never be run as
+/// part of the test suite. The macro uses the Disabled_ prefix provided
+/// by googletest. See
+/// https://chromium.googlesource.com/external/github.com/google/googletest/+/HEAD/googletest/docs/advanced.md
+#define GZ_UTILS_TEST_DISABLED_ON_ARM64(TestName) \
+  DETAIL_GZ_UTILS_TEST_DISABLED_ON_ARM64(TestName)
+
 #endif  // GZ_UTILS_EXTRATESTMACROS_HH
