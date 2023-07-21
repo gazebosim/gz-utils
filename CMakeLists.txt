@@ -1,59 +1,126 @@
-cmake_minimum_required(VERSION 3.10.2 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.12)
 
 #============================================================================
 # Initialize the project
 #============================================================================
-project(gz-utils3 VERSION 3.0.0)
+project(gz-utils)
+
+find_package(ament_cmake_gazebo REQUIRED)
+find_package(cli11_vendor REQUIRED)
+
+set(DESIGNATION utils)
 
 #============================================================================
-# Find gz-cmake
+# gz-utils core
 #============================================================================
-# If you get an error at this line, you need to install gz-cmake
-find_package(gz-cmake3 REQUIRED)
+add_library(
+  gz-utils
+  src/Environment.cc
+)
+
+
+gz_generate_export_header(
+  TARGET gz-utils
+  DESIGNATION "${DESIGNATION}"
+  PROJECT_INCLUDE_DIR "gz/${DESIGNATION}"
+)
+
+gz_generate_version_header(
+  DESIGNATION "${DESIGNATION}"
+  PROJECT_INCLUDE_DIR "gz/${DESIGNATION}"
+)
+
+gz_generate_project_header(
+  DESIGNATION "${DESIGNATION}"
+  PROJECT_INCLUDE_DIR "gz/${DESIGNATION}"
+  SOURCE_INCLUDE_DIR include
+)
+
+target_include_directories(gz-utils PUBLIC
+  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+  "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>"
+  "$<INSTALL_INTERFACE:include>")
+
+install(TARGETS gz-utils EXPORT ${PROJECT_NAME}
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin)
+
+install(
+  DIRECTORY include/ ${CMAKE_CURRENT_BINARY_DIR}/include/
+  DESTINATION include
+  FILES_MATCHING PATTERN "*.hh"
+)
 
 #============================================================================
-# Configure the project
-#============================================================================
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-gz_configure_project(VERSION_SUFFIX)
-
-#============================================================================
-# Set project-specific options
-#============================================================================
-option(
-  GZ_UTILS_VENDOR_CLI11
-  "If true, use the vendored version of CLI11, otherwise use an external one"
-  true)
-
-#============================================================================
-# Search for project-specific dependencies
+# gz-utils-cli
 #============================================================================
 
-if(NOT GZ_UTILS_VENDOR_CLI11)
-  # PKGCONFIG_IGNORE can be removed once pkg-config support in CLI11 (see
-  # https://github.com/CLIUtils/CLI11/pull/523) is released
-  gz_find_package(CLI11 REQUIRED_BY cli PKGCONFIG_IGNORE)
+add_library(
+  gz-utils-cli
+  INTERFACE
+)
+
+target_include_directories(gz-utils-cli INTERFACE
+  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/cli/include/>"
+  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/cli/include/external-cli>"
+  "$<INSTALL_INTERFACE:include>")
+
+
+target_link_libraries(gz-utils-cli INTERFACE gz-utils)
+
+install(TARGETS gz-utils-cli EXPORT ${PROJECT_NAME}
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin)
+
+install(
+  DIRECTORY cli/include/gz
+  DESTINATION include
+  FILES_MATCHING PATTERN "*.hpp"
+)
+
+install(
+  DIRECTORY cli/include/external-cli/gz
+  DESTINATION include
+  FILES_MATCHING PATTERN "*.hpp"
+)
+
+
+#============================================================================
+# Tests
+#============================================================================
+
+if (BUILD_TESTING)
+  find_package(ament_cmake_gtest REQUIRED)
+
+  ament_add_gtest(UNIT_Environment_TEST src/Environment_TEST.cc)
+  if (TARGET UNIT_Environment_TEST)
+    target_link_libraries(UNIT_Environment_TEST gz-utils)
+  endif()
+
+  ament_add_gtest(UNIT_NeverDestroyed_TEST src/NeverDestroyed_TEST.cc)
+  if (TARGET UNIT_NeverDestroyed_TEST)
+    target_link_libraries(UNIT_NeverDestroyed_TEST gz-utils)
+  endif()
+
+  ament_add_gtest(UNIT_cli_TEST cli/src/cli_TEST.cc)
+  if (TARGET UNIT_cli_TEST)
+    target_link_libraries(UNIT_cli_TEST gz-utils-cli)
+  endif()
+
+  add_executable(subprocess_main test/integration/subprocess/subprocess_main.cc)
+  if (TARGET subprocess_main)
+    target_link_libraries(subprocess_main gz-utils-cli)
+  endif()
+
+  ament_add_gtest(INTEGRATION_subprocess_TEST test/integration/subprocess_TEST.cc)
+  if (TARGET INTEGRATION_subprocess_TEST)
+    target_link_libraries(INTEGRATION_subprocess_TEST gz-utils)
+    target_compile_definitions(INTEGRATION_subprocess_TEST PRIVATE "-DSUBPROCESS_EXECUTABLE_PATH=\"$<TARGET_FILE:subprocess_main>\"")
+  endif()
 endif()
 
-#============================================================================
-# Configure the build
-#============================================================================
-gz_configure_build(QUIT_IF_BUILD_ERRORS
-  COMPONENTS cli)
+ament_export_targets(${PROJECT_NAME})
 
-#============================================================================
-# Create package information
-#============================================================================
-gz_create_packages()
-
-#============================================================================
-# Configure documentation
-#============================================================================
-configure_file(${CMAKE_SOURCE_DIR}/api.md.in ${CMAKE_BINARY_DIR}/api.md)
-configure_file(${CMAKE_SOURCE_DIR}/tutorials.md.in ${CMAKE_BINARY_DIR}/tutorials.md)
-
-gz_create_docs(
-  API_MAINPAGE_MD "${CMAKE_BINARY_DIR}/api.md"
-  TUTORIALS_MAINPAGE_MD "${CMAKE_BINARY_DIR}/tutorials.md")
+ament_package()

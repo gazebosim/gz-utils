@@ -15,5 +15,4 @@
  *
  */
 
-#include <gz/utils/cli/Formatter.hpp>
-#include <ignition/utils/config.hh>
+#include "gz/utils/Version.hh"
