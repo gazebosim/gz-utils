@@ -168,11 +168,4 @@ private: std::unordered_multimap<std::string, std::string> needs;
 private: std::unordered_multimap<std::string, std::string> needed_by;
 };
 
-// TODO(CH3): Deprecated. Remove on tock.
-#ifdef _WIN32
-  using IgnitionFormatter = GzFormatter;
-#else
-  using IgnitionFormatter GZ_DEPRECATED(2) = GzFormatter;
-#endif
-
 #endif  // GZ_UTILS_CLI_GZ_FORMATTER_HPP_
