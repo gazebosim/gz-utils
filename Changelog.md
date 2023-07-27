@@ -42,6 +42,30 @@
 
 ## Gazebo Utils 1.x
 
+## Gazebo Utils 1.5.1 (2022-12-15)
+
+1. Add missing config.hh include to gz headers
+    * [Pull request #90](https://github.com/gazebosim/gz-utils/pull/90)
+
+## Gazebo Utils 1.5.0 (2022-12-08)
+
+1. Ignition to Gazebo header migration.
+    * [Pull request #84](https://github.com/gazebosim/gz-utils/pull/84)
+
+1. CI workflow: use checkout v3.
+    * [Pull request #85](https://github.com/gazebosim/gz-utils/pull/85)
+
+## Gazebo Utils 1.4.1 (2022-11-17)
+
+1. Include <functional> in FormatterFwd.
+    * [Pull request #58](https://github.com/gazebosim/gz-utils/pull/58)
+
+1. cli_TEST: Fix compatibility with CLI11 2.0.
+    * [Pull request #60](https://github.com/gazebosim/gz-utils/pull/60)
+
+1. Add code coverage ignore file.
+    * [Pull request #72](https://github.com/gazebosim/gz-utils/pull/72)
+
 ## Gazebo Utils 1.4.0 (2022-03-29)
 
 1. Enable cpplint
