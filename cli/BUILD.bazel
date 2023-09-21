@@ -1,6 +1,11 @@
 load(
     "@gz//bazel/skylark:build_defs.bzl",
+    "GZ_ROOT",
     "GZ_VISIBILITY",
+)
+
+package(
+    default_applicable_licenses = [GZ_ROOT + "utils:license"],
 )
 
 public_headers = [
@@ -12,6 +17,7 @@ public_headers = [
 cc_library(
     name = "cli",
     hdrs = public_headers,
+    copts = ["-fexceptions"],
     includes = [
         "include",
         "include/external-cli",
