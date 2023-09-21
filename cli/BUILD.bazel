@@ -23,5 +23,8 @@ cc_library(
         "include/external-cli",
     ],
     visibility = GZ_VISIBILITY,
-    deps = ["@cli11"],
+    deps = [
+        GZ_ROOT + "utils:utils",
+        "@cli11"
+    ],
 )
