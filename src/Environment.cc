@@ -18,8 +18,7 @@
 #include <gz/utils/Environment.hh>
 
 #include <cstdlib>
-#include <iostream>
-
+#include <string>
 
 namespace gz
 {

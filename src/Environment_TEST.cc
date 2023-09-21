@@ -19,6 +19,8 @@
 
 #include <gz/utils/Environment.hh>
 
+#include <string>
+
 using namespace gz;
 
 /////////////////////////////////////////////////
