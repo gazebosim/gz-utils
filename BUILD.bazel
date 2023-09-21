@@ -1,3 +1,4 @@
+load("@rules_license//rules:license.bzl", "license")
 load(
     "@gz//bazel/skylark:build_defs.bzl",
     "GZ_FEATURES",
@@ -8,8 +9,14 @@ load(
 )
 
 package(
+    default_applicable_licenses = [":license"],
     default_visibility = GZ_VISIBILITY,
     features = GZ_FEATURES,
+)
+
+license(
+  name = "license",
+  package_name = "gz-utils"
 )
 
 licenses(["notice"])
@@ -72,6 +79,7 @@ cc_library(
 
 cc_test(
     name = "ImplPtr_TEST",
+    size = "small",
     srcs = ["test/integration/implptr/ImplPtr_TEST.cc"],
     deps = [
         ":implptr_test_classes",
