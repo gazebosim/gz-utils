@@ -17,8 +17,9 @@
 
 #include <gtest/gtest.h>
 
-#include <gz/utils/ImplPtr.hh>
 #include "implptr_test_classes.hh"
+
+#include <utility>
 
 using namespace gz::implptr_test_classes;
 
