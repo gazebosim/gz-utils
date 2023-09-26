@@ -49,7 +49,7 @@ Gazebo Utils provides a wide range of functionality, including:
 
 # Install
 
-See the [installation tutorial](https://gazebosim.org/api/utils/2.0/install.html).
+See the [installation tutorial](https://gazebosim.org/api/utils/2/install.html).
 
 # Usage
 
@@ -89,7 +89,7 @@ You can also generate the documentation from a clone of this repository by follo
 
 Follow these steps to run tests and static code analysis in your clone of this repository.
 
-1. Follow the [source install instruction](https://gazebosim.org/libs/utils#source-install).
+1. Follow the [source install instruction](https://gazebosim.org/api/utils/2/install.html#source-install).
 
 2. Run tests.
 
@@ -109,6 +109,7 @@ Refer to the following table for information about important directories and fil
 
 ```
 gz-utils
+├── cli                      Gazebo CLI component. Vendored from https://github.com/CLIUtils/CLI11/
 ├── examples                 Example programs.
 ├── include/gz/utils         Header files.
 ├── src                      Source files and unit tests.
