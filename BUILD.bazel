@@ -1,10 +1,10 @@
 load(
-    "//gz_bazel:build_defs.bzl",
+    "@gz//bazel/skylark:build_defs.bzl",
     "GZ_FEATURES",
     "GZ_VISIBILITY",
-    "generate_include_header",
-    "gz_config_header",
+    "gz_configure_header",
     "gz_export_header",
+    "gz_include_header",
 )
 
 package(
@@ -12,24 +12,15 @@ package(
     features = GZ_FEATURES,
 )
 
-licenses(["notice"])
+licenses(["notice"])  # Apache-2.0
 
 exports_files(["LICENSE"])
 
-PROJECT_NAME = "gz-utils"
-
-PROJECT_MAJOR = 2
-
-PROJECT_MINOR = 0
-
-PROJECT_PATCH = 0
-
-gz_config_header(
+gz_configure_header(
     name = "config",
     src = "include/gz/utils/config.hh.in",
     cmakelists = ["CMakeLists.txt"],
-    project_name = PROJECT_NAME,
-    project_version = (PROJECT_MAJOR, PROJECT_MINOR, PROJECT_PATCH),
+    package = "utils",
 )
 
 gz_export_header(
@@ -41,10 +32,10 @@ gz_export_header(
 
 public_headers_no_gen = glob([
     "include/gz/utils/*.hh",
-    "include/gz/utils/detail/*.hh"
+    "include/gz/utils/detail/*.hh",
 ])
 
-generate_include_header(
+gz_include_header(
     name = "utilshh_genrule",
     out = "include/gz/utils.hh",
     hdrs = public_headers_no_gen + [
@@ -60,7 +51,8 @@ public_headers = public_headers_no_gen + [
 ]
 
 cc_library(
-    name = "gz_utils",
+    name = "utils",
+    srcs = ["src/Environment.cc"],
     hdrs = public_headers,
     includes = ["include"],
 )
@@ -75,7 +67,7 @@ cc_library(
         "test/integration/implptr/implptr_test_classes.hh",
     ],
     includes = ["test/integration/implptr"],
-    deps = ["gz_utils"],
+    deps = [":utils"],
 )
 
 cc_test(
@@ -85,6 +77,25 @@ cc_test(
         ":implptr_test_classes",
         "@gtest",
         "@gtest//:gtest_main",
-    ]
+    ],
 )
 
+cc_test(
+    name = "Environment_TEST",
+    srcs = ["src/Environment_TEST.cc"],
+    deps = [
+        ":utils",
+        "@gtest",
+        "@gtest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "NeverDestroyed_TEST",
+    srcs = ["src/NeverDestroyed_TEST.cc"],
+    deps = [
+        ":utils",
+        "@gtest",
+        "@gtest//:gtest_main",
+    ],
+)
