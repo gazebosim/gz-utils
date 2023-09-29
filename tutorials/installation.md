@@ -7,13 +7,13 @@ Windows via either a binary distribution or from source.
 
 [Install](#install)
 
-* [Binary Install](#binary-install)
+- [Binary Install](#binary-install)
 
-* [Source Install](#source-install)
+- [Source Install](#source-install)
 
-    * [Prerequisites](#prerequisites)
+  - [Prerequisites](#prerequisites)
 
-    * [Building from Source](#building-from-source)
+  - [Building from Source](#building-from-source)
 
 # Install
 
@@ -39,7 +39,7 @@ wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 
 Install Gazebo Utils:
 
-```
+```{.sh}
 sudo apt install libgz-utils<#>-dev
 ```
 
@@ -49,15 +49,17 @@ which version you need.
 ### macOS
 
 On macOS, add OSRF packages:
-  ```
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  brew tap osrf/simulation
-  ```
+
+```{.sh}
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew tap osrf/simulation
+```
 
 Install Gazebo utils:
-  ```
-  brew install gz-utils<#>
-  ```
+
+```{.sh}
+brew install gz-utils<#>
+```
 
 Be sure to replace `<#>` with a number value, such as 1 or 2, depending on
 which version you need.
@@ -68,13 +70,15 @@ Install [Conda package management system](https://docs.conda.io/projects/conda/e
 Miniconda suffices.
 
 Create if necessary, and activate a Conda environment:
-```
+
+```{.sh}
 conda create -n gz-ws
 conda activate gz-ws
 ```
 
 Install `gz-utils`:
-```
+
+```{.sh}
 conda install libgz-utils<#> --channel conda-forge
 ```
 
@@ -89,89 +93,101 @@ necessary prerequisites followed by building from source.
 ### Ubuntu
 
 1. Install tools
-  ```
-  sudo apt install -y build-essential cmake git gnupg lsb-release wget
-  ```
+
+   ```{.sh}
+   sudo apt install -y build-essential cmake git gnupg lsb-release wget
+   ```
 
 2. Clone the repository
 
-    ```
-    git clone https://github.com/gazebosim/gz-utils -b gz-utils<#>
-    ```
-    Be sure to replace `<#>` with a number value, such as 1 or 2, depending on
-    which version you need.
+   ```{.sh}
+   git clone https://github.com/gazebosim/gz-utils -b gz-utils<#>
+   ```
+
+   Be sure to replace `<#>` with a number value, such as 1 or 2, depending on
+   which version you need.
 
 3. Install dependencies
 
-    ```
-    sudo apt -y install \
-      $(sort -u $(find . -iname 'packages-'`lsb_release -cs`'.apt' -o -iname 'packages.apt' | tr '\n' ' '))
-    ```
+   ```{.sh}
+   sudo apt -y install \
+     $(sort -u $(find . -iname 'packages-'`lsb_release -cs`'.apt' -o -iname 'packages.apt' | tr '\n' ' '))
+   ```
 
 4. Configure and build
 
-    ```
-    cd gz-utils; mkdir build; cd build; cmake ..; make
-    ```
+   ```{.sh}
+   cd gz-utils; mkdir build; cd build; cmake ..; make
+   ```
 
 5. Optionally, install Gazebo Utils
 
-    ```
-    sudo make install
-    ```
+   ```{.sh}
+   sudo make install
+   ```
 
 ### macOS
 
 1. Clone the repository
-  ```
-  git clone https://github.com/gazebosim/gz-utils -b gz-utils<#>
-  ```
-  Be sure to replace `<#>` with a number value, such as 1 or 2, depending on
-  which version you need.
+
+   ```{.sh}
+   git clone https://github.com/gazebosim/gz-utils -b gz-utils<#>
+   ```
+
+   Be sure to replace `<#>` with a number value, such as 1 or 2, depending on
+   which version you need.
 
 2. Install dependencies
-  ```
-  brew install --only-dependencies gz-utils<#>
-  ```
-  Be sure to replace `<#>` with a number value, such as 1 or 2, depending on
-  which version you need.
+
+   ```{.sh}
+   brew install --only-dependencies gz-utils<#>
+   ```
+
+   Be sure to replace `<#>` with a number value, such as 1 or 2, depending on
+   which version you need.
 
 3. Configure and build
-  ```
-  cd gz-utils
-  mkdir build
-  cd build
-  cmake ..
-  make
-  ```
+
+   ```{.sh}
+   cd gz-utils
+   mkdir build
+   cd build
+   cmake ..
+   make
+   ```
 
 4. Optionally, install
-  ```
-  sudo make install
-  ```
+
+   ```{.sh}
+   sudo make install
+   ```
+
 ### Windows
 
 This assumes you have created and activated a Conda environment while installing the Prerequisites.
 
 1. Navigate to where you would like to build the library, and clone the repository.
-  ```
-  # Optionally, append `-b gz-utils#` (replace # with a number) to check out a specific version
-  git clone https://github.com/gazebosim/gz-utils.git
-  ```
+
+   ```{.sh}
+   # Optionally, append `-b gz-utils#` (replace # with a number) to check out a specific version
+   git clone https://github.com/gazebosim/gz-utils.git
+   ```
 
 2. Configure and build
-  ```
-  cd gz-utils
-  mkdir build
-  cd build
-  cmake .. -DBUILD_TESTING=OFF  # Optionally, -DCMAKE_INSTALL_PREFIX=path\to\install
-  cmake --build . --config Release
-  ```
+
+   ```{.sh}
+   cd gz-utils
+   mkdir build
+   cd build
+   cmake .. -DBUILD_TESTING=OFF  # Optionally, -DCMAKE_INSTALL_PREFIX=path\to\install
+   cmake --build . --config Release
+   ```
 
 3. Optionally, install
-  ```
-  cmake --install . --config Release
-  ```
+
+   ```{.sh}
+   cmake --install . --config Release
+   ```
 
 # Documentation
 
@@ -180,28 +196,32 @@ API and tutorials can be found at [https://gazebosim.org/libs/utils](https://gaz
 You can also generate the documentation from a clone of this repository by following these steps.
 
 1. You will need Doxygen. On Ubuntu Doxygen can be installed using
-  ```
-  sudo apt-get install doxygen
-  ```
+
+   ```{.sh}
+   sudo apt-get install doxygen
+   ```
 
 2. Clone the repository
-  ```
-  git clone https://github.com/gazebosim/gz-utils
-  ```
+
+   ```{.sh}
+   git clone https://github.com/gazebosim/gz-utils
+   ```
 
 3. Configure and build the documentation.
-  ```
-  cd gz-utils
-  mkdir build
-  cd build
-  cmake ../
-  make doc
-  ```
+
+   ```{.sh}
+   cd gz-utils
+   mkdir build
+   cd build
+   cmake ../
+   make doc
+   ```
 
 4. View the documentation by running the following command from the build directory.
-  ```
-  firefox doxygen/html/index.html
-  ```
+
+   ```{.sh}
+   firefox doxygen/html/index.html
+   ```
 
 # Testing
 
@@ -210,11 +230,13 @@ Follow these steps to run tests and static code analysis in your clone of this r
 1. Follow the [source install instruction](#source-install).
 
 2. Run tests.
-  ```
-  make test
-  ```
+
+   ```{.sh}
+   make test
+   ```
 
 3. Static code checker.
-  ```
-  make codecheck
-  ```
+
+   ```{.sh}
+   make codecheck
+   ```
