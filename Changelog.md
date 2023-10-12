@@ -4,7 +4,36 @@
 
 ## Gazebo Utils 2.x
 
-## Gazebo Utils 2.0.0 (20XX-XX-XX)
+## Gazebo Utils 2.1.0 (2023-09-26)
+
+1. Documentation fixes
+    * [Pull request #104](https://github.com/gazebosim/gz-utils/pull/104)
+    * [Pull request #103](https://github.com/gazebosim/gz-utils/pull/103)
+
+1. Infrastructure
+    * [Pull request #102](https://github.com/gazebosim/gz-utils/pull/102)
+    * [Pull request #101](https://github.com/gazebosim/gz-utils/pull/101)
+    * [Pull request #85](https://github.com/gazebosim/gz-utils/pull/85)
+
+1. Extra test macros for ARM32/ARM64
+    * [Pull request #99](https://github.com/gazebosim/gz-utils/pull/99)
+
+1. Add a utility for spawning subprocesses
+    * [Pull request #98](https://github.com/gazebosim/gz-utils/pull/98)
+
+1. Support for bazel in Garden
+    * [Pull request #95](https://github.com/gazebosim/gz-utils/pull/95)
+
+1. Rename COPYING to LICENSE
+    * [Pull request #93](https://github.com/gazebosim/gz-utils/pull/93)
+
+1. Add missing config.hh include to gz headers
+    * [Pull request #90](https://github.com/gazebosim/gz-utils/pull/90)
+
+1. ign -> gz Migrate Ignition headers
+    * [Pull request #84](https://github.com/gazebosim/gz-utils/pull/84)
+
+## Gazebo Utils 2.0.0 (2022-09-22)
 
 1. Improve install instructions
     * [Pull request #80](https://github.com/gazebosim/gz-utils/pull/80)

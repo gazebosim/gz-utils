@@ -70,5 +70,37 @@
 
 #endif  // defined __linux__
 
+#if defined __arm__ || defined _M_ARM
+
+  #define DETAIL_GZ_UTILS_TEST_DISABLED_ON_ARM32(TestName) \
+      DETAIL_GZ_UTILS_ADD_DISABLED_PREFIX(TestName)
+  #define DETAIL_GZ_UTILS_TEST_ENABLED_ONLY_ON_ARM32(TestName) \
+      TestName
+
+#else
+
+  #define DETAIL_GZ_UTILS_TEST_DISABLED_ON_ARM32(TestName) \
+      TestName
+  #define DETAIL_GZ_UTILS_TEST_ENABLED_ONLY_ON_ARM32(TestName) \
+      DETAIL_GZ_UTILS_ADD_DISABLED_PREFIX(TestName)
+
+#endif  // defined __arm__
+
+#if defined __aarch64__ || defined _M_ARM64
+
+  #define DETAIL_GZ_UTILS_TEST_DISABLED_ON_ARM64(TestName) \
+      DETAIL_GZ_UTILS_ADD_DISABLED_PREFIX(TestName)
+  #define DETAIL_GZ_UTILS_TEST_ENABLED_ONLY_ON_ARM64(TestName) \
+      TestName
+
+#else
+
+  #define DETAIL_GZ_UTILS_TEST_DISABLED_ON_ARM64(TestName) \
+      TestName
+  #define DETAIL_GZ_UTILS_TEST_ENABLED_ONLY_ON_ARM64(TestName) \
+      DETAIL_GZ_UTILS_ADD_DISABLED_PREFIX(TestName)
+
+#endif  // defined __aarch64__
+
 
 #endif  // GZ_UTILS_DETAIL_EXTRATESTMACROS_HH
