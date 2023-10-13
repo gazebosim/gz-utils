@@ -17,6 +17,8 @@
 
 #include "implptr_test_classes.hh"
 
+#include <gz/utils/ImplPtr.hh>
+
 #include <string>
 #include <thread>
 
@@ -153,4 +155,3 @@ void CopyableObjectAlt::SetString(const std::string &_value)
 {
   (*dataPtr).svalue = _value;
 }
-

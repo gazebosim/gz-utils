@@ -19,7 +19,12 @@
 
 #include <gtest/gtest.h>
 
+#include <cstdint>
+#include <exception>
+#include <initializer_list>
 #include <random>
+#include <string>
+#include <vector>
 #include <unordered_map>
 
 using namespace gz;
