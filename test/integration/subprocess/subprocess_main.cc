@@ -24,8 +24,8 @@
 
 class OutputSink
 {
-  public: OutputSink(const std::string &_dest):
-    dest(_dest)
+  public: explicit OutputSink(std::string _dest):
+    dest(std::move(_dest))
   {
   }
 
@@ -40,7 +40,6 @@ class OutputSink
     {
       std::cerr << val << std::endl;
     }
-    return;
   }
 
   private: std::string dest;
@@ -69,10 +68,6 @@ int main(int argc, char **argv)
     std::this_thread::sleep_for(std::chrono::milliseconds(iter_ms));
   }
 
-  std::string env_var;
-  if(gz::utils::env("ENV_VAR", env_var))
-  {
-    sink.Write("ENV_VAR=" + env_var);
-  }
+  sink.Write(gz::utils::printenv());
   return 0;
 }
