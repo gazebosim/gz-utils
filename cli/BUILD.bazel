@@ -5,7 +5,7 @@ load(
 )
 
 package(
-    default_applicable_licenses = [GZ_ROOT + "utils:license"],
+    default_applicable_licenses = [GZ_ROOT + "utils/cli:license"],
 )
 
 public_headers = [
