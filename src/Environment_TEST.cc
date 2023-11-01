@@ -171,6 +171,7 @@ TEST(Environment, printenv)
   ASSERT_TRUE(gz::utils::setenv("GZ_BAR_KEY", "GZ_BAR_VAL"));
   ASSERT_TRUE(gz::utils::setenv("GZ_BAZ_KEY", "GZ_BAZ_VAL"));
 
+  // Always returned in sorted order
   EXPECT_EQ(gz::utils::printenv(),
-    "GZ_BAZ_KEY=GZ_BAZ_VAL\nGZ_BAR_KEY=GZ_BAR_VAL\nGZ_FOO_KEY=GZ_FOO_VAL\n");
+    "GZ_BAR_KEY=GZ_BAR_VAL\nGZ_BAZ_KEY=GZ_BAZ_VAL\nGZ_FOO_KEY=GZ_FOO_VAL\n");
 }

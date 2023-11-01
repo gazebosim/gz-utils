@@ -17,8 +17,10 @@
 
 #include <gz/utils/Environment.hh>
 
+#include <algorithm>
 #include <cstdlib>
 #include <string>
+#include <vector>
 
 extern char ** environ;
 
@@ -165,7 +167,13 @@ bool setenv(const EnvironmentMap &_vars)
 std::string printenv()
 {
   std::string ret;
-  for (const auto &[key, value] : env())
+  // Variables are in an unordered_map as we generally don't
+  // care, but for printing sort for consistent display
+  auto currentEnv = env();
+  auto sorted = std::vector<std::pair<std::string, std::string>>(
+    currentEnv.begin(), currentEnv.end());
+  std::sort(sorted.begin(), sorted.end());
+  for (const auto &[key, value] : sorted)
   {
     ret.append(key);
     ret.append("=");
