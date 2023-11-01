@@ -104,16 +104,22 @@ bool unsetenv(const std::string &_name)
 /////////////////////////////////////////////////
 bool clearenv()
 {
-  ::clearenv();
-  return true;
-  /*
   bool success = true;
+#if __linux__
+  if (0 != ::clearenv())
+  {
+    success = false;
+  }
+#else
+  // Windows and macOS don't have clearenv
+  // so iterate and clear one-by-one
   for (const auto &[key, value] : env())
   {
     success &= unsetenv(key);
   }
+#endif
   return success;
-  */
+
 }
 
 /////////////////////////////////////////////////

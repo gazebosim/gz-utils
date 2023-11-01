@@ -106,8 +106,8 @@ bool GZ_UTILS_VISIBLE setenv(const EnvironmentMap &_vars);
 /// concurrently with `setenv` or `unsetenv`
 ///
 /// \return A string containing all environment variables
-std::string printenv();
-
+/// NOLINTNEXTLINE - This is incorrectly parsed as a global variable
+std::string GZ_UTILS_VISIBLE printenv();
 }  // namespace GZ_UTILS_VERSION_NAMESPACE
 }  // namespace utils
 }  // namespace gz
