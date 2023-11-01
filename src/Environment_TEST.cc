@@ -26,6 +26,8 @@ using namespace gz;
 /////////////////////////////////////////////////
 TEST(Environment, emptyENV)
 {
+  gz::utils::clearenv();
+
   std::string var;
   EXPECT_FALSE(utils::env("!!SHOULD_NOT_EXIST!!", var));
   EXPECT_TRUE(var.empty());
@@ -34,6 +36,8 @@ TEST(Environment, emptyENV)
 /////////////////////////////////////////////////
 TEST(Environment, envSet)
 {
+  gz::utils::clearenv();
+
   const auto key = "GZ_ENV_SET";
   ASSERT_TRUE(utils::setenv(key, "VALUE"));
 
@@ -67,6 +71,8 @@ TEST(Environment, envSet)
 /////////////////////////////////////////////////
 TEST(Environment, envUnset)
 {
+  gz::utils::clearenv();
+
   const auto key = "GZ_ENV_UNSET";
   ASSERT_TRUE(utils::unsetenv(key));
 
@@ -94,8 +100,10 @@ TEST(Environment, envUnset)
 }
 
 /////////////////////////////////////////////////
-TEST(Util_TEST, envSetEmpty)
+TEST(Environment, envSetEmpty)
 {
+  gz::utils::clearenv();
+
   const auto key = "GZ_ENV_SET_EMPTY";
 
   ASSERT_TRUE(utils::setenv(key, ""));
@@ -132,4 +140,37 @@ TEST(Util_TEST, envSetEmpty)
     EXPECT_TRUE(value.empty());
   }
   ASSERT_TRUE(utils::unsetenv(key));
+}
+
+/////////////////////////////////////////////////
+TEST(Environment, envGetCollection)
+{
+  gz::utils::clearenv();
+  auto currentEnv = gz::utils::env();
+  EXPECT_EQ(currentEnv.size(), 0);
+
+  ASSERT_TRUE(gz::utils::setenv("GZ_FOO_KEY", "GZ_FOO_VAL"));
+  ASSERT_TRUE(gz::utils::setenv("GZ_BAR_KEY", "GZ_BAR_VAL"));
+  ASSERT_TRUE(gz::utils::setenv("GZ_BAZ_KEY", "GZ_BAZ_VAL"));
+
+  currentEnv = gz::utils::env();
+  EXPECT_EQ(currentEnv.size(), 3);
+
+  EXPECT_EQ(currentEnv["GZ_FOO_KEY"], "GZ_FOO_VAL");
+  EXPECT_EQ(currentEnv["GZ_BAR_KEY"], "GZ_BAR_VAL");
+  EXPECT_EQ(currentEnv["GZ_BAZ_KEY"], "GZ_BAZ_VAL");
+}
+
+/////////////////////////////////////////////////
+TEST(Environment, printenv)
+{
+  gz::utils::clearenv();
+  EXPECT_EQ(gz::utils::printenv(), "");
+
+  ASSERT_TRUE(gz::utils::setenv("GZ_FOO_KEY", "GZ_FOO_VAL"));
+  ASSERT_TRUE(gz::utils::setenv("GZ_BAR_KEY", "GZ_BAR_VAL"));
+  ASSERT_TRUE(gz::utils::setenv("GZ_BAZ_KEY", "GZ_BAZ_VAL"));
+
+  EXPECT_EQ(gz::utils::printenv(),
+    "GZ_BAZ_KEY=GZ_BAZ_VAL\nGZ_BAR_KEY=GZ_BAR_VAL\nGZ_FOO_KEY=GZ_FOO_VAL\n");
 }

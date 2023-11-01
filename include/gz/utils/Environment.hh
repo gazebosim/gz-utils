@@ -22,6 +22,7 @@
 #include <gz/utils/Export.hh>
 
 #include <string>
+#include <unordered_map>
 
 namespace gz
 {
@@ -66,7 +67,48 @@ bool GZ_UTILS_VISIBLE setenv(
 /// \return True if the variable was unset or false otherwise.
 bool GZ_UTILS_VISIBLE unsetenv(const std::string &_name);
 
-}
+/// \brief Unset all environment variables
+///
+/// Note: This function is not thread-safe and should not be called
+/// concurrently with `env` or `setenv`
+///
+/// \return True if the environment was unset or false otherwise.
+bool GZ_UTILS_VISIBLE clearenv();
+
+/// \brief Type alias for a collection of environment variables
+using EnvironmentMap = std::unordered_map<std::string, std::string>;
+
+/// \brief Retrieve all current environment variables
+///
+/// Note: This function is not thread-safe and should not be called
+/// concurrently with `setenv` or `unsetenv`
+///
+/// \return A collection of current environment variables
+EnvironmentMap GZ_UTILS_VISIBLE env();
+
+/// \brief Set the environment variable '_name'.
+///
+/// Note: On Windows setting an empty string (_value=="")
+/// is the equivalent of unsetting the variable.
+//
+/// Note: This function is not thread-safe and should not be called
+/// concurrently with `env` or `unsetenv`
+///
+/// \param[in] _vars Collection of environment variables to set
+/// \return True if all variables were set or false otherwise.
+bool GZ_UTILS_VISIBLE setenv(const EnvironmentMap &_vars);
+
+/// \brief Print the entire current environment to a string
+///
+/// This prints each variable in the form KEY=VALUE\n
+///
+/// Note: This function is not thread-safe and should not be called
+/// concurrently with `setenv` or `unsetenv`
+///
+/// \return A string containing all environment variables
+std::string printenv();
+
+}  // namespace GZ_UTILS_VERSION_NAMESPACE
 }  // namespace utils
 }  // namespace gz
 

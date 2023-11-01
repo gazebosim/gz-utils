@@ -20,6 +20,8 @@
 #include <cstdlib>
 #include <string>
 
+extern char ** environ;
+
 namespace gz
 {
 namespace utils
@@ -98,6 +100,74 @@ bool unsetenv(const std::string &_name)
 #endif
   return true;
 }
+
+/////////////////////////////////////////////////
+bool clearenv()
+{
+  ::clearenv();
+  return true;
+  /*
+  bool success = true;
+  for (const auto &[key, value] : env())
+  {
+    success &= unsetenv(key);
+  }
+  return success;
+  */
 }
+
+/////////////////////////////////////////////////
+EnvironmentMap env()
+{
+  // Portable method for reading environment variables
+  // Ref: https://stackoverflow.com/a/71483564/460065
+  char **currentEnv {nullptr};
+#if defined(WIN) && (_MSC_VER >= 1900)
+  currentEnv =  *__p_environ();
+#else
+  currentEnv = environ;
+#endif
+
+  // In the case that clearenv() was just called
+  // currentEnv will be nullptr
+  if (currentEnv == nullptr)
+    return {};
+
+  EnvironmentMap ret;
+  for (; *currentEnv; ++currentEnv)
+  {
+    std::string var(*currentEnv);
+    auto key = var.substr(0, var.find('='));
+    var.erase(0, var.find('=') + 1);
+    ret[key] = var;
+  }
+  return ret;
 }
+
+/////////////////////////////////////////////////
+bool setenv(const EnvironmentMap &_vars)
+{
+  bool success = true;
+  for (const auto &[key, value] : _vars)
+  {
+    success &= setenv(key, value);
+  }
+  return success;
 }
+
+/////////////////////////////////////////////////
+std::string printenv()
+{
+  std::string ret;
+  for (const auto &[key, value] : env())
+  {
+    ret.append(key);
+    ret.append("=");
+    ret.append(value);
+    ret.append("\n");
+  }
+  return ret;
+}
+}  // namespace GZ_UTILS_VERSION_NAMESPACE
+}  // namespace utils
+}  // namespace gz
