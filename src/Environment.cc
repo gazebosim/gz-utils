@@ -22,7 +22,14 @@
 #include <string>
 #include <vector>
 
+#ifdef _WIN32
+#include <winbase.h>
+#include <windows.h>
+#endif
+
+#ifndef _WIN32
 extern char ** environ;
+#endif
 
 namespace gz
 {
