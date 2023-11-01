@@ -22,7 +22,12 @@
 #include <string>
 #include <vector>
 
-#ifndef _win32
+#ifdef _WIN32
+#include <windows.h>
+#include <processenv.h>
+#endif
+
+#ifndef _WIN32
 extern char ** environ;
 #endif
 
@@ -129,27 +134,40 @@ bool clearenv()
 /////////////////////////////////////////////////
 EnvironmentMap env()
 {
-  // Portable method for reading environment variables
-  // Ref: https://stackoverflow.com/a/71483564/460065
-  char **currentEnv {nullptr};
+  EnvironmentMap ret;
+
+  // Helper function to split KEY=VAL
+  auto split = [](const std::string &_inp)
+  {
+    return std::make_pair(
+        _inp.substr(0, _inp.find('=')),
+        _inp.substr(_inp.find('=')));
+  };
+
 #ifdef _WIN32
-  currentEnv =  *__p_environ();
+  LPCH currentEnv = GetEnvironmentStrings();
+  if (currentEnv == nullptr)
+    return {};
+
+  LPCH env_var = env_buf;
+  while (*env_var != '\0')
+  {
+    ret.emplace(split(*env_var));
+    env_var += strlen(env_var) + 1;
+  }
+  FreeEnvironmentStrings(currentEnv);
 #else
-  currentEnv = environ;
-#endif
+  char **currentEnv = environ;
   // In the case that clearenv() was just called
   // currentEnv will be nullptr
   if (currentEnv == nullptr)
     return {};
 
-  EnvironmentMap ret;
   for (; *currentEnv; ++currentEnv)
   {
-    std::string var(*currentEnv);
-    auto key = var.substr(0, var.find('='));
-    var.erase(0, var.find('=') + 1);
-    ret[key] = var;
+    ret.emplace(split(*currentEnv));
   }
+#endif
   return ret;
 }
 
