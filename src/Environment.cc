@@ -149,10 +149,10 @@ EnvironmentMap env()
   if (currentEnv == nullptr)
     return {};
 
-  LPCH env_var = env_buf;
+  LPCH env_var = currentEnv;
   while (*env_var != '\0')
   {
-    ret.emplace(split(*env_var));
+    ret.emplace(split(env_var));
     env_var += strlen(env_var) + 1;
   }
   FreeEnvironmentStrings(currentEnv);
