@@ -141,7 +141,7 @@ EnvironmentMap env()
   {
     return std::make_pair(
         _inp.substr(0, _inp.find('=')),
-        _inp.substr(_inp.find('=')));
+        _inp.substr(_inp.find('=') + 1));
   };
 
 #ifdef _WIN32
