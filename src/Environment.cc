@@ -22,12 +22,7 @@
 #include <string>
 #include <vector>
 
-#ifdef _WIN32
-#include <winbase.h>
-#include <windows.h>
-#endif
-
-#ifndef _WIN32
+#ifndef _win32
 extern char ** environ;
 #endif
 
@@ -134,47 +129,20 @@ bool clearenv()
 /////////////////////////////////////////////////
 EnvironmentMap env()
 {
-  EnvironmentMap ret;
+  // Portable method for reading environment variables
+  // Ref: https://stackoverflow.com/a/71483564/460065
+  char **currentEnv {nullptr};
 #ifdef _WIN32
-  DWORD environment_block_size = GetEnvironmentBlockSize();
-
-  // Allocate a buffer to store the environment block.
-  LPCH env_buf = (LPCH)malloc(environment_block_size);
-  if (env_buf == nullptr) {
-    return {};
-  }
-  // Get the environment block.
-  if (!GetEnvironmentVariables(env_buf, environment_block_size)) {
-    free(env_buf);
-    return {};
-  }
-  // Parse the environment block into an unordered_map.
-  LPCH env_var = env_buf;
-  while (*env_var != '\0') {
-    // Split the environment variable into a key-value pair.
-    char* equal_sign = strchr(env_var, '=');
-    if (equal_sign == nullptr) {
-      continue;
-    }
-
-    // Get the key and value of the environment variable.
-    std::string key(env_var, equal_sign - env_var);
-    std::string value(equal_sign + 1);
-
-    // Add the key-value pair to the unordered_map.
-    ret[key] = value;
-
-    // Advance to the next environment variable.
-    env_var = equal_sign + 1;
-  }
-  free(env_buf);
+  currentEnv =  *__p_environ();
 #else
-  char **currentEnv = environ;
+  currentEnv = environ;
+#endif
   // In the case that clearenv() was just called
   // currentEnv will be nullptr
   if (currentEnv == nullptr)
     return {};
 
+  EnvironmentMap ret;
   for (; *currentEnv; ++currentEnv)
   {
     std::string var(*currentEnv);
@@ -182,7 +150,6 @@ EnvironmentMap env()
     var.erase(0, var.find('=') + 1);
     ret[key] = var;
   }
-#endif
   return ret;
 }
 
