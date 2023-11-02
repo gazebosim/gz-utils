@@ -144,20 +144,12 @@ EnvironmentMap env()
         _inp.substr(_inp.find('=') + 1));
   };
 
+  char **currentEnv = nullptr;
 #ifdef _WIN32
-  LPCH currentEnv = GetEnvironmentStrings();
-  if (currentEnv == nullptr)
-    return {};
-
-  LPCH env_var = currentEnv;
-  while (*env_var != '\0')
-  {
-    ret.emplace(split(env_var));
-    env_var += strlen(env_var) + 1;
-  }
-  FreeEnvironmentStrings(currentEnv);
+  currentEnv = *__p__environ();
 #else
-  char **currentEnv = environ;
+  currentEnv = environ;
+#endif
   // In the case that clearenv() was just called
   // currentEnv will be nullptr
   if (currentEnv == nullptr)
@@ -167,7 +159,6 @@ EnvironmentMap env()
   {
     ret.emplace(split(*currentEnv));
   }
-#endif
   return ret;
 }
 
