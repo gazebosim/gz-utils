@@ -41,6 +41,7 @@ endif()
 # Configure the build
 #============================================================================
 gz_configure_build(QUIT_IF_BUILD_ERRORS
+  HIDE_SYMBOLS_BY_DEFAULT
   COMPONENTS cli)
 
 #============================================================================
