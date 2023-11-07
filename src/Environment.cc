@@ -17,8 +17,19 @@
 
 #include <gz/utils/Environment.hh>
 
+#include <algorithm>
 #include <cstdlib>
 #include <string>
+#include <vector>
+
+#ifdef _WIN32
+#include <windows.h>
+#include <processenv.h>
+#endif
+
+#ifndef _WIN32
+extern char ** environ;
+#endif
 
 namespace gz
 {
@@ -98,6 +109,89 @@ bool unsetenv(const std::string &_name)
 #endif
   return true;
 }
+
+/////////////////////////////////////////////////
+bool clearenv()
+{
+  bool success = true;
+#if __linux__
+  if (0 != ::clearenv())
+  {
+    success = false;
+  }
+#else
+  // Windows and macOS don't have clearenv
+  // so iterate and clear one-by-one
+  for (const auto &[key, value] : env())
+  {
+    success &= unsetenv(key);
+  }
+#endif
+  return success;
+
 }
+
+/////////////////////////////////////////////////
+EnvironmentMap env()
+{
+  EnvironmentMap ret;
+
+  // Helper function to split KEY=VAL
+  auto split = [](const std::string &_inp)
+  {
+    return std::make_pair(
+        _inp.substr(0, _inp.find('=')),
+        _inp.substr(_inp.find('=') + 1));
+  };
+
+  char **currentEnv = nullptr;
+#ifdef _WIN32
+  currentEnv = *__p__environ();
+#else
+  currentEnv = environ;
+#endif
+  // In the case that clearenv() was just called
+  // currentEnv will be nullptr
+  if (currentEnv == nullptr)
+    return {};
+
+  for (; *currentEnv; ++currentEnv)
+  {
+    ret.emplace(split(*currentEnv));
+  }
+  return ret;
 }
+
+/////////////////////////////////////////////////
+bool setenv(const EnvironmentMap &_vars)
+{
+  bool success = true;
+  for (const auto &[key, value] : _vars)
+  {
+    success &= setenv(key, value);
+  }
+  return success;
 }
+
+/////////////////////////////////////////////////
+std::string printenv()
+{
+  std::string ret;
+  // Variables are in an unordered_map as we generally don't
+  // care, but for printing sort for consistent display
+  auto currentEnv = env();
+  auto sorted = std::vector<std::pair<std::string, std::string>>(
+    currentEnv.begin(), currentEnv.end());
+  std::sort(sorted.begin(), sorted.end());
+  for (const auto &[key, value] : sorted)
+  {
+    ret.append(key);
+    ret.append("=");
+    ret.append(value);
+    ret.append("\n");
+  }
+  return ret;
+}
+}  // namespace GZ_UTILS_VERSION_NAMESPACE
+}  // namespace utils
+}  // namespace gz
