@@ -34,7 +34,6 @@ class OutputSink
     if (dest == "cout" || dest == "both")
     {
       std::cout << val << std::endl;
-
     }
     else if (dest == "cerr" || dest == "both")
     {
@@ -59,6 +58,10 @@ int main(int argc, char **argv)
   int iter_ms = 0;
   app.add_option("--iteration-ms", iter_ms, "length of one iteration");
 
+  bool environment = false;
+  app.add_flag("--environment", environment,
+               "print the environment variables");
+
   CLI11_PARSE(app, argc, argv);
 
   auto sink = OutputSink(output);
@@ -68,6 +71,9 @@ int main(int argc, char **argv)
     std::this_thread::sleep_for(std::chrono::milliseconds(iter_ms));
   }
 
-  sink.Write(gz::utils::printenv());
+  if (environment)
+  {
+    sink.Write(gz::utils::printenv());
+  }
   return 0;
 }

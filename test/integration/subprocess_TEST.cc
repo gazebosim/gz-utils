@@ -124,7 +124,7 @@ TEST(Subprocess, Environment)
 
   {
     // Default behavior is to inherit the environment
-    auto proc = Subprocess({kExecutablePath, "--output=cout"});
+    auto proc = Subprocess({kExecutablePath, "--output=cout", "--environment"});
     // Block until the executable is done
     auto ret = proc.Join();
     EXPECT_EQ(0u, ret);
@@ -137,7 +137,8 @@ TEST(Subprocess, Environment)
 
   {
     // Passing an empty map as the second arg clears the environment
-    auto proc = Subprocess({kExecutablePath, "--output=cout"}, {});
+    auto proc = Subprocess(
+      {kExecutablePath, "--output=cout", "--environment"}, {});
     // Block until the executable is done
     auto ret = proc.Join();
     EXPECT_EQ(0u, ret);
@@ -150,7 +151,8 @@ TEST(Subprocess, Environment)
 
   {
     // Passing a map sets those variables, clearing the rest
-    auto proc = Subprocess({kExecutablePath, "--output=cout"}, {
+    auto proc = Subprocess(
+      {kExecutablePath, "--output=cout", "--environment"}, {
       {"QUX_KEY", "QUX_VAL"}
     });
     // Block until the executable is done
