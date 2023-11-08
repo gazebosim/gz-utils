@@ -95,7 +95,7 @@ class Subprocess
 
     this->process = new subprocess_s;
 
-    std::vector<std::string> environmentStr;
+    auto environmentStr = gz::utils::envMapToStrings(this->environment);
     std::vector<const char*> environmentCstr;
     std::vector<const char*> commandLineCstr;
 
@@ -107,10 +107,9 @@ class Subprocess
 
     if (!this->inheritEnvironment)
     {
-      for (const auto &[key, val] : this->environment)
+      for (const auto &val : environmentStr)
       {
-        environmentStr.push_back(key + "=" + val);
-        environmentCstr.push_back(environmentStr.back().c_str());
+        environmentCstr.push_back(val.c_str());
       }
       environmentCstr.push_back(nullptr);
     }
