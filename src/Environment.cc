@@ -136,14 +136,6 @@ EnvironmentMap env()
 {
   EnvironmentMap ret;
 
-  // Helper function to split KEY=VAL
-  auto split = [](const std::string &_inp)
-  {
-    return std::make_pair(
-        _inp.substr(0, _inp.find('=')),
-        _inp.substr(_inp.find('=') + 1));
-  };
-
   char **currentEnv = nullptr;
 #ifdef _WIN32
   currentEnv = *__p__environ();
@@ -155,11 +147,12 @@ EnvironmentMap env()
   if (currentEnv == nullptr)
     return {};
 
+  std::vector<std::string> envStrings;
   for (; *currentEnv; ++currentEnv)
   {
-    ret.emplace(split(*currentEnv));
+    envStrings.emplace_back(*currentEnv);
   }
-  return ret;
+  return envStringsToMap(envStrings);
 }
 
 /////////////////////////////////////////////////
@@ -174,20 +167,41 @@ bool setenv(const EnvironmentMap &_vars)
 }
 
 /////////////////////////////////////////////////
+EnvironmentMap envStringsToMap(const EnvironmentStrings &_envStrings)
+{
+  EnvironmentMap ret;
+  for (const auto &pair : _envStrings)
+  {
+    auto eqPos = pair.find('=');
+    if (eqPos != std::string::npos)
+    {
+      ret.emplace(pair.substr(0, eqPos), pair.substr(eqPos + 1));
+    }
+  }
+  return ret;
+}
+
+/////////////////////////////////////////////////
+EnvironmentStrings envMapToStrings(const EnvironmentMap &_envMap)
+{
+  EnvironmentStrings ret;
+  auto sorted = std::vector<std::pair<std::string, std::string>>(
+    _envMap.begin(), _envMap.end());
+  std::sort(sorted.begin(), sorted.end());
+  for (auto [key, value] : sorted)
+  {
+    ret.push_back(key + "=" + value);
+  }
+  return ret;
+}
+
+/////////////////////////////////////////////////
 std::string printenv()
 {
   std::string ret;
-  // Variables are in an unordered_map as we generally don't
-  // care, but for printing sort for consistent display
-  auto currentEnv = env();
-  auto sorted = std::vector<std::pair<std::string, std::string>>(
-    currentEnv.begin(), currentEnv.end());
-  std::sort(sorted.begin(), sorted.end());
-  for (const auto &[key, value] : sorted)
+  for (const auto &entry : envMapToStrings(env()))
   {
-    ret.append(key);
-    ret.append("=");
-    ret.append(value);
+    ret.append(entry);
     ret.append("\n");
   }
   return ret;

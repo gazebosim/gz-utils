@@ -72,6 +72,22 @@ class Subprocess
     this->Create();
   }
 
+  /// \brief Constructor
+  ///
+  /// This variant will spawn a subprocess that uses the user-specified
+  /// environment
+  ///
+  /// \param[in] _commandLine set of arguments starting with an executable
+  ///   used to spawn the subprocess
+  /// \param[in] _environment environment variables to set in the spawned
+  ///   subprocess
+  public: Subprocess(const std::vector<std::string> &_commandLine,
+                     const gz::utils::EnvironmentStrings &_environment):
+    Subprocess(_commandLine, gz::utils::envStringsToMap(_environment))
+  {
+  }
+
+
   private: void Create()
   {
     if (this->process != nullptr)

@@ -175,3 +175,39 @@ TEST(Environment, printenv)
   EXPECT_EQ(gz::utils::printenv(),
     "GZ_BAR_KEY=GZ_BAR_VAL\nGZ_BAZ_KEY=GZ_BAZ_VAL\nGZ_FOO_KEY=GZ_FOO_VAL\n");
 }
+
+/////////////////////////////////////////////////
+TEST(Environment, envStringsToMap)
+{
+  gz::utils::EnvironmentStrings strings;
+  strings.emplace_back("GZ_FOO_KEY=GZ_FOO_VAL");
+  strings.emplace_back("GZ_BAR_KEY=GZ_BAR_VAL");
+  strings.emplace_back("GZ_BAZ_KEY=GZ_BAZ_VAL");
+  strings.emplace_back("BAD_KEY");
+
+  {
+    auto envMap = gz::utils::envStringsToMap(strings);
+    EXPECT_EQ(3u, envMap.size());
+    EXPECT_EQ("GZ_FOO_VAL", envMap["GZ_FOO_KEY"]);
+    EXPECT_EQ("GZ_BAR_VAL", envMap["GZ_BAR_KEY"]);
+    EXPECT_EQ("GZ_BAZ_VAL", envMap["GZ_BAZ_KEY"]);
+  }
+}
+
+/////////////////////////////////////////////////
+TEST(Environment, envMapToStrings)
+{
+  gz::utils::EnvironmentMap envMap;
+  envMap.insert({{"GZ_FOO_KEY"}, {"GZ_FOO_VAL"}});
+  envMap.insert({{"GZ_BAR_KEY"}, {"GZ_BAR_VAL"}});
+  envMap.insert({{"GZ_BAZ_KEY"}, {"GZ_BAZ_VAL"}});
+
+  {
+    auto envStrings = gz::utils::envMapToStrings(envMap);
+
+    EXPECT_EQ(3u, envStrings.size());
+    EXPECT_EQ("GZ_BAR_KEY=GZ_BAR_VAL", envStrings[0]);
+    EXPECT_EQ("GZ_BAZ_KEY=GZ_BAZ_VAL", envStrings[1]);
+    EXPECT_EQ("GZ_FOO_KEY=GZ_FOO_VAL", envStrings[2]);
+  }
+}

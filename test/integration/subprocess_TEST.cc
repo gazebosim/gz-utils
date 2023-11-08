@@ -138,7 +138,23 @@ TEST(Subprocess, Environment)
   {
     // Passing an empty map as the second arg clears the environment
     auto proc = Subprocess(
-      {kExecutablePath, "--output=cout", "--environment"}, {});
+      {kExecutablePath, "--output=cout", "--environment"},
+      gz::utils::EnvironmentMap());
+    // Block until the executable is done
+    auto ret = proc.Join();
+    EXPECT_EQ(0u, ret);
+
+    auto cout = proc.Stdout();
+    EXPECT_EQ(std::string::npos, cout.find("GZ_FOO_KEY=GZ_FOO_VAL"));
+    EXPECT_EQ(std::string::npos, cout.find("GZ_BAR_KEY=GZ_BAR_VAL"));
+    EXPECT_EQ(std::string::npos, cout.find("GZ_BAZ_KEY=GZ_BAZ_VAL"));
+  }
+
+  {
+    // Passing an empty vector as the second arg clears the environment
+    auto proc = Subprocess(
+      {kExecutablePath, "--output=cout", "--environment"},
+      gz::utils::EnvironmentStrings());
     // Block until the executable is done
     auto ret = proc.Join();
     EXPECT_EQ(0u, ret);
@@ -152,9 +168,10 @@ TEST(Subprocess, Environment)
   {
     // Passing a map sets those variables, clearing the rest
     auto proc = Subprocess(
-      {kExecutablePath, "--output=cout", "--environment"}, {
-      {"QUX_KEY", "QUX_VAL"}
-    });
+      {kExecutablePath, "--output=cout", "--environment"},
+      gz::utils::EnvironmentMap{
+        {"QUX_KEY", "QUX_VAL"}
+      });
     // Block until the executable is done
     auto ret = proc.Join();
     EXPECT_EQ(0u, ret);
@@ -165,4 +182,23 @@ TEST(Subprocess, Environment)
     EXPECT_EQ(std::string::npos, cout.find("GZ_BAZ_KEY=GZ_BAZ_VAL"));
     EXPECT_NE(std::string::npos, cout.find("QUX_KEY=QUX_VAL"));
   }
+
+  {
+    // Passing a map sets those variables, clearing the rest
+    auto proc = Subprocess(
+      {kExecutablePath, "--output=cout", "--environment"},
+      gz::utils::EnvironmentStrings{
+        {"QUX_KEY=QUX_VAL"}
+      });
+    // Block until the executable is done
+    auto ret = proc.Join();
+    EXPECT_EQ(0u, ret);
+
+    auto cout = proc.Stdout();
+    EXPECT_EQ(std::string::npos, cout.find("GZ_FOO_KEY=GZ_FOO_VAL"));
+    EXPECT_EQ(std::string::npos, cout.find("GZ_BAR_KEY=GZ_BAR_VAL"));
+    EXPECT_EQ(std::string::npos, cout.find("GZ_BAZ_KEY=GZ_BAZ_VAL"));
+    EXPECT_NE(std::string::npos, cout.find("QUX_KEY=QUX_VAL"));
+  }
+
 }

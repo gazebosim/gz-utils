@@ -23,6 +23,7 @@
 
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 namespace gz
 {
@@ -78,6 +79,22 @@ bool GZ_UTILS_VISIBLE clearenv();
 /// \brief Type alias for a collection of environment variables
 using EnvironmentMap = std::unordered_map<std::string, std::string>;
 
+/// \brief Type alias for a collection of environment variables
+/// Each entry is of the form KEY=VAL
+using EnvironmentStrings = std::vector<std::string>;
+
+/// \brief Convert a vector of environment variables to a map
+///
+/// \param[in] _envStrings Vector collection of environment variables.
+/// \return Mapped collection of environment variables.
+EnvironmentMap GZ_UTILS_VISIBLE envStringsToMap(const EnvironmentStrings &_envStrings);
+
+/// \brief Convert a map of environment variables to a vector
+///
+/// \param[in] _envMap Collection of mapped environment variables.
+/// \return  Vector collection of environment variables.
+EnvironmentStrings GZ_UTILS_VISIBLE envMapToStrings(const EnvironmentMap &_envMap);
+
 /// \brief Retrieve all current environment variables
 ///
 /// Note: This function is not thread-safe and should not be called
@@ -108,6 +125,7 @@ bool GZ_UTILS_VISIBLE setenv(const EnvironmentMap &_vars);
 /// \return A string containing all environment variables
 /// NOLINTNEXTLINE - This is incorrectly parsed as a global variable
 std::string GZ_UTILS_VISIBLE printenv();
+
 }  // namespace GZ_UTILS_VERSION_NAMESPACE
 }  // namespace utils
 }  // namespace gz
