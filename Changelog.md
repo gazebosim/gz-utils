@@ -1,5 +1,25 @@
 ## Gazebo Utils 2.x
 
+## Gazebo Utils 2.2.0 (2023-11-08)
+
+1. Make the single argument constructor inherit the env
+    * [Pull request #113](https://github.com/gazebosim/gz-utils/pull/113)
+
+1. Add new functions for manipulating the environment
+    * [Pull request #114](https://github.com/gazebosim/gz-utils/pull/114)
+
+1. Add license checking support to bazel
+    * [Pull request #108](https://github.com/gazebosim/gz-utils/pull/108)
+
+1. Include what you use
+    * [Pull request #107](https://github.com/gazebosim/gz-utils/pull/107)
+
+1. Ensure all licenses are reflected in the LICENSE file
+    * [Pull request #106](https://github.com/gazebosim/gz-utils/pull/106)
+
+1. Not sure why this was here, but it is unused
+    * [Pull request #105](https://github.com/gazebosim/gz-utils/pull/105)
+
 ## Gazebo Utils 2.1.0 (2023-09-26)
 
 1. Documentation fixes
