@@ -42,7 +42,7 @@ namespace gz
       public: int GetInt() const;
 
       /// \brief Set the int value held by the pimpl
-      public: void SetInt(const int _value);
+      public: void SetInt(int _value);
 
       /// \brief Get the string value held by the pimpl
       public: const std::string &GetString() const;
@@ -72,7 +72,7 @@ namespace gz
       public: int GetInt() const;
 
       /// \brief Set the int value held by the pimpl
-      public: void SetInt(const int _value);
+      public: void SetInt(int _value);
 
       /// \brief Get the string value held by the pimpl
       public: const std::string &GetString() const;
@@ -102,7 +102,7 @@ namespace gz
       public: int GetInt() const;
 
       /// \brief Set the int value held by the pimpl
-      public: void SetInt(const int _value);
+      public: void SetInt(int _value);
 
       /// \brief Get the string value held by the pimpl
       public: const std::string &GetString() const;

@@ -21,6 +21,7 @@
 
 #include <chrono>
 #include <thread>
+#include "gz/utils/Environment.hh"
 
 using Subprocess = gz::utils::Subprocess;
 
@@ -31,6 +32,28 @@ TEST(Subprocess, CreateInvalid)
 {
   auto proc = Subprocess({"an_executable_that_will_never_exist"});
   EXPECT_FALSE(proc.Alive());
+}
+
+/////////////////////////////////////////////////
+TEST(Subprocess, CreateInvalidSpaces)
+{
+  // Test if a user passes a string with spaces, rather than
+  // a vector of strings
+  std::string command(kExecutablePath);
+  command.append(" --help");
+  auto proc = Subprocess({command});
+
+  // Block until the executable is done
+  auto ret = proc.Join();
+  EXPECT_EQ(-1, ret);
+
+  EXPECT_FALSE(proc.Alive());
+
+  auto cout = proc.Stdout();
+  auto cerr = proc.Stdout();
+
+  EXPECT_TRUE(cout.empty());
+  EXPECT_TRUE(cerr.empty());
 }
 
 /////////////////////////////////////////////////
@@ -94,38 +117,88 @@ TEST(Subprocess, Cerr)
 /////////////////////////////////////////////////
 TEST(Subprocess, Environment)
 {
+  ASSERT_TRUE(gz::utils::clearenv());
+  ASSERT_TRUE(gz::utils::setenv("GZ_FOO_KEY", "GZ_FOO_VAL"));
+  ASSERT_TRUE(gz::utils::setenv("GZ_BAR_KEY", "GZ_BAR_VAL"));
+  ASSERT_TRUE(gz::utils::setenv("GZ_BAZ_KEY", "GZ_BAZ_VAL"));
+
   {
-    auto proc = Subprocess({kExecutablePath, "--output=cout"},
-                           {"ENV_VAR=foobar"});
+    // Default behavior is to inherit the environment
+    auto proc = Subprocess({kExecutablePath, "--output=cout", "--environment"});
     // Block until the executable is done
     auto ret = proc.Join();
     EXPECT_EQ(0u, ret);
 
     auto cout = proc.Stdout();
-    EXPECT_NE(std::string::npos, cout.find("ENV_VAR=foobar"));
+    EXPECT_NE(std::string::npos, cout.find("GZ_FOO_KEY=GZ_FOO_VAL"));
+    EXPECT_NE(std::string::npos, cout.find("GZ_BAR_KEY=GZ_BAR_VAL"));
+    EXPECT_NE(std::string::npos, cout.find("GZ_BAZ_KEY=GZ_BAZ_VAL"));
   }
 
   {
-    auto proc = Subprocess({kExecutablePath, "--output=cerr"},
-                           {"ENV_VAR=foobar2"});
-    // Block until the executable is done
-    auto ret = proc.Join();
-    EXPECT_EQ(0u, ret);
-
-    auto cerr = proc.Stderr();
-    EXPECT_NE(std::string::npos, cerr.find("ENV_VAR=foobar2"));
-  }
-
-  {
-    auto proc = Subprocess({kExecutablePath},
-                           {"ENV_VAR=foobar3"});
+    // Passing an empty map as the second arg clears the environment
+    auto proc = Subprocess(
+      {kExecutablePath, "--output=cout", "--environment"},
+      gz::utils::EnvironmentMap());
     // Block until the executable is done
     auto ret = proc.Join();
     EXPECT_EQ(0u, ret);
 
     auto cout = proc.Stdout();
-    auto cerr = proc.Stderr();
-    EXPECT_EQ(std::string::npos, cerr.find("ENV_VAR=foobar3"));
-    EXPECT_EQ(std::string::npos, cout.find("ENV_VAR=foobar3"));
+    EXPECT_EQ(std::string::npos, cout.find("GZ_FOO_KEY=GZ_FOO_VAL"));
+    EXPECT_EQ(std::string::npos, cout.find("GZ_BAR_KEY=GZ_BAR_VAL"));
+    EXPECT_EQ(std::string::npos, cout.find("GZ_BAZ_KEY=GZ_BAZ_VAL"));
   }
+
+  {
+    // Passing an empty vector as the second arg clears the environment
+    auto proc = Subprocess(
+      {kExecutablePath, "--output=cout", "--environment"},
+      gz::utils::EnvironmentStrings());
+    // Block until the executable is done
+    auto ret = proc.Join();
+    EXPECT_EQ(0u, ret);
+
+    auto cout = proc.Stdout();
+    EXPECT_EQ(std::string::npos, cout.find("GZ_FOO_KEY=GZ_FOO_VAL"));
+    EXPECT_EQ(std::string::npos, cout.find("GZ_BAR_KEY=GZ_BAR_VAL"));
+    EXPECT_EQ(std::string::npos, cout.find("GZ_BAZ_KEY=GZ_BAZ_VAL"));
+  }
+
+  {
+    // Passing a map sets those variables, clearing the rest
+    auto proc = Subprocess(
+      {kExecutablePath, "--output=cout", "--environment"},
+      gz::utils::EnvironmentMap{
+        {"QUX_KEY", "QUX_VAL"}
+      });
+    // Block until the executable is done
+    auto ret = proc.Join();
+    EXPECT_EQ(0u, ret);
+
+    auto cout = proc.Stdout();
+    EXPECT_EQ(std::string::npos, cout.find("GZ_FOO_KEY=GZ_FOO_VAL"));
+    EXPECT_EQ(std::string::npos, cout.find("GZ_BAR_KEY=GZ_BAR_VAL"));
+    EXPECT_EQ(std::string::npos, cout.find("GZ_BAZ_KEY=GZ_BAZ_VAL"));
+    EXPECT_NE(std::string::npos, cout.find("QUX_KEY=QUX_VAL"));
+  }
+
+  {
+    // Passing a map sets those variables, clearing the rest
+    auto proc = Subprocess(
+      {kExecutablePath, "--output=cout", "--environment"},
+      gz::utils::EnvironmentStrings{
+        {"QUX_KEY=QUX_VAL"}
+      });
+    // Block until the executable is done
+    auto ret = proc.Join();
+    EXPECT_EQ(0u, ret);
+
+    auto cout = proc.Stdout();
+    EXPECT_EQ(std::string::npos, cout.find("GZ_FOO_KEY=GZ_FOO_VAL"));
+    EXPECT_EQ(std::string::npos, cout.find("GZ_BAR_KEY=GZ_BAR_VAL"));
+    EXPECT_EQ(std::string::npos, cout.find("GZ_BAZ_KEY=GZ_BAZ_VAL"));
+    EXPECT_NE(std::string::npos, cout.find("QUX_KEY=QUX_VAL"));
+  }
+
 }

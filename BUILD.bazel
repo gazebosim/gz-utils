@@ -1,18 +1,26 @@
 load(
     "@gz//bazel/skylark:build_defs.bzl",
     "GZ_FEATURES",
+    "GZ_ROOT",
     "GZ_VISIBILITY",
     "gz_configure_header",
     "gz_export_header",
     "gz_include_header",
 )
+load("@rules_license//rules:license.bzl", "license")
 
 package(
+    default_applicable_licenses = [GZ_ROOT + "utils:license"],
     default_visibility = GZ_VISIBILITY,
     features = GZ_FEATURES,
 )
 
-licenses(["notice"])  # Apache-2.0
+license(
+    name = "license",
+    package_name = "gz-utils",
+)
+
+licenses(["notice"])
 
 exports_files(["LICENSE"])
 
@@ -39,8 +47,8 @@ gz_include_header(
     name = "utilshh_genrule",
     out = "include/gz/utils.hh",
     hdrs = public_headers_no_gen + [
-        "include/gz/utils/config.hh",
         "include/gz/utils/Export.hh",
+        "include/gz/utils/config.hh",
     ],
 )
 
@@ -54,6 +62,7 @@ cc_library(
     name = "utils",
     srcs = ["src/Environment.cc"],
     hdrs = public_headers,
+    copts = ["-fexceptions"],
     includes = ["include"],
 )
 
@@ -72,6 +81,7 @@ cc_library(
 
 cc_test(
     name = "ImplPtr_TEST",
+    size = "small",
     srcs = ["test/integration/implptr/ImplPtr_TEST.cc"],
     deps = [
         ":implptr_test_classes",
@@ -93,6 +103,7 @@ cc_test(
 cc_test(
     name = "NeverDestroyed_TEST",
     srcs = ["src/NeverDestroyed_TEST.cc"],
+    copts = ["-fexceptions"],
     deps = [
         ":utils",
         "@gtest",
