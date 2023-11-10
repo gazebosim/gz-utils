@@ -19,6 +19,7 @@
 #define GZ_UTILS_CLI_GZ_FORMATTER_HPP_
 
 #include <algorithm>
+#include <iterator>
 #include <string>
 #include <sstream>
 #include <vector>
@@ -26,6 +27,7 @@
 
 #include "gz/utils/cli/App.hpp"
 #include "gz/utils/cli/FormatterFwd.hpp"
+#include "gz/utils/cli/StringTools.hpp"
 #include "gz/utils/Export.hh"
 
 //////////////////////////////////////////////////

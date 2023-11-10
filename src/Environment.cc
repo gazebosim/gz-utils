@@ -17,9 +17,19 @@
 
 #include <gz/utils/Environment.hh>
 
+#include <algorithm>
 #include <cstdlib>
-#include <iostream>
+#include <string>
+#include <vector>
 
+#ifdef _WIN32
+#include <windows.h>
+#include <processenv.h>
+#endif
+
+#ifndef _WIN32
+extern char ** environ;
+#endif
 
 namespace gz
 {
@@ -99,6 +109,102 @@ bool unsetenv(const std::string &_name)
 #endif
   return true;
 }
+
+/////////////////////////////////////////////////
+bool clearenv()
+{
+  bool success = true;
+#if __linux__
+  if (0 != ::clearenv())
+  {
+    success = false;
+  }
+#else
+  // Windows and macOS don't have clearenv
+  // so iterate and clear one-by-one
+  for (const auto &[key, value] : env())
+  {
+    success &= unsetenv(key);
+  }
+#endif
+  return success;
 }
+
+/////////////////////////////////////////////////
+EnvironmentMap env()
+{
+  EnvironmentMap ret;
+
+  char **currentEnv = nullptr;
+#ifdef _WIN32
+  currentEnv = *__p__environ();
+#else
+  currentEnv = environ;
+#endif
+  // In the case that clearenv() was just called
+  // currentEnv will be nullptr
+  if (currentEnv == nullptr)
+    return {};
+
+  std::vector<std::string> envStrings;
+  for (; *currentEnv; ++currentEnv)
+  {
+    envStrings.emplace_back(*currentEnv);
+  }
+  return envStringsToMap(envStrings);
 }
+
+/////////////////////////////////////////////////
+bool setenv(const EnvironmentMap &_vars)
+{
+  bool success = true;
+  for (const auto &[key, value] : _vars)
+  {
+    success &= setenv(key, value);
+  }
+  return success;
 }
+
+/////////////////////////////////////////////////
+EnvironmentMap envStringsToMap(const EnvironmentStrings &_envStrings)
+{
+  EnvironmentMap ret;
+  for (const auto &pair : _envStrings)
+  {
+    auto eqPos = pair.find('=');
+    if (eqPos != std::string::npos)
+    {
+      ret.emplace(pair.substr(0, eqPos), pair.substr(eqPos + 1));
+    }
+  }
+  return ret;
+}
+
+/////////////////////////////////////////////////
+EnvironmentStrings envMapToStrings(const EnvironmentMap &_envMap)
+{
+  EnvironmentStrings ret;
+  auto sorted = std::vector<std::pair<std::string, std::string>>(
+    _envMap.begin(), _envMap.end());
+  std::sort(sorted.begin(), sorted.end());
+  for (auto [key, value] : sorted)
+  {
+    ret.push_back(key + "=" + value);
+  }
+  return ret;
+}
+
+/////////////////////////////////////////////////
+std::string printenv()
+{
+  std::string ret;
+  for (const auto &entry : envMapToStrings(env()))
+  {
+    ret.append(entry);
+    ret.append("\n");
+  }
+  return ret;
+}
+}  // namespace GZ_UTILS_VERSION_NAMESPACE
+}  // namespace utils
+}  // namespace gz

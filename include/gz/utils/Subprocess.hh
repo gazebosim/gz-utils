@@ -19,8 +19,12 @@
 #define GZ_UTILS__SUBPROCESS_HH_
 
 #include "detail/subprocess.h"
+#include "gz/utils/Environment.hh"
+
+#include <iostream>
 #include <string>
 #include <vector>
+#include <utility>
 
 #include <gz/utils/detail/subprocess.h>
 
@@ -32,46 +36,95 @@ namespace gz
 namespace utils
 {
 
+/// \brief Create a RAII-type object that encapsulates a subprocess.
 class Subprocess
 {
-  public: Subprocess(const std::vector<std::string> &_commandLine,
-                     const std::vector<std::string> &_environment = {}):
+  /// \brief Constructor
+  ///
+  /// This variant will spawn a subprocess that inherits the environment
+  /// from the calling process.
+  ///
+  /// \param[in] _commandLine set of arguments starting with an executable
+  ///   used to spawn the subprocess
+  public: explicit Subprocess(const std::vector<std::string> &_commandLine):
     commandLine(_commandLine),
-    environment(_environment)
+    environment({}),
+    inheritEnvironment(true)
   {
     this->Create();
   }
 
+  /// \brief Constructor
+  ///
+  /// This variant will spawn a subprocess that uses the user-specified
+  /// environment
+  ///
+  /// \param[in] _commandLine set of arguments starting with an executable
+  ///   used to spawn the subprocess
+  /// \param[in] _environment environment variables to set in the spawned
+  ///   subprocess
+  public: Subprocess(const std::vector<std::string> &_commandLine,
+                     gz::utils::EnvironmentMap _environment):
+    commandLine(_commandLine),
+    environment(std::move(_environment)),
+    inheritEnvironment(false)
+  {
+    this->Create();
+  }
+
+  /// \brief Constructor
+  ///
+  /// This variant will spawn a subprocess that uses the user-specified
+  /// environment
+  ///
+  /// \param[in] _commandLine set of arguments starting with an executable
+  ///   used to spawn the subprocess
+  /// \param[in] _environment environment variables to set in the spawned
+  ///   subprocess
+  public: Subprocess(const std::vector<std::string> &_commandLine,
+                     const gz::utils::EnvironmentStrings &_environment):
+    Subprocess(_commandLine, gz::utils::envStringsToMap(_environment))
+  {
+  }
+
+
   private: void Create()
   {
-    if (this->process)
+    if (this->process != nullptr)
         return;
 
     this->process = new subprocess_s;
 
+    auto environmentStr = gz::utils::envMapToStrings(this->environment);
+    std::vector<const char*> environmentCstr;
     std::vector<const char*> commandLineCstr;
+
     for (const auto &val : this->commandLine)
     {
       commandLineCstr.push_back(val.c_str());
     }
     commandLineCstr.push_back(nullptr);
 
-    std::vector<const char*> environmentCstr;
-    for (const auto &val : this->environment)
+    if (!this->inheritEnvironment)
     {
-      environmentCstr.push_back(val.c_str());
+      for (const auto &val : environmentStr)
+      {
+        environmentCstr.push_back(val.c_str());
+      }
+      environmentCstr.push_back(nullptr);
     }
-    environmentCstr.push_back(nullptr);
 
     int ret = -1;
-    if (this->environment.size())
+    if (!this->inheritEnvironment)
     {
       ret = subprocess_create_ex(commandLineCstr.data(),
                                  0, environmentCstr.data(), this->process);
     }
     else
     {
-      ret = subprocess_create(commandLineCstr.data(), 0, this->process);
+      ret = subprocess_create(commandLineCstr.data(),
+                              subprocess_option_inherit_environment,
+                              this->process);
     }
 
     if (0 != ret)
@@ -84,21 +137,21 @@ class Subprocess
 
   public: ~Subprocess()
   {
-    if (this->process)
+    if (this->process != nullptr)
       subprocess_destroy(this->process);
     delete this->process;
   }
 
   public: std::string Stdout()
   {
-    std::string result{""};
-    if (this->process)
+    std::string result;
+    if (this->process != nullptr)
     {
-      auto p_stdout = subprocess_stdout(this->process);
+      auto *p_stdout = subprocess_stdout(this->process);
       char buffer[128];
       while (!feof(p_stdout))
       {
-        if (fgets(buffer, 128, p_stdout) != NULL)
+        if (fgets(buffer, 128, p_stdout) != nullptr)
           result += buffer;
       }
     }
@@ -107,14 +160,14 @@ class Subprocess
 
   public: std::string Stderr()
   {
-    std::string result{""};
-    if (this->process)
+    std::string result;
+    if (this->process != nullptr)
     {
-      auto p_stdout = subprocess_stderr(this->process);
+      auto *p_stdout = subprocess_stderr(this->process);
       char buffer[128];
       while (!feof(p_stdout))
       {
-        if (fgets(buffer, 128, p_stdout) != NULL)
+        if (fgets(buffer, 128, p_stdout) != nullptr)
           result += buffer;
       }
     }
@@ -124,7 +177,7 @@ class Subprocess
 
   public: bool Alive()
   {
-    if (this->process)
+    if (this->process != nullptr)
       return subprocess_alive(this->process);
     else
       return false;
@@ -132,7 +185,7 @@ class Subprocess
 
   public: bool Terminate()
   {
-    if (this->process)
+    if (this->process != nullptr)
       return subprocess_terminate(this->process) != 0;
     else
       return false;
@@ -141,7 +194,7 @@ class Subprocess
   public: int Join()
   {
     int return_code = -1;
-    if (this->process)
+    if (this->process != nullptr)
     {
       auto ret = subprocess_join(this->process, &return_code);
       if (ret != 0)
@@ -155,7 +208,9 @@ class Subprocess
 
   protected: std::vector<std::string> commandLine;
 
-  protected: std::vector<std::string> environment;
+  protected: EnvironmentMap environment;
+
+  protected: bool inheritEnvironment;
 
   protected: subprocess_s * process {nullptr};
 };

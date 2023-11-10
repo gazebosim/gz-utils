@@ -24,8 +24,8 @@
 
 class OutputSink
 {
-  public: OutputSink(const std::string &_dest):
-    dest(_dest)
+  public: explicit OutputSink(std::string _dest):
+    dest(std::move(_dest))
   {
   }
 
@@ -34,13 +34,11 @@ class OutputSink
     if (dest == "cout" || dest == "both")
     {
       std::cout << val << std::endl;
-
     }
     else if (dest == "cerr" || dest == "both")
     {
       std::cerr << val << std::endl;
     }
-    return;
   }
 
   private: std::string dest;
@@ -60,6 +58,10 @@ int main(int argc, char **argv)
   int iter_ms = 0;
   app.add_option("--iteration-ms", iter_ms, "length of one iteration");
 
+  bool environment = false;
+  app.add_flag("--environment", environment,
+               "print the environment variables");
+
   CLI11_PARSE(app, argc, argv);
 
   auto sink = OutputSink(output);
@@ -69,10 +71,9 @@ int main(int argc, char **argv)
     std::this_thread::sleep_for(std::chrono::milliseconds(iter_ms));
   }
 
-  std::string env_var;
-  if(gz::utils::env("ENV_VAR", env_var))
+  if (environment)
   {
-    sink.Write("ENV_VAR=" + env_var);
+    sink.Write(gz::utils::printenv());
   }
   return 0;
 }
