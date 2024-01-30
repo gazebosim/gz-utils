@@ -41,6 +41,7 @@ gz_export_header(
 public_headers_no_gen = glob([
     "include/gz/utils/*.hh",
     "include/gz/utils/detail/*.hh",
+    "include/gz/utils/detail/*.h",
 ])
 
 gz_include_header(
