@@ -20,6 +20,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <string>
+#include <utility>
 #include <vector>
 
 #ifdef _WIN32
@@ -189,7 +190,9 @@ EnvironmentStrings envMapToStrings(const EnvironmentMap &_envMap)
   std::sort(sorted.begin(), sorted.end());
   for (auto [key, value] : sorted)
   {
-    ret.push_back(key + "=" + value);
+    key += '=';
+    key += value;
+    ret.push_back(key);
   }
   return ret;
 }
