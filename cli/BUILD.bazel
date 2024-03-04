@@ -31,6 +31,6 @@ cc_library(
     visibility = GZ_VISIBILITY,
     deps = [
         GZ_ROOT + "utils:utils",
-        "@cli11"
+        "@cli11",
     ],
 )
