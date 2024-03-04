@@ -111,3 +111,23 @@ cc_test(
         "@gtest//:gtest_main",
     ],
 )
+
+cc_binary(
+  name = "subprocess_main",
+  srcs = ["test/integration/subprocess/subprocess_main.cc"],
+  deps = [
+      GZ_ROOT + "utils/cli",
+  ]
+)
+
+cc_test(
+    name = "subprocess_TEST",
+    srcs = ["test/integration/subprocess_TEST.cc"],
+    deps = [
+        ":utils",
+        ":subprocess_main",
+        "@gtest",
+        "@gtest//:gtest_main",
+    ],
+  local_defines = ['SUBPROCESS_EXECUTABLE_PATH=\\"utils/subprocess_main\\"'],
+)
