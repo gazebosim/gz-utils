@@ -923,6 +923,17 @@ FILE *subprocess_stderr(const struct subprocess_s *const process) {
   }
 }
 
+int subprocess_signal(const subprocess_s *const process,
+                      int signum)
+{
+#if defined(_WIN32)
+  return GenerateConsoleCtrlEvent(signum, process->hProcess);
+#else
+  return kill(process->child, signum);
+#endif
+
+}
+
 int subprocess_join(struct subprocess_s *const process,
                     int *const out_return_code) {
 #if defined(_WIN32)
