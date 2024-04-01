@@ -18,6 +18,10 @@
 #ifndef GZ_UTILS__SUBPROCESS_HH_
 #define GZ_UTILS__SUBPROCESS_HH_
 
+#if defined(_WIN32)
+#include <windows.h>
+#endif  // defined(_WIN32)
+
 #include "detail/subprocess.h"
 #include "gz/utils/Environment.hh"
 
@@ -38,16 +42,16 @@ namespace utils
 
 enum class Signals
 {
-  #ifdef WIN32
+#if defined(_WIN32)
   CTRL_C_EVENT = 0,
   CTRL_BREAK_EVENT = 1,
   CTRL_CLOSE_EVENT = 2,
   CTRL_LOGOFF_EVENT = 5,
   CTRL_SHUTDOWN_EVENT = 6,
-  #else
+#else
   SIGNAL_SIGINT = 2,
   SIGNAL_SIGQUIT = 3,
-  #endif
+#endif
 };
 
 /// \brief Create a RAII-type object that encapsulates a subprocess.
@@ -209,11 +213,11 @@ class Subprocess
   public: bool SendExitSignal()
   {
     int signal = 0;
-    #ifdef WIN32
+#if defined(_WIN32)
     signal = static_cast<int>(Signals::CTRL_C_EVENT);
-    #else
+#else
     signal = static_cast<int>(Signals::SIGNAL_SIGINT);
-    #endif
+#endif
     return this->Signal(signal);
   }
 
