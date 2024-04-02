@@ -220,7 +220,13 @@ TEST(Subprocess, Signal)
 
   // Block until the executable is done
   auto ret = proc.Join();
+
+#if defined(_WIN32)
+  // Windows has a special exit code for Ctrl-C received
+  EXPECT_EQ(0xC000013A, ret)
+#else
   EXPECT_EQ(1u, ret);
+#endif
 
   auto end = std::chrono::steady_clock::now();
   auto elapsed =
