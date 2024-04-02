@@ -170,6 +170,17 @@ subprocess_weak int subprocess_join(struct subprocess_s *const process,
 /// the parent process.
 subprocess_weak int subprocess_destroy(struct subprocess_s *const process);
 
+/// @brief Signal a previously created process.
+/// @param process The process to signal.
+/// @param signal The signal number to send to the process.
+/// @return On success zero is returned.
+///
+/// Allows to send signals to the subprocess.  For unix-based systems,
+/// this includes any signal that appears in `kill -l`.  For Windows
+/// systems, this includes events available to GenerateConsoleCtrlEvent.
+subprocess_weak int subprocess_signal(struct subprocess_s *const process,
+                                      int signum);
+
 /// @brief Terminate a previously created process.
 /// @param process The process to terminate.
 /// @return On success zero is returned.
@@ -923,17 +934,6 @@ FILE *subprocess_stderr(const struct subprocess_s *const process) {
   }
 }
 
-int subprocess_signal(const subprocess_s *const process,
-                      int signum)
-{
-#if defined(_WIN32)
-  return GenerateConsoleCtrlEvent(signum, process->hProcess);
-#else
-  return kill(process->child, signum);
-#endif
-
-}
-
 int subprocess_join(struct subprocess_s *const process,
                     int *const out_return_code) {
 #if defined(_WIN32)
@@ -1031,6 +1031,19 @@ int subprocess_destroy(struct subprocess_s *const process) {
 #endif
 
   return 0;
+}
+
+int subprocess_signal(const subprocess_s *const process,
+                      int signum)
+{
+  int result;
+#if defined(_WIN32)
+  auto processId = GetProcessId(process->hProcess);
+  result = GenerateConsoleCtrlEvent(signum, processId);
+#else
+  result = kill(process->child, signum);
+#endif
+  return result;
 }
 
 int subprocess_terminate(struct subprocess_s *const process) {

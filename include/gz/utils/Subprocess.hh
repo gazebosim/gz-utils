@@ -40,20 +40,6 @@ namespace gz
 namespace utils
 {
 
-enum class Signals
-{
-#if defined(_WIN32)
-  CTRL_C_EVENT = 0,
-  CTRL_BREAK_EVENT = 1,
-  CTRL_CLOSE_EVENT = 2,
-  CTRL_LOGOFF_EVENT = 5,
-  CTRL_SHUTDOWN_EVENT = 6,
-#else
-  SIGNAL_SIGINT = 2,
-  SIGNAL_SIGQUIT = 3,
-#endif
-};
-
 /// \brief Create a RAII-type object that encapsulates a subprocess.
 class Subprocess
 {
@@ -214,9 +200,9 @@ class Subprocess
   {
     int signal = 0;
 #if defined(_WIN32)
-    signal = static_cast<int>(Signals::CTRL_C_EVENT);
+    signal = static_cast<int>(CTRL_C_EVENT);
 #else
-    signal = static_cast<int>(Signals::SIGNAL_SIGINT);
+    signal = static_cast<int>(SIGINT);
 #endif
     return this->Signal(signal);
   }
