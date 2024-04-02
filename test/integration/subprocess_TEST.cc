@@ -223,7 +223,7 @@ TEST(Subprocess, Signal)
 
 #if defined(_WIN32)
   // Windows has a special exit code for Ctrl-C received
-  EXPECT_EQ(0xC000013A, ret)
+  EXPECT_EQ(0xC000013A, ret);
 #else
   EXPECT_EQ(1u, ret);
 #endif
