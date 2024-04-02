@@ -178,8 +178,7 @@ subprocess_weak int subprocess_destroy(struct subprocess_s *const process);
 /// Allows to send signals to the subprocess.  For unix-based systems,
 /// this includes any signal that appears in `kill -l`.  For Windows
 /// systems, this includes events available to GenerateConsoleCtrlEvent.
-subprocess_weak int subprocess_signal(struct subprocess_s *const process,
-                                      int signum);
+subprocess_weak int subprocess_signal(struct subprocess_s *const process, int signum);
 
 /// @brief Terminate a previously created process.
 /// @param process The process to terminate.
@@ -1035,8 +1034,7 @@ int subprocess_destroy(struct subprocess_s *const process) {
   return 0;
 }
 
-int subprocess_signal(const subprocess_s *const process,
-                      int signum)
+int subprocess_signal(subprocess_s *const process, int signum)
 {
   int result;
 #if defined(_WIN32)
