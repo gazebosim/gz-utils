@@ -200,7 +200,7 @@ class Subprocess
   {
     int signal = 0;
 #if defined(_WIN32)
-    signal = static_cast<int>(CTRL_C_EVENT);
+    signal = static_cast<int>(CTRL_BREAK_EVENT);
 #else
     signal = static_cast<int>(SIGINT);
 #endif
