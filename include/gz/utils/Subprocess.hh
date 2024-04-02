@@ -91,7 +91,7 @@ class Subprocess
   {
   }
 
-
+  /// \brief Create a subprocess
   private: void Create()
   {
     if (this->process != nullptr)

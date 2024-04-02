@@ -497,6 +497,7 @@ int subprocess_create_ex(const char *const commandLine[], int options,
   const unsigned long startFUseStdHandles = 0x00000100;
   const unsigned long handleFlagInherit = 0x00000001;
   const unsigned long createNoWindow = 0x08000000;
+  const unsigned long createNewProcessGroup = 0x00000200;
   struct subprocess_subprocess_information_s processInfo;
   struct subprocess_security_attributes_s saAttr = {sizeof(saAttr),
                                                     SUBPROCESS_NULL, 1};
@@ -523,6 +524,7 @@ int subprocess_create_ex(const char *const commandLine[], int options,
   startInfo.cb = sizeof(startInfo);
   startInfo.dwFlags = startFUseStdHandles;
 
+  flags |= createNewProcessGroup;
   if (subprocess_option_no_window == (options & subprocess_option_no_window)) {
     flags |= createNoWindow;
   }
