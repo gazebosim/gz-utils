@@ -1,18 +1,9 @@
-load(
-    "@gz//bazel/skylark:build_defs.bzl",
-    "GZ_FEATURES",
-    "GZ_ROOT",
-    "GZ_VISIBILITY",
-    "gz_configure_header",
-    "gz_export_header",
-    "gz_include_header",
-)
+load("@buildifier_prebuilt//:rules.bzl", "buildifier", "buildifier_test")
+load("@rules_gz//gz:headers.bzl", "gz_configure_header", "gz_export_header", "gz_include_header")
 load("@rules_license//rules:license.bzl", "license")
 
 package(
-    default_applicable_licenses = [GZ_ROOT + "utils:license"],
-    default_visibility = GZ_VISIBILITY,
-    features = GZ_FEATURES,
+    default_applicable_licenses = [":license"],
 )
 
 license(
@@ -20,9 +11,10 @@ license(
     package_name = "gz-utils",
 )
 
-licenses(["notice"])
-
-exports_files(["LICENSE"])
+exports_files([
+    "LICENSE",
+    "MODULE.bazel",
+])
 
 gz_configure_header(
     name = "config",
@@ -41,6 +33,7 @@ gz_export_header(
 public_headers_no_gen = glob([
     "include/gz/utils/*.hh",
     "include/gz/utils/detail/*.hh",
+    "include/gz/utils/detail/*.h",
 ])
 
 gz_include_header(
@@ -59,11 +52,12 @@ public_headers = public_headers_no_gen + [
 ]
 
 cc_library(
-    name = "utils",
+    name = "gz-utils",
     srcs = ["src/Environment.cc"],
     hdrs = public_headers,
     copts = ["-fexceptions"],
     includes = ["include"],
+    visibility = ["//visibility:public"],
 )
 
 # Tests
@@ -76,7 +70,7 @@ cc_library(
         "test/integration/implptr/implptr_test_classes.hh",
     ],
     includes = ["test/integration/implptr"],
-    deps = [":utils"],
+    deps = [":gz-utils"],
 )
 
 cc_test(
@@ -85,8 +79,7 @@ cc_test(
     srcs = ["test/integration/implptr/ImplPtr_TEST.cc"],
     deps = [
         ":implptr_test_classes",
-        "@gtest",
-        "@gtest//:gtest_main",
+        "@googletest//:gtest_main",
     ],
 )
 
@@ -94,9 +87,8 @@ cc_test(
     name = "Environment_TEST",
     srcs = ["src/Environment_TEST.cc"],
     deps = [
-        ":utils",
-        "@gtest",
-        "@gtest//:gtest_main",
+        ":gz-utils",
+        "@googletest//:gtest_main",
     ],
 )
 
@@ -105,8 +97,43 @@ cc_test(
     srcs = ["src/NeverDestroyed_TEST.cc"],
     copts = ["-fexceptions"],
     deps = [
-        ":utils",
-        "@gtest",
-        "@gtest//:gtest_main",
+        ":gz-utils",
+        "@googletest//:gtest_main",
     ],
+)
+
+cc_binary(
+    name = "subprocess_main",
+    srcs = ["test/integration/subprocess/subprocess_main.cc"],
+    deps = [
+        ":gz-utils",
+        "//cli",
+    ],
+)
+
+cc_test(
+    name = "subprocess_TEST",
+    srcs = ["test/integration/subprocess_TEST.cc"],
+    local_defines = ['SUBPROCESS_EXECUTABLE_PATH=\\"subprocess_main\\"'],
+    deps = [
+        ":gz-utils",
+        ":subprocess_main",
+        "@googletest//:gtest_main",
+    ],
+)
+
+buildifier(
+    name = "buildifier.fix",
+    exclude_patterns = ["./.git/*"],
+    lint_mode = "fix",
+    mode = "fix",
+)
+
+buildifier_test(
+    name = "buildifier.test",
+    exclude_patterns = ["./.git/*"],
+    lint_mode = "warn",
+    mode = "diff",
+    no_sandbox = True,
+    workspace = "//:MODULE.bazel",
 )

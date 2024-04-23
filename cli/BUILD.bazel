@@ -1,12 +1,7 @@
-load(
-    "@gz//bazel/skylark:build_defs.bzl",
-    "GZ_ROOT",
-    "GZ_VISIBILITY",
-)
 load("@rules_license//rules:license.bzl", "license")
 
 package(
-    default_applicable_licenses = [GZ_ROOT + "utils/cli:license"],
+    default_applicable_licenses = ["//cli:license"],
 )
 
 license(
@@ -17,7 +12,7 @@ license(
 public_headers = [
     "include/gz/utils/cli/GzFormatter.hpp",
 ] + glob([
-    "include/external-cli/gz/utils/cli/*.hpp",
+    "include/vendored-cli/gz/utils/cli/*.hpp",
 ])
 
 cc_library(
@@ -26,11 +21,19 @@ cc_library(
     copts = ["-fexceptions"],
     includes = [
         "include",
-        "include/external-cli",
+        "include/vendored-cli",
     ],
-    visibility = GZ_VISIBILITY,
+    visibility = ["//visibility:public"],
     deps = [
-        GZ_ROOT + "utils:utils",
-        "@cli11"
+        "//:gz-utils",
+    ],
+)
+
+cc_test(
+    name = "cli_TEST",
+    srcs = ["src/cli_TEST.cc"],
+    deps = [
+        ":cli",
+        "@googletest//:gtest_main",
     ],
 )
