@@ -200,5 +200,45 @@ TEST(Subprocess, Environment)
     EXPECT_EQ(std::string::npos, cout.find("GZ_BAZ_KEY=GZ_BAZ_VAL"));
     EXPECT_NE(std::string::npos, cout.find("QUX_KEY=QUX_VAL"));
   }
+}
 
+/////////////////////////////////////////////////
+TEST(Subprocess, Signal)
+{
+  auto start = std::chrono::steady_clock::now();
+  auto proc = Subprocess({kExecutablePath,
+                          "--output=cerr",
+                          "--iterations=100",
+                          "--iteration-ms=10"});
+  EXPECT_TRUE(proc.Alive());
+
+  // Sleep for >1 iteration before sending signal
+  std::this_thread::sleep_for(std::chrono::milliseconds(20));
+
+  // Signal
+  proc.SendExitSignal();
+
+  // Block until the executable is done
+  auto ret = proc.Join();
+
+#if defined(_WIN32)
+  // Windows has a special exit code for Ctrl-C received
+  EXPECT_EQ(0xC000013A, ret);
+#else
+  EXPECT_EQ(1u, ret);
+#endif
+
+  auto end = std::chrono::steady_clock::now();
+  auto elapsed =
+    std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+
+  // Check that process finished in less than half a second
+  // If the signal failed to send, then the process would run for over 1 second
+  EXPECT_LT(elapsed.count(), 500);
+
+  EXPECT_FALSE(proc.Alive());
+  auto cout = proc.Stdout();
+  auto cerr = proc.Stderr();
+  EXPECT_TRUE(cout.empty());
+  EXPECT_FALSE(cerr.empty());
 }
