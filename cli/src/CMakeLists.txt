@@ -2,6 +2,7 @@ gz_add_component(
   cli
   INTERFACE
   INDEPENDENT_FROM_PROJECT_LIB
+  LIB_DEPS spdlog::spdlog
   GET_TARGET_NAME gz_utils_cli_target_name)
 
 # Make sure that the name is visible also in cli/include/CMakeLists.txt
