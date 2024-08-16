@@ -14,36 +14,24 @@
  * limitations under the License.
  *
 */
-#ifndef GZ_UTILS_CONSOLE_HH_
-#define GZ_UTILS_CONSOLE_HH_
+#ifndef GZ_UTILS_LOG_LOGGER_HH_
+#define GZ_UTILS_LOG_LOGGER_HH_
 
-#include <filesystem>
-#include <fstream>
-#include <iostream>
-#include <memory>
-#include <sstream>
-#include <string>
-
-#include <gz/utils/ImplPtr.hh>
-#include <gz/utils/SuppressWarning.hh>
-
-#include <spdlog/logger.h>
 #include <spdlog/spdlog.h>
+#include <memory>
+#include <string>
+#include <gz/utils/ImplPtr.hh>
 
-namespace gz::utils::logger
+namespace gz::utils::log
 {
   /// \brief Gazebo console and file logging class.
   /// This will configure spdlog with a sane set of defaults for logging to the
   /// console as well as a file.
-  class GZ_UTILS_VISIBLE Console
+  class GZ_UTILS_VISIBLE Logger
   {
     /// \brief Class constructor.
     /// \param[in] _loggerName Logger name.
-    public: explicit Console(const std::string &_loggerName);
-
-    /// \brief Set the console output color mode.
-    ///\param[in] _mode Color mode.  
-    public: void SetColorMode(spdlog::color_mode _mode);
+    public: explicit Logger(const std::string &_loggerName);
 
     /// \brief Set the log destination filename.
     /// \param[in] _filename Log file name.
@@ -55,19 +43,15 @@ namespace gz::utils::logger
 
     /// \brief Access the underlying spdlog logger.
     /// \return The spdlog logger.
-    public: [[nodiscard]] spdlog::logger &Logger() const;
+    public: [[nodiscard]] spdlog::logger &RawLogger() const;
 
     /// \brief Access the underlying spdlog logger, with ownership.
     /// \return The spdlog logger.
-    public: [[nodiscard]] std::shared_ptr<spdlog::logger> LoggerPtr() const;
-
-    /// \brief Access the global gz console logger.
-    /// \return The gz consoler logger.
-    public: static Console &Root();
+    public: [[nodiscard]] std::shared_ptr<spdlog::logger> RawLoggerPtr() const;
 
     /// \brief Implementation Pointer.
     GZ_UTILS_UNIQUE_IMPL_PTR(dataPtr)
   };
 }
 
-#endif  // GZ_UTILS_CONSOLE_HH_
+#endif  // GZ_UTILS_LOG_LOGGER_HH_

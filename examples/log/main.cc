@@ -15,29 +15,23 @@
  *
  */
 
-#include <gz/utils/logger/Console.hh>
-#include <gz/utils/logger/SplitSink.hh>
-#include <gz/utils/config.hh>
-
-/*
- * At this point, all logger functionality will be available.
- */
+#include <filesystem>
+#include <gz/utils/log/Logger.hh>
 
 //////////////////////////////////////////////////
 int main(int argc, char** argv)
 {
-  auto splitSink =
-    std::make_shared<gz::utils::logger::SplitRingBufferSinkMt<100>>();
-  auto splitSinkConsole =
-    std::make_shared<gz::utils::logger::SplitConsoleSinkMt>();
+  gz::utils::log::Logger logger("my_logger");
+  logger.RawLogger().set_level(spdlog::level::trace);
 
-  spdlog::logger logger("split_sink", {splitSink, splitSinkConsole});
-  logger.set_level(spdlog::level::trace);
+  std::filesystem::path logDir = std::filesystem::temp_directory_path();
+  std::filesystem::path logFile = "my_log.txt";
+  std::filesystem::path logPath = logDir / logFile;
 
-  logger.trace("trace");
-  logger.debug("debug");
-  logger.info("info");
-  logger.warn("warn");
-  logger.error("error");
-  logger.critical("critical");
+  logger.SetLogDestination(logPath);
+  logger.RawLogger().trace("trace");
+  logger.RawLogger().info("info");
+  logger.RawLogger().warn("warn");
+  logger.RawLogger().error("error");
+  logger.RawLogger().critical("critical");
 }

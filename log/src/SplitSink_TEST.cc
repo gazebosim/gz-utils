@@ -18,13 +18,12 @@
 #include <gtest/gtest.h>
 
 #include <spdlog/logger.h>
-
-#include <gz/utils/logger/SplitSink.hh>
+#include <gz/utils/log/SplitSink.hh>
 
 /////////////////////////////////////////////////
 TEST(SplitConsoleSink, foo)
 {
-  auto split_sink = std::make_shared<gz::utils::logger::SplitConsoleSinkMt>();
+  auto split_sink = std::make_shared<gz::utils::log::SplitConsoleSinkMt>();
 
   spdlog::logger logger("split_sink", {split_sink});
   logger.set_level(spdlog::level::trace);
@@ -40,8 +39,8 @@ TEST(SplitConsoleSink, foo)
 /////////////////////////////////////////////////
 TEST(SplitRingBufferSink, foo)
 {
-  auto split_sink = std::make_shared<gz::utils::logger::SplitRingBufferSinkMt<100>>();
-  auto split_sink_console = std::make_shared<gz::utils::logger::SplitConsoleSinkMt>();
+  auto split_sink = std::make_shared<gz::utils::log::SplitRingBufferSinkMt<100>>();
+  auto split_sink_console = std::make_shared<gz::utils::log::SplitConsoleSinkMt>();
 
   spdlog::logger logger("split_sink", {split_sink, split_sink_console});
   logger.set_level(spdlog::level::trace);
