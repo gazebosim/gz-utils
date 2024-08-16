@@ -37,7 +37,11 @@ if(NOT GZ_UTILS_VENDOR_CLI11)
   gz_find_package(CLI11 REQUIRED_BY cli PKGCONFIG_IGNORE)
 endif()
 
-gz_find_package(spdlog REQUIRED_BY log)
+gz_find_package(
+  spdlog
+  PKGCONFIG spdlog
+  REQUIRED_BY log
+  PURPOSE "Provide logging")
 
 #============================================================================
 # Configure the build
