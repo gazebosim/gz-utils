@@ -154,8 +154,7 @@ class SplitRingBufferSink: public spdlog::sinks::base_sink<Mutex>
   }
 
   /// \brief ToDo.
-  /// \param[in] _lim
-  /// \return
+  /// \param[in] _msg ToDo.
   protected: void sink_it_(const spdlog::details::log_msg &_msg) override
   {
     if (!this->should_log(_msg.level))
@@ -189,15 +188,14 @@ class SplitRingBufferSink: public spdlog::sinks::base_sink<Mutex>
   /// \brief Set the new formatter.
   /// \param[in] _sinkFormatter The formatter.
   protected: void set_formatter_(
-    std::unique_ptr<spdlog::formatter> sinkFormatter) override
+    std::unique_ptr<spdlog::formatter> _sinkFormatter) override
   {
-    spdlog::sinks::base_sink<Mutex>::formatter_ = std::move(sinkFormatter);
+    spdlog::sinks::base_sink<Mutex>::formatter_ = std::move(_sinkFormatter);
     this->stdout.set_formatter(
       spdlog::sinks::base_sink<Mutex>::formatter_->clone());
     this->stderr.set_formatter(
       spdlog::sinks::base_sink<Mutex>::formatter_->clone());
   }
-
 
   /// \brief Standard output.
   private: spdlog::sinks::ringbuffer_sink_st stdout {numItems};
