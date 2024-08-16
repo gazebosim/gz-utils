@@ -18,8 +18,10 @@
 #ifndef GZ_UTILS_LOG_SPLITSINK_HH_
 #define GZ_UTILS_LOG_SPLITSINK_HH_
 
+#include <memory>
 #include <mutex>
 #include <string>
+#include <utility>
 #include <vector>
 
 #include <spdlog/details/log_msg.h>
@@ -114,7 +116,7 @@ class SplitRingBufferSink: public spdlog::sinks::base_sink<Mutex>
   /// \brief No copy constructor.
   public: SplitRingBufferSink(const SplitRingBufferSink &) = delete;
 
-  /// \brief No asignment operator.  
+  /// \brief No asignment operator.
   public: SplitRingBufferSink &operator=(const SplitRingBufferSink &) = delete;
 
   /// \brief ToDo.
@@ -177,7 +179,7 @@ class SplitRingBufferSink: public spdlog::sinks::base_sink<Mutex>
   }
 
   /// \brief Set the logging pattern.
-  /// \param[in] _pattern The logging pattern. 
+  /// \param[in] _pattern The logging pattern.
   protected: void set_pattern_(const std::string &_pattern) override
   {
     this->set_formatter_(
