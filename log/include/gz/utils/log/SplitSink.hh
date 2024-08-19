@@ -116,11 +116,18 @@ using SplitConsoleSinkSt = SplitConsoleSink<spdlog::details::null_mutex>;
 ///
 /// This will route messages with severity (warn, err, critical) to stderr,
 /// and all other levels (info, debug, trace) to stdout
-template<typename Mutex, size_t numItems>
+template<typename Mutex>
 class SplitRingBufferSink: public spdlog::sinks::base_sink<Mutex>
 {
   /// \brief Class constructor.
-  public: SplitRingBufferSink() = default;
+  /// \param[in] _numItems
+  public: explicit SplitRingBufferSink(size_t _numItems)
+  {
+    this->stdout =
+      std::make_shared<spdlog::sinks::ringbuffer_sink_st>(_numItems);
+    this->stderr =
+      std::make_shared<spdlog::sinks::ringbuffer_sink_st>(_numItems);
+  }
 
   /// \brief No copy constructor.
   public: SplitRingBufferSink(const SplitRingBufferSink &) = delete;
@@ -134,7 +141,7 @@ class SplitRingBufferSink: public spdlog::sinks::base_sink<Mutex>
   public: std::vector<spdlog::details::log_msg_buffer> last_raw_stdout(
     size_t _lim = 0)
   {
-    return this->stdout.last_raw(_lim);
+    return this->stdout->last_raw(_lim);
   }
 
   /// \brief ToDo.
@@ -143,7 +150,7 @@ class SplitRingBufferSink: public spdlog::sinks::base_sink<Mutex>
   public: std::vector<spdlog::details::log_msg_buffer> last_raw_stderr(
     size_t _lim = 0)
   {
-    return this->stderr.last_raw(_lim);
+    return this->stderr->last_raw(_lim);
   }
 
   /// \brief ToDo.
@@ -151,7 +158,7 @@ class SplitRingBufferSink: public spdlog::sinks::base_sink<Mutex>
   /// \return
   public: std::vector<std::string> last_formatted_stdout(size_t _lim = 0)
   {
-    return this->stdout.last_formatted(_lim);
+    return this->stdout->last_formatted(_lim);
   }
 
   /// \brief ToDo.
@@ -159,7 +166,7 @@ class SplitRingBufferSink: public spdlog::sinks::base_sink<Mutex>
   /// \return
   public: std::vector<std::string> last_formatted_stderr(size_t _lim = 0)
   {
-    return this->stderr.last_formatted(_lim);
+    return this->stderr->last_formatted(_lim);
   }
 
   /// \brief ToDo.
@@ -173,17 +180,17 @@ class SplitRingBufferSink: public spdlog::sinks::base_sink<Mutex>
         _msg.level == spdlog::level::err       ||
         _msg.level == spdlog::level::critical)
     {
-      this->stderr.log(_msg);
+      this->stderr->log(_msg);
     }
     else
-      this->stdout.log(_msg);
+      this->stdout->log(_msg);
   }
 
   /// \brief Flush messages.
   protected: void flush_() override
   {
-    this->stdout.flush();
-    this->stderr.flush();
+    this->stdout->flush();
+    this->stderr->flush();
   }
 
   /// \brief Set the logging pattern.
@@ -200,21 +207,20 @@ class SplitRingBufferSink: public spdlog::sinks::base_sink<Mutex>
     std::unique_ptr<spdlog::formatter> _sinkFormatter) override
   {
     spdlog::sinks::base_sink<Mutex>::formatter_ = std::move(_sinkFormatter);
-    this->stdout.set_formatter(
+    this->stdout->set_formatter(
       spdlog::sinks::base_sink<Mutex>::formatter_->clone());
-    this->stderr.set_formatter(
+    this->stderr->set_formatter(
       spdlog::sinks::base_sink<Mutex>::formatter_->clone());
   }
 
   /// \brief Standard output.
-  private: spdlog::sinks::ringbuffer_sink_st stdout {numItems};
+  private: std::shared_ptr<spdlog::sinks::ringbuffer_sink_st> stdout;
 
   /// \brief Standard error.
-  private: spdlog::sinks::ringbuffer_sink_st stderr {numItems};
+  private: std::shared_ptr<spdlog::sinks::ringbuffer_sink_st> stderr;
 };
 
-template <size_t numItems>
-using SplitRingBufferSinkMt = SplitRingBufferSink<std::mutex, numItems>;
+using SplitRingBufferSinkMt = SplitRingBufferSink<std::mutex>;
 
 }  // namespace GZ_UTILS_LOG_VERSION_NAMESPACE
 }  // namespace log

@@ -30,7 +30,7 @@ namespace utils
 {
 namespace log
 {
-inline namespace GZ_UTILS_VERSION_NAMESPACE {
+inline namespace GZ_UTILS_LOG_VERSION_NAMESPACE {
 
 /// \brief Gazebo console and file logging class.
 /// This will configure spdlog with a sane set of defaults for logging to the

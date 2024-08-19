@@ -39,7 +39,7 @@ TEST(SplitConsoleSink, foo)
 TEST(SplitRingBufferSink, foo)
 {
   auto splitSink =
-    std::make_shared<gz::utils::log::SplitRingBufferSinkMt<100>>();
+    std::make_shared<gz::utils::log::SplitRingBufferSinkMt>(100);
   auto splitSinkConsole =
     std::make_shared<gz::utils::log::SplitConsoleSinkMt>();
 
