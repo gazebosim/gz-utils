@@ -16,7 +16,6 @@
  */
 
 #include <gtest/gtest.h>
-
 #include <spdlog/logger.h>
 #include <gz/utils/log/SplitSink.hh>
 

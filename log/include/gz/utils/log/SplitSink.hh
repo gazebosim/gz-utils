@@ -24,6 +24,9 @@
 #include <utility>
 #include <vector>
 
+#include <gz/utils/config.hh>
+#include <gz/utils/log/Export.hh>
+
 #include <spdlog/details/log_msg.h>
 #include <spdlog/details/null_mutex.h>
 #include <spdlog/pattern_formatter.h>
@@ -31,8 +34,14 @@
 #include <spdlog/sinks/ringbuffer_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 
-namespace gz::utils::log
+namespace gz
 {
+namespace utils
+{
+namespace log
+{
+inline namespace GZ_UTILS_LOG_VERSION_NAMESPACE {
+
 /// \brief Logging sink for spdlog that logs in Gazebo-conventions.
 ///
 /// This will route messages with severity (warn, err, critical) to stderr,
@@ -207,5 +216,9 @@ class SplitRingBufferSink: public spdlog::sinks::base_sink<Mutex>
 template <size_t numItems>
 using SplitRingBufferSinkMt = SplitRingBufferSink<std::mutex, numItems>;
 
-}  // namespace gz::utils::log
+}  // namespace GZ_UTILS_LOG_VERSION_NAMESPACE
+}  // namespace log
+}  // namespace utils
+}  // namespace gz
+
 #endif  // GZ_UTILS_LOG_SPLITSINK_HH__

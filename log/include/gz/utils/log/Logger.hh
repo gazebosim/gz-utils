@@ -21,8 +21,8 @@
 #include <memory>
 #include <string>
 #include <gz/utils/config.hh>
-#include <gz/utils/Export.hh>
 #include <gz/utils/ImplPtr.hh>
+#include <gz/utils/log/Export.hh>
 
 namespace gz
 {
@@ -60,7 +60,7 @@ class GZ_UTILS_LOG_VISIBLE Logger
   /// \brief Implementation Pointer.
   GZ_UTILS_UNIQUE_IMPL_PTR(dataPtr)
 };
-}  // namespace GZ_UTILS_VERSION_NAMESPACE
+}  // namespace GZ_UTILS_LOG_VERSION_NAMESPACE
 }  // namespace log
 }  // namespace utils
 }  // namespace gz
