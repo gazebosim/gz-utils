@@ -20,38 +20,49 @@
 #include <spdlog/spdlog.h>
 #include <memory>
 #include <string>
+#include <gz/utils/config.hh>
+#include <gz/utils/Export.hh>
 #include <gz/utils/ImplPtr.hh>
 
-namespace gz::utils::log
+namespace gz
 {
-  /// \brief Gazebo console and file logging class.
-  /// This will configure spdlog with a sane set of defaults for logging to the
-  /// console as well as a file.
-  class GZ_UTILS_VISIBLE Logger
-  {
-    /// \brief Class constructor.
-    /// \param[in] _loggerName Logger name.
-    public: explicit Logger(const std::string &_loggerName);
+namespace utils
+{
+namespace log
+{
+inline namespace GZ_UTILS_VERSION_NAMESPACE {
 
-    /// \brief Set the log destination filename.
-    /// \param[in] _filename Log file name.
-    public: void SetLogDestination(const std::string &_filename);
+/// \brief Gazebo console and file logging class.
+/// This will configure spdlog with a sane set of defaults for logging to the
+/// console as well as a file.
+class GZ_UTILS_LOG_VISIBLE Logger
+{
+  /// \brief Class constructor.
+  /// \param[in] _loggerName Logger name.
+  public: explicit Logger(const std::string &_loggerName);
 
-    /// \brief Get the log destination filename.
-    /// \return Log file name.
-    public: std::string LogDestination() const;
+  /// \brief Set the log destination filename.
+  /// \param[in] _filename Log file name.
+  public: void SetLogDestination(const std::string &_filename);
 
-    /// \brief Access the underlying spdlog logger.
-    /// \return The spdlog logger.
-    public: [[nodiscard]] spdlog::logger &RawLogger() const;
+  /// \brief Get the log destination filename.
+  /// \return Log file name.
+  public: std::string LogDestination() const;
 
-    /// \brief Access the underlying spdlog logger, with ownership.
-    /// \return The spdlog logger.
-    public: [[nodiscard]] std::shared_ptr<spdlog::logger> RawLoggerPtr() const;
+  /// \brief Access the underlying spdlog logger.
+  /// \return The spdlog logger.
+  public: [[nodiscard]] spdlog::logger &RawLogger() const;
 
-    /// \brief Implementation Pointer.
-    GZ_UTILS_UNIQUE_IMPL_PTR(dataPtr)
-  };
-}
+  /// \brief Access the underlying spdlog logger, with ownership.
+  /// \return The spdlog logger.
+  public: [[nodiscard]] std::shared_ptr<spdlog::logger> RawLoggerPtr() const;
+
+  /// \brief Implementation Pointer.
+  GZ_UTILS_UNIQUE_IMPL_PTR(dataPtr)
+};
+}  // namespace GZ_UTILS_VERSION_NAMESPACE
+}  // namespace log
+}  // namespace utils
+}  // namespace gz
 
 #endif  // GZ_UTILS_LOG_LOGGER_HH_
