@@ -36,7 +36,7 @@ namespace utils
 {
 namespace log
 {
-inline namespace GZ_UTILS_LOG_VERSION_NAMESPACE {
+inline namespace GZ_UTILS_VERSION_NAMESPACE {
 
 /// \brief Logging sink for spdlog that logs in Gazebo-conventions.
 ///
