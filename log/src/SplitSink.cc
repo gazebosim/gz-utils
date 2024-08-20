@@ -33,10 +33,10 @@ class SplitConsoleSink::Implementation
   }
 
   /// \brief Standard output.
-  public: spdlog::sinks::stdout_color_sink_mt stdout;
+  public: spdlog::sinks::stdout_color_sink_mt stdout_;
 
   /// \brief Standard error.
-  public: spdlog::sinks::stderr_color_sink_mt stderr;
+  public: spdlog::sinks::stderr_color_sink_mt stderr_;
 };
 
 /////////////////////////////////////////////////
@@ -48,43 +48,43 @@ SplitConsoleSink::SplitConsoleSink()
 /////////////////////////////////////////////////
 void SplitConsoleSink::log(const spdlog::details::log_msg &_msg)
 {
-   if (_msg.level == spdlog::level::warn       ||
-        _msg.level == spdlog::level::err        ||
-        _msg.level == spdlog::level::critical)
+   if (_msg.level == spdlog::level::warn      ||
+       _msg.level == spdlog::level::err       ||
+       _msg.level == spdlog::level::critical)
     {
-      this->dataPtr->stderr.log(_msg);
+      this->dataPtr->stderr_.log(_msg);
     }
     else
-      this->dataPtr->stdout.log(_msg);
+      this->dataPtr->stdout_.log(_msg);
 }
 
 /////////////////////////////////////////////////
 void SplitConsoleSink::flush()
 {
-  this->dataPtr->stdout.flush();
-  this->dataPtr->stderr.flush();
+  this->dataPtr->stdout_.flush();
+  this->dataPtr->stderr_.flush();
 }
 
 /////////////////////////////////////////////////
 void SplitConsoleSink::set_pattern(const std::string &_pattern)
 {
-  this->dataPtr->stdout.set_pattern(_pattern);
-  this->dataPtr->stderr.set_pattern(_pattern);
+  this->dataPtr->stdout_.set_pattern(_pattern);
+  this->dataPtr->stderr_.set_pattern(_pattern);
 }
 
 /////////////////////////////////////////////////
 void SplitConsoleSink::set_formatter(
   std::unique_ptr<spdlog::formatter> _sinkFormatter)
 {
-  this->dataPtr->stdout.set_formatter(_sinkFormatter->clone());
-  this->dataPtr->stderr.set_formatter(std::move(_sinkFormatter));
+  this->dataPtr->stdout_.set_formatter(_sinkFormatter->clone());
+  this->dataPtr->stderr_.set_formatter(std::move(_sinkFormatter));
 }
 
 /////////////////////////////////////////////////
 void SplitConsoleSink::set_color_mode(spdlog::color_mode _mode)
 {
-  this->dataPtr->stdout.set_color_mode(_mode);
-  this->dataPtr->stderr.set_color_mode(_mode);
+  this->dataPtr->stdout_.set_color_mode(_mode);
+  this->dataPtr->stderr_.set_color_mode(_mode);
 }
 
 }  // namespace gz::utils::log
