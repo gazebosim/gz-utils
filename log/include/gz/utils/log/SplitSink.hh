@@ -58,7 +58,7 @@ class GZ_UTILS_LOG_VISIBLE SplitConsoleSink : public spdlog::sinks::sink
   public: void flush() override;
 
   /// \brief Set the logging pattern.
-  /// \param[in] _pattern The logging pattern. 
+  /// \param[in] _pattern The logging pattern.
   public: void set_pattern(const std::string &_pattern) override;
 
   /// \brief Set the new formatter.
