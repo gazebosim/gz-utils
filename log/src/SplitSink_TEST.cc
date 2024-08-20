@@ -22,7 +22,7 @@
 /////////////////////////////////////////////////
 TEST(SplitConsoleSink, foo)
 {
-  auto splitSink = std::make_shared<gz::utils::log::SplitConsoleSinkMt>();
+  auto splitSink = std::make_shared<gz::utils::log::SplitConsoleSink>();
 
   spdlog::logger logger("split_sink", {splitSink});
   logger.set_level(spdlog::level::trace);
@@ -33,37 +33,4 @@ TEST(SplitConsoleSink, foo)
   logger.warn("warn");
   logger.error("error");
   logger.critical("critical");
-}
-
-/////////////////////////////////////////////////
-TEST(SplitRingBufferSink, foo)
-{
-  auto splitSink =
-    std::make_shared<gz::utils::log::SplitRingBufferSinkMt>(100);
-  auto splitSinkConsole =
-    std::make_shared<gz::utils::log::SplitConsoleSinkMt>();
-
-  spdlog::logger logger("split_sink", {splitSink, splitSinkConsole});
-  logger.set_level(spdlog::level::trace);
-
-  logger.trace("trace");
-  logger.debug("debug");
-  logger.info("info");
-  logger.warn("warn");
-  logger.error("error");
-  logger.critical("critical");
-
-  {
-    auto logs = splitSink->last_raw_stdout();
-    EXPECT_EQ(logs[0].payload, "trace");
-    EXPECT_EQ(logs[1].payload, "debug");
-    EXPECT_EQ(logs[2].payload, "info");
-  }
-
-  {
-    auto logs = splitSink->last_raw_stderr();
-    EXPECT_EQ(logs[0].payload, "warn");
-    EXPECT_EQ(logs[1].payload, "error");
-    EXPECT_EQ(logs[2].payload, "critical");
-  }
 }

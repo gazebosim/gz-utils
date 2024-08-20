@@ -31,14 +31,14 @@ class Logger::Implementation
   /// \brief Constructor.
   /// \param[in] _loggerName Logger name.
   public: explicit Implementation(const std::string &_loggerName)
-    : consoleSink(std::make_shared<SplitConsoleSinkMt>()),
+    : consoleSink(std::make_shared<SplitConsoleSink>()),
       sinks(std::make_shared<spdlog::sinks::dist_sink_mt>()),
       logger(std::make_shared<spdlog::logger>(_loggerName, sinks))
   {
   }
 
   /// \brief The console sink with stdout and stderr.
-  std::shared_ptr<SplitConsoleSinkMt> consoleSink;
+  std::shared_ptr<SplitConsoleSink> consoleSink;
 
   /// \brief The file sink for logging into a file.
   std::shared_ptr<spdlog::sinks::basic_file_sink_mt> fileSink {nullptr};
