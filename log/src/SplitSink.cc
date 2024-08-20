@@ -87,5 +87,4 @@ void SplitConsoleSink::set_color_mode(spdlog::color_mode _mode)
   this->dataPtr->stderr.set_color_mode(_mode);
 }
 
-
 }  // namespace gz::utils::log
