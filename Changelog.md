@@ -2,6 +2,41 @@
 
 ## Gazebo Utils 3.0.0 (20XX-XX-XX)
 
+1. Move spdlog::logger to gz-utils
+    * [Pull request #134](https://github.com/gazebosim/gz-utils/pull/134)
+
+1. Require cmake version 3.22.1
+    * [Pull request #132](https://github.com/gazebosim/gz-utils/pull/132)
+
+1. Add package.xml
+    * [Pull request #125](https://github.com/gazebosim/gz-utils/pull/125)
+    * [Pull request #131](https://github.com/gazebosim/gz-utils/pull/131)
+
+1. bazel: build and test subprocess functionality
+    * [Pull request #123](https://github.com/gazebosim/gz-utils/pull/123)
+    * [Pull request #124](https://github.com/gazebosim/gz-utils/pull/124)
+
+1. Update CI badges in README
+    * [Pull request #120](https://github.com/gazebosim/gz-utils/pull/120)
+
+1. Use HIDE_SYMBOLS_BY_DEFAULT
+    * [Pull request #115](https://github.com/gazebosim/gz-utils/pull/115)
+    * [Pull request #121](https://github.com/gazebosim/gz-utils/pull/121)
+
+1. Remove ignition
+    * [Pull request #100](https://github.com/gazebosim/gz-utils/pull/100)
+
+1. Bumps in ionic: use gz-cmake4
+    * [Pull request #111](https://github.com/gazebosim/gz-utils/pull/111)
+
+1. Infrastructure
+    * [Pull request #112](https://github.com/gazebosim/gz-utils/pull/112)
+    * [Pull request #119](https://github.com/gazebosim/gz-utils/pull/119)
+    * [Pull request #129](https://github.com/gazebosim/gz-utils/pull/129)
+
+1. ⬆️  Bump main to 3.0.0~pre1
+    * [Pull request #76](https://github.com/gazebosim/gz-utils/pull/76)
+
 ## Gazebo Utils 2.x
 
 ## Gazebo Utils 2.2.0 (2023-11-08)
