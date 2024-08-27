@@ -61,6 +61,11 @@ Logger::Logger(const std::string &_loggerName)
   this->dataPtr->logger->set_level(spdlog::level::err);
   this->dataPtr->logger->flush_on(spdlog::level::err);
 
+  // Disable eol.
+  auto f = std::make_unique<spdlog::pattern_formatter>(
+    "%+", spdlog::pattern_time_type::local, std::string(""));
+  this->dataPtr->logger->set_formatter(std::move(f));
+
   spdlog::flush_every(std::chrono::seconds(5));
   spdlog::register_logger(this->dataPtr->logger);
 }
