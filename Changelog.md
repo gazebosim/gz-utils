@@ -2,6 +2,18 @@
 
 ## Gazebo Utils 3.0.0 (20XX-XX-XX)
 
+1. **Baseline:** this includes all changes from 2.2.0 and earlier.
+
+1. Logger updates
+    * [Pull request #139](https://github.com/gazebosim/gz-utils/pull/139)
+
+1. Update badges to point to gz-utils3 branch
+    * [Pull request #137](https://github.com/gazebosim/gz-utils/pull/137)
+    * [Pull request #138](https://github.com/gazebosim/gz-utils/pull/138)
+
+1. Update changelog and add prepare for prereleases
+    * [Pull request #136](https://github.com/gazebosim/gz-utils/pull/136)
+
 1. Move spdlog::logger to gz-utils
     * [Pull request #134](https://github.com/gazebosim/gz-utils/pull/134)
 
