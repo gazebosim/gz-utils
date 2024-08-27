@@ -65,9 +65,6 @@ Logger::Logger(const std::string &_loggerName)
   auto f = std::make_unique<spdlog::pattern_formatter>(
     "%+", spdlog::pattern_time_type::local, std::string(""));
   this->dataPtr->logger->set_formatter(std::move(f));
-
-  spdlog::flush_every(std::chrono::seconds(5));
-  spdlog::register_logger(this->dataPtr->logger);
 }
 
 /////////////////////////////////////////////////
