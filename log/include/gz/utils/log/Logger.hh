@@ -57,6 +57,10 @@ class GZ_UTILS_LOG_VISIBLE Logger
   /// \return The spdlog logger.
   public: [[nodiscard]] std::shared_ptr<spdlog::logger> RawLoggerPtr() const;
 
+  /// \brief Set the severity level of the Console sink
+  /// \param [in] _level Severity level
+  public: void SetConsoleSinkLevel(spdlog::level::level_enum _level);
+
   /// \brief Implementation Pointer.
   GZ_UTILS_UNIQUE_IMPL_PTR(dataPtr)
 };

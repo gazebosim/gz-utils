@@ -25,6 +25,11 @@
 
 namespace gz::utils::log
 {
+namespace {
+  /// \brief Default log format
+  /// Example output
+  constexpr std::string_view kDefaultLogFormat{"%^(%Y-%m-%d %T.%e) [%l] %v%$"};
+}
 /// \brief Private data for the Logger class.
 class Logger::Implementation
 {
@@ -33,6 +38,9 @@ class Logger::Implementation
   public: explicit Implementation(const std::string &_loggerName)
     : consoleSink(std::make_shared<SplitConsoleSink>()),
       sinks(std::make_shared<spdlog::sinks::dist_sink_mt>()),
+      formatter(std::make_unique<spdlog::pattern_formatter>(
+            kDefaultLogFormat.data(),
+            spdlog::pattern_time_type::local, std::string(""))),
       logger(std::make_shared<spdlog::logger>(_loggerName, sinks))
   {
   }
@@ -46,6 +54,9 @@ class Logger::Implementation
   /// \brief A sink distribution storing multiple sinks.
   std::shared_ptr<spdlog::sinks::dist_sink_mt> sinks {nullptr};
 
+  /// \brief Common formatter for both all sinks
+  std::unique_ptr<spdlog::pattern_formatter> formatter;
+
   /// \brief The underlying spdlog logger.
   std::shared_ptr<spdlog::logger> logger {nullptr};
 };
@@ -58,13 +69,10 @@ Logger::Logger(const std::string &_loggerName)
   this->dataPtr->sinks->add_sink(this->dataPtr->consoleSink);
 
   // Configure the logger.
-  this->dataPtr->logger->set_level(spdlog::level::err);
+  this->dataPtr->consoleSink->set_level(spdlog::level::err);
   this->dataPtr->logger->flush_on(spdlog::level::err);
 
-  // Disable eol.
-  auto f = std::make_unique<spdlog::pattern_formatter>(
-    "%+", spdlog::pattern_time_type::local, std::string(""));
-  this->dataPtr->logger->set_formatter(std::move(f));
+  this->dataPtr->logger->set_formatter(this->dataPtr->formatter->clone());
 }
 
 /////////////////////////////////////////////////
@@ -77,6 +85,8 @@ void Logger::SetLogDestination(const std::string &_filename)
   {
     this->dataPtr->fileSink =
       std::make_shared<spdlog::sinks::basic_file_sink_mt>(_filename, true);
+    this->dataPtr->fileSink->set_formatter(this->dataPtr->formatter->clone());
+    this->dataPtr->fileSink->set_level(spdlog::level::trace);
     this->dataPtr->sinks->add_sink(this->dataPtr->fileSink);
   }
 }
@@ -101,6 +111,15 @@ spdlog::logger &Logger::RawLogger() const
 std::shared_ptr<spdlog::logger> Logger::RawLoggerPtr() const
 {
   return this->dataPtr->logger;
+}
+
+/////////////////////////////////////////////////
+void Logger::SetConsoleSinkLevel(spdlog::level::level_enum _level)
+{
+  if (this->dataPtr->consoleSink)
+  {
+    this->dataPtr->consoleSink->set_level(_level);
+  }
 }
 
 }  // namespace gz::utils::log
