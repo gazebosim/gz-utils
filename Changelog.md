@@ -4,6 +4,12 @@
 
 1. **Baseline:** this includes all changes from 2.2.0 and earlier.
 
+1. Update logger level and flush_on values
+    * [Pull request #142](https://github.com/gazebosim/gz-utils/pull/142)
+
+1. Use common formatter for console and file sinks
+    * [Pull request #141](https://github.com/gazebosim/gz-utils/pull/141)
+
 1. Logger updates
     * [Pull request #139](https://github.com/gazebosim/gz-utils/pull/139)
 
