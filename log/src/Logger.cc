@@ -69,8 +69,9 @@ Logger::Logger(const std::string &_loggerName)
   this->dataPtr->sinks->add_sink(this->dataPtr->consoleSink);
 
   // Configure the logger.
+  this->dataPtr->logger->set_level(spdlog::level::trace);
   this->dataPtr->consoleSink->set_level(spdlog::level::err);
-  this->dataPtr->logger->flush_on(spdlog::level::err);
+  this->dataPtr->logger->flush_on(spdlog::level::debug);
 
   this->dataPtr->logger->set_formatter(this->dataPtr->formatter->clone());
 }
