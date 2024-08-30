@@ -28,7 +28,8 @@ namespace gz::utils::log
 namespace {
   /// \brief Default log format
   /// Example output
-  constexpr std::string_view kDefaultLogFormat{"%^(%Y-%m-%d %T.%e) [%l] %v%$"};
+constexpr std::string_view kDefaultLogFormat{
+    "%^(%Y-%m-%d %T.%e) [%l] [%s:%#] %v%$"};
 }
 /// \brief Private data for the Logger class.
 class Logger::Implementation
