@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  */
+#include <exception>
+#include <iostream>
 #include <memory>
 #include <string>
 
@@ -85,11 +87,18 @@ void Logger::SetLogDestination(const std::string &_filename)
 
   if (!_filename.empty())
   {
-    this->dataPtr->fileSink =
-      std::make_shared<spdlog::sinks::basic_file_sink_mt>(_filename, true);
-    this->dataPtr->fileSink->set_formatter(this->dataPtr->formatter->clone());
-    this->dataPtr->fileSink->set_level(spdlog::level::trace);
-    this->dataPtr->sinks->add_sink(this->dataPtr->fileSink);
+    try
+    {
+      this->dataPtr->fileSink =
+        std::make_shared<spdlog::sinks::basic_file_sink_mt>(_filename, true);
+      this->dataPtr->fileSink->set_formatter(this->dataPtr->formatter->clone());
+      this->dataPtr->fileSink->set_level(spdlog::level::trace);
+      this->dataPtr->sinks->add_sink(this->dataPtr->fileSink);
+    }
+    catch (const std::exception &_e)
+    {
+      std::cerr << "Error creating log file: " << _e.what() << std::endl;
+    }
   }
 }
 
