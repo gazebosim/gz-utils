@@ -13,7 +13,7 @@
 
   <build_depend>gz-cmake4</build_depend>
 
-  <depend>spdlog</depend>
+  <depend>spdlog_vendor</depend>
 
   <export>
     <build_type>cmake</build_type>
