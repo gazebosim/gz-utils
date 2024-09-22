@@ -22,7 +22,7 @@
 int main(int argc, char** argv)
 {
   gz::utils::log::Logger logger("my_logger");
-  logger.SetConsoleSinkLevel(spdlog::level::trace);
+  logger.SetConsoleSinkLevel(spdlog::level::info);
 
   std::filesystem::path logDir = std::filesystem::temp_directory_path();
   std::filesystem::path logFile = "my_log.txt";
