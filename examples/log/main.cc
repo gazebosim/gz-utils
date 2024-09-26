@@ -18,6 +18,8 @@
 #include <filesystem>
 #include <gz/utils/log/Logger.hh>
 
+#define sourceLocation {__FILE__, __LINE__, ""}
+
 //////////////////////////////////////////////////
 int main(int argc, char** argv)
 {
@@ -27,11 +29,12 @@ int main(int argc, char** argv)
   std::filesystem::path logDir = std::filesystem::temp_directory_path();
   std::filesystem::path logFile = "my_log.txt";
   std::filesystem::path logPath = logDir / logFile;
-
   logger.SetLogDestination(logPath);
-  logger.RawLogger().trace("trace\n");
-  logger.RawLogger().info("info\n");
-  logger.RawLogger().warn("warn\n");
-  logger.RawLogger().error("error\n");
-  logger.RawLogger().critical("critical\n");
+
+  logger.RawLogger().log(sourceLocation, spdlog::level::trace, "trace\n");
+  logger.RawLogger().log(sourceLocation, spdlog::level::debug, "debug\n");
+  logger.RawLogger().log(sourceLocation, spdlog::level::info, "info\n");
+  logger.RawLogger().log(sourceLocation, spdlog::level::warn, "warn\n");
+  logger.RawLogger().log(sourceLocation, spdlog::level::err, "error\n");
+  logger.RawLogger().log(sourceLocation, spdlog::level::critical, "critical\n");
 }
