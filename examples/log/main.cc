@@ -27,6 +27,7 @@ int main(int argc, char** argv)
   std::filesystem::path logDir = std::filesystem::temp_directory_path();
   std::filesystem::path logFile = "my_log.txt";
   std::filesystem::path logPath = logDir / logFile;
+
   logger.SetLogDestination(logPath);
 
   SPDLOG_LOGGER_TRACE(logger.RawLoggerPtr(), "trace\n");
