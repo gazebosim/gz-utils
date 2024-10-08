@@ -143,8 +143,8 @@ TEST(Logger, fileLogging)
   std::filesystem::path logPath = logDir / logFile;
 
   EXPECT_TRUE(logger.LogDestination().empty());
-  logger.SetLogDestination(logPath);
-  EXPECT_EQ(logPath, logger.LogDestination());
+  logger.SetLogDestination(logPath.string());
+  EXPECT_EQ(logPath.string(), logger.LogDestination());
 
   logger.RawLogger().trace("trace\n");
   logger.RawLogger().debug("debug\n");
@@ -154,7 +154,7 @@ TEST(Logger, fileLogging)
   logger.RawLogger().critical("critical\n");
 
   // Expect to find the string in the log file
-  std::string logContent = getLogContent(logPath);
+  std::string logContent = getLogContent(logPath.string());
   for (auto word : {"trace", "debug", "info", "warn", "error", "critical"})
     EXPECT_TRUE(logContent.find(word) != std::string::npos);
 }
