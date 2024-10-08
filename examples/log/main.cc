@@ -29,9 +29,11 @@ int main(int argc, char** argv)
   std::filesystem::path logPath = logDir / logFile;
 
   logger.SetLogDestination(logPath);
-  logger.RawLogger().trace("trace\n");
-  logger.RawLogger().info("info\n");
-  logger.RawLogger().warn("warn\n");
-  logger.RawLogger().error("error\n");
-  logger.RawLogger().critical("critical\n");
+
+  SPDLOG_LOGGER_TRACE(logger.RawLoggerPtr(), "trace\n");
+  SPDLOG_LOGGER_DEBUG(logger.RawLoggerPtr(), "debug\n");
+  SPDLOG_LOGGER_INFO(logger.RawLoggerPtr(), "info\n");
+  SPDLOG_LOGGER_WARN(logger.RawLoggerPtr(), "warn\n");
+  SPDLOG_LOGGER_ERROR(logger.RawLoggerPtr(), "error\n");
+  SPDLOG_LOGGER_CRITICAL(logger.RawLoggerPtr(), "critical\n");
 }
