@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  */
+#include <exception>
+#include <iostream>
 #include <memory>
 #include <string>
 
@@ -25,6 +27,12 @@
 
 namespace gz::utils::log
 {
+namespace {
+  /// \brief Default log format
+  /// Example output
+constexpr std::string_view kDefaultLogFormat{
+    "%^(%Y-%m-%d %T.%e) [%l] [%s:%#] %v%$"};
+}
 /// \brief Private data for the Logger class.
 class Logger::Implementation
 {
@@ -33,6 +41,9 @@ class Logger::Implementation
   public: explicit Implementation(const std::string &_loggerName)
     : consoleSink(std::make_shared<SplitConsoleSink>()),
       sinks(std::make_shared<spdlog::sinks::dist_sink_mt>()),
+      formatter(std::make_unique<spdlog::pattern_formatter>(
+            kDefaultLogFormat.data(),
+            spdlog::pattern_time_type::local, std::string(""))),
       logger(std::make_shared<spdlog::logger>(_loggerName, sinks))
   {
   }
@@ -46,6 +57,9 @@ class Logger::Implementation
   /// \brief A sink distribution storing multiple sinks.
   std::shared_ptr<spdlog::sinks::dist_sink_mt> sinks {nullptr};
 
+  /// \brief Common formatter for both all sinks
+  std::unique_ptr<spdlog::pattern_formatter> formatter;
+
   /// \brief The underlying spdlog logger.
   std::shared_ptr<spdlog::logger> logger {nullptr};
 };
@@ -58,11 +72,11 @@ Logger::Logger(const std::string &_loggerName)
   this->dataPtr->sinks->add_sink(this->dataPtr->consoleSink);
 
   // Configure the logger.
-  this->dataPtr->logger->set_level(spdlog::level::err);
-  this->dataPtr->logger->flush_on(spdlog::level::err);
+  this->dataPtr->logger->set_level(spdlog::level::trace);
+  this->dataPtr->consoleSink->set_level(spdlog::level::err);
+  this->dataPtr->logger->flush_on(spdlog::level::debug);
 
-  spdlog::flush_every(std::chrono::seconds(5));
-  spdlog::register_logger(this->dataPtr->logger);
+  this->dataPtr->logger->set_formatter(this->dataPtr->formatter->clone());
 }
 
 /////////////////////////////////////////////////
@@ -73,9 +87,18 @@ void Logger::SetLogDestination(const std::string &_filename)
 
   if (!_filename.empty())
   {
-    this->dataPtr->fileSink =
-      std::make_shared<spdlog::sinks::basic_file_sink_mt>(_filename, true);
-    this->dataPtr->sinks->add_sink(this->dataPtr->fileSink);
+    try
+    {
+      this->dataPtr->fileSink =
+        std::make_shared<spdlog::sinks::basic_file_sink_mt>(_filename, true);
+      this->dataPtr->fileSink->set_formatter(this->dataPtr->formatter->clone());
+      this->dataPtr->fileSink->set_level(spdlog::level::trace);
+      this->dataPtr->sinks->add_sink(this->dataPtr->fileSink);
+    }
+    catch (const std::exception &_e)
+    {
+      std::cerr << "Error creating log file: " << _e.what() << std::endl;
+    }
   }
 }
 
@@ -99,6 +122,15 @@ spdlog::logger &Logger::RawLogger() const
 std::shared_ptr<spdlog::logger> Logger::RawLoggerPtr() const
 {
   return this->dataPtr->logger;
+}
+
+/////////////////////////////////////////////////
+void Logger::SetConsoleSinkLevel(spdlog::level::level_enum _level)
+{
+  if (this->dataPtr->consoleSink)
+  {
+    this->dataPtr->consoleSink->set_level(_level);
+  }
 }
 
 }  // namespace gz::utils::log

@@ -22,16 +22,18 @@
 int main(int argc, char** argv)
 {
   gz::utils::log::Logger logger("my_logger");
-  logger.RawLogger().set_level(spdlog::level::trace);
+  logger.SetConsoleSinkLevel(spdlog::level::info);
 
   std::filesystem::path logDir = std::filesystem::temp_directory_path();
   std::filesystem::path logFile = "my_log.txt";
   std::filesystem::path logPath = logDir / logFile;
 
   logger.SetLogDestination(logPath);
-  logger.RawLogger().trace("trace");
-  logger.RawLogger().info("info");
-  logger.RawLogger().warn("warn");
-  logger.RawLogger().error("error");
-  logger.RawLogger().critical("critical");
+
+  SPDLOG_LOGGER_TRACE(logger.RawLoggerPtr(), "trace\n");
+  SPDLOG_LOGGER_DEBUG(logger.RawLoggerPtr(), "debug\n");
+  SPDLOG_LOGGER_INFO(logger.RawLoggerPtr(), "info\n");
+  SPDLOG_LOGGER_WARN(logger.RawLoggerPtr(), "warn\n");
+  SPDLOG_LOGGER_ERROR(logger.RawLoggerPtr(), "error\n");
+  SPDLOG_LOGGER_CRITICAL(logger.RawLoggerPtr(), "critical\n");
 }

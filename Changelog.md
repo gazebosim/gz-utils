@@ -1,6 +1,33 @@
 ## Gazebo Utils 3.x
 
-## Gazebo Utils 3.0.0 (20XX-XX-XX)
+## Gazebo Utils 3.0.0 (2024-09-25)
+
+1. **Baseline:** this includes all changes from 2.2.0 and earlier.
+
+1. Add EoL and use SetConsoleSinkLevel in example
+    * [Pull request #148](https://github.com/gazebosim/gz-utils/pull/148)
+
+1. Catch spdlog exception thrown when creating file
+    * [Pull request #145](https://github.com/gazebosim/gz-utils/pull/145)
+
+1. Include file name in log format
+    * [Pull request #144](https://github.com/gazebosim/gz-utils/pull/144)
+
+1. Update logger level and flush_on values
+    * [Pull request #142](https://github.com/gazebosim/gz-utils/pull/142)
+
+1. Use common formatter for console and file sinks
+    * [Pull request #141](https://github.com/gazebosim/gz-utils/pull/141)
+
+1. Logger updates
+    * [Pull request #139](https://github.com/gazebosim/gz-utils/pull/139)
+
+1. Update badges to point to gz-utils3 branch
+    * [Pull request #137](https://github.com/gazebosim/gz-utils/pull/137)
+    * [Pull request #138](https://github.com/gazebosim/gz-utils/pull/138)
+
+1. Update changelog and add prepare for prereleases
+    * [Pull request #136](https://github.com/gazebosim/gz-utils/pull/136)
 
 1. Move spdlog::logger to gz-utils
     * [Pull request #134](https://github.com/gazebosim/gz-utils/pull/134)

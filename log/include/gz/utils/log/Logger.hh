@@ -17,6 +17,10 @@
 #ifndef GZ_UTILS_LOG_LOGGER_HH_
 #define GZ_UTILS_LOG_LOGGER_HH_
 
+#if !defined(SPDLOG_ACTIVE_LEVEL)
+  #define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_TRACE
+#endif
+
 #include <spdlog/spdlog.h>
 #include <memory>
 #include <string>
@@ -56,6 +60,10 @@ class GZ_UTILS_LOG_VISIBLE Logger
   /// \brief Access the underlying spdlog logger, with ownership.
   /// \return The spdlog logger.
   public: [[nodiscard]] std::shared_ptr<spdlog::logger> RawLoggerPtr() const;
+
+  /// \brief Set the severity level of the Console sink
+  /// \param [in] _level Severity level
+  public: void SetConsoleSinkLevel(spdlog::level::level_enum _level);
 
   /// \brief Implementation Pointer.
   GZ_UTILS_UNIQUE_IMPL_PTR(dataPtr)
