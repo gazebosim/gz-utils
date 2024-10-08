@@ -17,6 +17,10 @@
 #ifndef GZ_UTILS_LOG_LOGGER_HH_
 #define GZ_UTILS_LOG_LOGGER_HH_
 
+#if !defined(SPDLOG_ACTIVE_LEVEL)
+  #define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_TRACE
+#endif
+
 #include <spdlog/spdlog.h>
 #include <memory>
 #include <string>
