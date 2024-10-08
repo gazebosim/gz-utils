@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.22.1 FATAL_ERROR)
 project(gz-utils-cli-demo)
 
 # Find the Gazebo Libraries used directly by the example
-find_package(gz-utils3 REQUIRED COMPONENTS cli)
-set(GZ_UTILS_VER ${gz-utils3_VERSION_MAJOR})
+find_package(gz-utils4 REQUIRED COMPONENTS cli)
+set(GZ_UTILS_VER ${gz-utils4_VERSION_MAJOR})
 
 add_executable(${PROJECT_NAME} main.cc)
 target_link_libraries(
