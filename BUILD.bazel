@@ -4,7 +4,7 @@ load("@rules_license//rules:license.bzl", "license")
 
 package(
     default_applicable_licenses = [":license"],
-    default_visibility = ["__subpackages__"],
+    default_visibility = ["//visibility:public"],
     features = ["layering_check"],
 )
 
@@ -50,7 +50,6 @@ cc_library(
         "include/gz/utils/detail/ImplPtr.hh",
     ],
     includes = ["include"],
-    visibility = ["//visibility:public"],
     deps = [
         ":Export",
         ":SuppressWarning",
@@ -61,7 +60,6 @@ cc_library(
     name = "NeverDestroyed",
     hdrs = ["include/gz/utils/NeverDestroyed.hh"],
     includes = ["include"],
-    visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -71,7 +69,6 @@ cc_library(
         "include/gz/utils/detail/SuppressWarning.hh",
     ],
     includes = ["include"],
-    visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -81,12 +78,10 @@ cc_library(
         "include/gz/utils/detail/subprocess.h",
     ],
     includes = ["include"],
-    visibility = ["//visibility:public"],
 )
 
 cc_library(
     name = "gz-utils",
-    visibility = ["//visibility:public"],
     deps = [
         ":Environment",
         ":ImplPtr",
