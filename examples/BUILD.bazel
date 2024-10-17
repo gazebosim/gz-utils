@@ -1,0 +1,28 @@
+load("@rules_license//rules:license.bzl", "license")
+
+package(
+    default_applicable_licenses = ["//:license"],
+    default_visibility = ["//visibility:public"],
+)
+
+license(
+    name = "license",
+    package_name = "gz-utils-examples",
+)
+
+cc_binary(
+    name = "log",
+    srcs = ["log/main.cc"],
+    deps = [
+        "//log:Logger",
+    ],
+)
+
+cc_binary(
+    name = "using_cli",
+    srcs = ["using_cli/main.cc"],
+    deps = [
+        "//:Config",
+        "//cli",
+    ],
+)
