@@ -1,14 +1,8 @@
 load("@rules_gazebo//gazebo:headers.bzl", "gz_export_header")
-load("@rules_license//rules:license.bzl", "license")
 
 package(
     default_applicable_licenses = ["//:license"],
-    default_visibility = ["//visibility:public"],
-)
-
-license(
-    name = "license",
-    package_name = "gz-utils-log",
+    default_visibility = ["__subpackages__"],
 )
 
 gz_export_header(
@@ -27,6 +21,7 @@ cc_library(
         "include/gz/utils/log/SplitSink.hh",
     ],
     includes = ["include"],
+    visibility = ["//visibility:public"],
     deps = [
         ":Export",
         "//:Config",
@@ -44,6 +39,7 @@ cc_library(
         "include/gz/utils/log/Logger.hh",
     ],
     includes = ["include"],
+    visibility = ["//visibility:public"],
     deps = [":SplitSink"],
 )
 
@@ -59,6 +55,7 @@ cc_library(
 cc_test(
     name = "SplitSink_TEST",
     srcs = ["src/SplitSink_TEST.cc"],
+    visibility = ["//visibility:public"],
     deps = [
         ":log",
         "@googletest//:gtest_main",
