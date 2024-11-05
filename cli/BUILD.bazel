@@ -1,12 +1,6 @@
-load("@rules_license//rules:license.bzl", "license")
-
 package(
     default_applicable_licenses = ["//:license"],
-)
-
-license(
-    name = "license",
-    package_name = "gz-utils-cli",
+    default_visibility = ["__subpackages__"],
 )
 
 cc_library(
@@ -23,6 +17,7 @@ cc_library(
         "include/gz/utils/cli/GzFormatter.hpp",
     ],
     includes = ["include"],
+    visibility = ["//visibility:public"],
     deps = [
         "//:Export",
     ],

@@ -36,6 +36,7 @@ cc_library(
     srcs = ["src/Environment.cc"],
     hdrs = ["include/gz/utils/Environment.hh"],
     includes = ["include"],
+    visibility = ["//visibility:public"],
     deps = [
         ":Config",
         ":Export",
