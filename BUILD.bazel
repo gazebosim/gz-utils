@@ -113,7 +113,10 @@ cc_library(
         "test/integration/implptr/implptr_test_classes.hh",
     ],
     includes = ["test/integration/implptr"],
-    deps = [":ImplPtr"],
+    deps = [
+        ":Export",
+        ":ImplPtr",
+    ],
 )
 
 cc_test(
@@ -122,6 +125,7 @@ cc_test(
     srcs = ["test/integration/implptr/ImplPtr_TEST.cc"],
     deps = [
         ":implptr_test_classes",
+        "@googletest//:gtest",
         "@googletest//:gtest_main",
     ],
 )
@@ -131,6 +135,7 @@ cc_test(
     srcs = ["src/Environment_TEST.cc"],
     deps = [
         ":Environment",
+        "@googletest//:gtest",
         "@googletest//:gtest_main",
     ],
 )
@@ -140,7 +145,7 @@ cc_binary(
     srcs = ["test/integration/subprocess/subprocess_main.cc"],
     deps = [
         ":Environment",
-        "//cli",
+        "//cli:cli11",
     ],
 )
 
@@ -149,8 +154,10 @@ cc_test(
     srcs = ["test/integration/subprocess_TEST.cc"],
     local_defines = ['SUBPROCESS_EXECUTABLE_PATH=\\"subprocess_main\\"'],
     deps = [
-        ":gz-utils",
+        ":Environment",
+        ":Subprocess",
         ":subprocess_main",
+        "@googletest//:gtest",
         "@googletest//:gtest_main",
     ],
 )
