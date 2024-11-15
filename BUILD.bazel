@@ -5,7 +5,10 @@ load("@rules_license//rules:license.bzl", "license")
 package(
     default_applicable_licenses = [":license"],
     default_visibility = ["__subpackages__"],
-    features = ["layering_check"],
+    features = [
+        "layering_check",
+        "parse_headers",
+    ],
 )
 
 license(
@@ -83,6 +86,9 @@ cc_library(
     ],
     includes = ["include"],
     visibility = ["//visibility:public"],
+    deps = [
+        ":Environment",
+    ],
 )
 
 cc_library(

@@ -1,6 +1,10 @@
 package(
     default_applicable_licenses = ["//:license"],
     default_visibility = ["__subpackages__"],
+    features = [
+        "layering_check",
+        "parse_headers",
+    ],
 )
 
 cc_library(
@@ -8,6 +12,10 @@ cc_library(
     hdrs = glob([
         "include/vendored-cli/gz/utils/cli/*.hpp",
     ]),
+    features = [
+        # Disable header parsing for CLI11.
+        "-parse_headers",
+    ],
     includes = ["include/vendored-cli"],
 )
 
@@ -19,6 +27,7 @@ cc_library(
     includes = ["include"],
     visibility = ["//visibility:public"],
     deps = [
+        ":cli11",
         "//:Export",
     ],
 )
