@@ -17,6 +17,7 @@ cc_library(
         "-parse_headers",
     ],
     includes = ["include/vendored-cli"],
+    visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -45,7 +46,9 @@ cc_test(
     name = "cli_TEST",
     srcs = ["src/cli_TEST.cc"],
     deps = [
-        ":cli",
+        ":GzFormatter",
+        ":cli11",
+        "@googletest//:gtest",
         "@googletest//:gtest_main",
     ],
 )
