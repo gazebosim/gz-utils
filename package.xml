@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>gz-utils3</name>
-  <version>3.0.0</version>
+  <version>3.1.0</version>
   <description>Gazebo Utils : Classes and functions for robot applications</description>
 
   <maintainer email="addisu@openrobotics.org">Addizu Z. Taddese</maintainer>
