@@ -2,8 +2,6 @@
 
 ## Gazebo Utils 3.1.0 (2024-11-15)
 
-1. **Baseline:** this includes all changes from 3.0.0 and earlier.
-
 1. Build Gazebo Utils with bzlmod
     * [Pull request #128](https://github.com/gazebosim/gz-utils/pull/128)
     * [Pull request #157](https://github.com/gazebosim/gz-utils/pull/157)
