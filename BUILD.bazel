@@ -59,6 +59,16 @@ cc_library(
     ],
 )
 
+cc_test(
+    name = "ExtraTestMacros_TEST",
+    srcs = ["src/ExtraTestMacros_TEST.cc"],
+    deps = [
+        ":ExtraTestMacros",
+        "@googletest//:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
 cc_library(
     name = "ImplPtr",
     hdrs = [
