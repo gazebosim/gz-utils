@@ -47,6 +47,19 @@ cc_library(
 )
 
 cc_library(
+    name = "ExtraTestMacros",
+    hdrs = [
+        "include/gz/utils/ExtraTestMacros.hh",
+        "include/gz/utils/detail/ExtraTestMacros.hh",
+    ],
+    includes = ["include"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":SuppressWarning",
+    ],
+)
+
+cc_library(
     name = "ImplPtr",
     hdrs = [
         "include/gz/utils/ImplPtr.hh",
