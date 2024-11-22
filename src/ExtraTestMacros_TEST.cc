@@ -21,50 +21,76 @@
 
 GTEST_TEST(ExtraTestMacros, GZ_UTILS_TEST_ENABLED_ONLY_ON_WIN32(OnlyWindowsOn))
 {
-  ASSERT_TRUE(true);
+#if defined __APPLE__
+  ADD_FAILURE() << "Windows only test on Apple platform";
+#elif defined __linux__
+  ADD_FAILURE() << "Windows only test on Linux platform";
+#endif
 }
 
 GTEST_TEST(ExtraTestMacros, GZ_UTILS_TEST_DISABLED_ON_WIN32(OnlyWindowsOff))
 {
-  ASSERT_TRUE(true);
+#if defined __WIN32
+  ADD_FAILURE() << "Ran on Windows platform";
+#endif
 }
 
 GTEST_TEST(ExtraTestMacros, GZ_UTILS_TEST_ENABLED_ONLY_ON_MAC(OnlyMacOn))
 {
-  ASSERT_TRUE(true);
+#if defined _WIN32
+  ADD_FAILURE() << "Apple only test on Windows platform";
+#elif defined __linux__
+  ADD_FAILURE() << "Apple only test on Linux platform";
+#endif
 }
 
 GTEST_TEST(ExtraTestMacros, GZ_UTILS_TEST_DISABLED_ON_MAC(OnlyMacOff))
 {
-  ASSERT_TRUE(true);
+#if defined __APPLE__
+  ADD_FAILURE() << "Ran on Apple platform";
+#endif
 }
 
 GTEST_TEST(ExtraTestMacros, GZ_UTILS_TEST_ENABLED_ONLY_ON_LINUX(OnlyLinuxOn))
 {
-  ASSERT_TRUE(true);
+#if defined _WIN32
+  ADD_FAILURE() << "Linux only test on Windows platform";
+#elif defined __APPLE__
+  ADD_FAILURE() << "Linux only test on Apple platform";
+#endif
 }
 
 GTEST_TEST(ExtraTestMacros, GZ_UTILS_TEST_DISABLED_ON_LINUX(OnlyLinuxOff))
 {
-  ASSERT_TRUE(true);
+#if defined __linux__
+  ADD_FAILURE() << "Ran on Linux platform";
+#endif
 }
 
 GTEST_TEST(ExtraTestMacros, GZ_UTILS_TEST_ENABLED_ONLY_ON_ARM32(OnlyArm32On))
 {
-  ASSERT_TRUE(true);
+#if defined __aarch64__ || defined _M_ARM64
+  ADD_FAILURE() << "Ran on Arm64 arch";
+#endif
 }
 
 GTEST_TEST(ExtraTestMacros, GZ_UTILS_TEST_DISABLED_ON_ARM32(OnlyArm32Off))
 {
-  ASSERT_TRUE(true);
+#if defined __arm__ || defined _M_ARM
+  ADD_FAILURE() << "Ran on Arm32 arch";
+#endif
 }
 
 GTEST_TEST(ExtraTestMacros, GZ_UTILS_TEST_ENABLED_ONLY_ON_ARM64(OnlyArm64On))
 {
-  ASSERT_TRUE(true);
+#if defined __arm__ || defined _M_ARM
+  ADD_FAILURE() << "Ran on Arm32 arch";
+#endif
 }
 
 GTEST_TEST(ExtraTestMacros, GZ_UTILS_TEST_DISABLED_ON_ARM64(OnlyArm64Off))
 {
-  ASSERT_TRUE(true);
+#if defined __aarch64__ || defined _M_ARM64
+  ADD_FAILURE() << "Ran on Arm64 arch";
+#endif
 }

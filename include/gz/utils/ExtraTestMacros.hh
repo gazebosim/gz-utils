@@ -29,8 +29,8 @@
 #define GZ_UTILS_TEST_ENABLED_ONLY_ON_WINDOWS(TestName) \
   DETAIL_GZ_UTILS_TEST_ENABLED_ONLY_ON_WIN32(TestName)
 
-/// Other platforms will get the test compiled but it won't be run
 /// \brief Restrict the execution of the test to just the Windows platform
+/// Other platforms will get the test compiled but it won't be run
 /// as part of the test suite execution.
 /// The macro uses the Disabled_ prefix provided by googletest. See
 /// https://chromium.googlesource.com/external/github.com/google/googletest/+/HEAD/googletest/docs/advanced.md
