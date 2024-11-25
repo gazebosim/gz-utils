@@ -25,8 +25,17 @@
 /// as part of the test suite execution.
 /// The macro uses the Disabled_ prefix provided by googletest. See
 /// https://chromium.googlesource.com/external/github.com/google/googletest/+/HEAD/googletest/docs/advanced.md
+/// TODO(gz-utils4): remove the windows alias
 #define GZ_UTILS_TEST_ENABLED_ONLY_ON_WINDOWS(TestName) \
-  DETAIL_GZ_UTILS_TEST_ENABLED_ONLY_ON_WINDOWS(TestName)
+  DETAIL_GZ_UTILS_TEST_ENABLED_ONLY_ON_WIN32(TestName)
+
+/// \brief Restrict the execution of the test to just the Windows platform
+/// Other platforms will get the test compiled but it won't be run
+/// as part of the test suite execution.
+/// The macro uses the Disabled_ prefix provided by googletest. See
+/// https://chromium.googlesource.com/external/github.com/google/googletest/+/HEAD/googletest/docs/advanced.md
+#define GZ_UTILS_TEST_ENABLED_ONLY_ON_WIN32(TestName) \
+  DETAIL_GZ_UTILS_TEST_ENABLED_ONLY_ON_WIN32(TestName)
 
 /// \brief Restrict the execution of the test for the Windows platform.
 /// The test will be compiled on Windows too but will never be run as
