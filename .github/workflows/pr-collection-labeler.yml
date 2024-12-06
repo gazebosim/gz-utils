@@ -1,6 +1,6 @@
 name: PR Collection Labeler
 
-on: pull_request_target
+on: pull_request
 
 jobs:
   pr_collection_labeler:
@@ -8,6 +8,6 @@ jobs:
     steps:
     - name: Add collection labels
       if: github.event.action == 'opened'
-      uses: gazebo-tooling/pr-collection-labeler@v1
+      uses: gazebo-tooling/pr-collection-labeler@azeey/fix_addlabels
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
