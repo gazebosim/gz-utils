@@ -131,7 +131,7 @@ TEST(cli, options)
   });
 
   app.formatter(std::make_shared<GzFormatter>(&app));
-  EXPECT_NO_THROW(app.help());
+  EXPECT_NO_THROW(std::cout << app.help());
   EXPECT_NO_THROW(app.parse(argv));
 }
 
