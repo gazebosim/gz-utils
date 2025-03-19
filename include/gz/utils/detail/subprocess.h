@@ -170,6 +170,16 @@ subprocess_weak int subprocess_join(struct subprocess_s *const process,
 /// the parent process.
 subprocess_weak int subprocess_destroy(struct subprocess_s *const process);
 
+/// @brief Signal a previously created process.
+/// @param process The process to signal.
+/// @param signal The signal number to send to the process.
+/// @return On success zero is returned.
+///
+/// Allows to send signals to the subprocess.  For unix-based systems,
+/// this includes any signal that appears in `kill -l`.  For Windows
+/// systems, this includes events available to GenerateConsoleCtrlEvent.
+subprocess_weak int subprocess_signal(struct subprocess_s *const process, int signum);
+
 /// @brief Terminate a previously created process.
 /// @param process The process to terminate.
 /// @return On success zero is returned.
@@ -486,6 +496,7 @@ int subprocess_create_ex(const char *const commandLine[], int options,
   const unsigned long startFUseStdHandles = 0x00000100;
   const unsigned long handleFlagInherit = 0x00000001;
   const unsigned long createNoWindow = 0x08000000;
+  const unsigned long createNewProcessGroup = 0x00000200;
   struct subprocess_subprocess_information_s processInfo;
   struct subprocess_security_attributes_s saAttr = {sizeof(saAttr),
                                                     SUBPROCESS_NULL, 1};
@@ -512,6 +523,7 @@ int subprocess_create_ex(const char *const commandLine[], int options,
   startInfo.cb = sizeof(startInfo);
   startInfo.dwFlags = startFUseStdHandles;
 
+  flags |= createNewProcessGroup;
   if (subprocess_option_no_window == (options & subprocess_option_no_window)) {
     flags |= createNoWindow;
   }
@@ -1020,6 +1032,18 @@ int subprocess_destroy(struct subprocess_s *const process) {
 #endif
 
   return 0;
+}
+
+int subprocess_signal(subprocess_s *const process, int signum)
+{
+  int result;
+#if defined(_WIN32)
+  auto processId = GetProcessId(process->hProcess);
+  result = GenerateConsoleCtrlEvent(signum, processId);
+#else
+  result = kill(process->child, signum);
+#endif
+  return result;
 }
 
 int subprocess_terminate(struct subprocess_s *const process) {
