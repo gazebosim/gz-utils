@@ -85,6 +85,18 @@
     DETAIL_GZ_UTILS_WARN_RESUME__DEPRECATED_DECLARATION
 #endif
 
+/// \brief Use this to suppress a GNUC specified warning for clang or gcc
+/// that does not have a specialized macro
+#ifndef GZ_UTILS_WARN_IGNORE__GNUC
+  #define GZ_UTILS_WARN_IGNORE__GNUC(warning_token) \
+    DETAIL_GZ_UTILS_WARN_IGNORE__GNUC(warning_token)
+#endif
+
+#ifndef GZ_UTILS_WARN_RESUME__GNUC
+  #define GZ_UTILS_WARN_RESUME__GNUC \
+    DETAIL_GZ_UTILS_WARN_RESUME__GNUC
+#endif
+
 // TODO(anyone): Add more warning types as they become relevant.
 // Do not add warning types to suppress unless they are genuinely necessary.
 
