@@ -139,6 +139,16 @@
 // Warning Tokens
 #if defined __GNUC__ || defined __clang__
 
+  #ifndef DETAIL_GZ_UTILS_WARN_IGNORE__GNUC
+    #define DETAIL_GZ_UTILS_WARN_IGNORE__GNUC(warning_token) \
+      DETAIL_GZ_UTILS_BEGIN_WARNING_SUPPRESSION(warning_token)
+  #endif
+
+  #ifndef DETAIL_GZ_UTILS_WARN_RESUME__GNUC
+    #define DETAIL_GZ_UTILS_WARN_RESUME__GNUC \
+      DETAIL_GZ_UTILS_WARN_RESUME
+  #endif
+    
   #ifndef DETAIL_GZ_UTILS_WARN_IGNORE__NON_VIRTUAL_DESTRUCTOR
     #define DETAIL_GZ_UTILS_WARN_IGNORE__NON_VIRTUAL_DESTRUCTOR \
       DETAIL_GZ_UTILS_BEGIN_WARNING_SUPPRESSION("-Wdelete-non-virtual-dtor")
@@ -237,5 +247,14 @@
 
 
 #endif
+
+#ifndef DETAIL_GZ_UTILS_WARN_IGNORE__GNUC
+  #define DETAIL_GZ_UTILS_WARN_IGNORE__GNUC(warning_token)
+#endif
+
+#ifndef DETAIL_GZ_UTILS_WARN_RESUME__GNUC
+  #define DETAIL_GZ_UTILS_WARN_RESUME__GNUC
+#endif
+
 
 #endif  // GZ_UTILS__DETAIL__SUPPRESSWARNING_HH_
