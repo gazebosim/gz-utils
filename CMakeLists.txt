@@ -25,7 +25,7 @@ gz_configure_project(VERSION_SUFFIX pre1)
 option(
   GZ_UTILS_VENDOR_CLI11
   "If true, use the vendored version of CLI11, otherwise use an external one"
-  true)
+  OFF)
 
 #============================================================================
 # Search for project-specific dependencies
