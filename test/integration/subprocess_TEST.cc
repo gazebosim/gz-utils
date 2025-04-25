@@ -52,8 +52,8 @@ TEST(Subprocess, CreateInvalidSpaces)
   auto cout = proc.Stdout();
   auto cerr = proc.Stdout();
 
-  EXPECT_TRUE(cout.empty());
-  EXPECT_TRUE(cerr.empty());
+  EXPECT_TRUE(cout.empty()) << cout;
+  EXPECT_TRUE(cerr.empty()) << cerr;
 }
 
 /////////////////////////////////////////////////
@@ -71,7 +71,7 @@ TEST(Subprocess, CreateValid)
   auto cerr = proc.Stdout();
 
   EXPECT_FALSE(cout.empty());
-  EXPECT_TRUE(cerr.empty());
+  EXPECT_TRUE(cerr.empty()) << cerr;
 }
 
 /////////////////////////////////////////////////
@@ -91,7 +91,8 @@ TEST(Subprocess, Cout)
   auto cout = proc.Stdout();
   auto cerr = proc.Stderr();
   EXPECT_FALSE(cout.empty());
-  EXPECT_TRUE(cerr.empty());
+  EXPECT_NE(std::string::npos, cout.find("Iteration: ")) << cout;
+  EXPECT_TRUE(cerr.empty()) << cerr;
 }
 
 /////////////////////////////////////////////////
@@ -110,8 +111,9 @@ TEST(Subprocess, Cerr)
   EXPECT_FALSE(proc.Alive());
   auto cout = proc.Stdout();
   auto cerr = proc.Stderr();
-  EXPECT_TRUE(cout.empty());
+  EXPECT_TRUE(cout.empty()) << cout;
   EXPECT_FALSE(cerr.empty());
+  EXPECT_NE(std::string::npos, cerr.find("Iteration: ")) << cerr;
 }
 
 /////////////////////////////////////////////////

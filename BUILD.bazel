@@ -5,7 +5,10 @@ load("@rules_license//rules:license.bzl", "license")
 package(
     default_applicable_licenses = [":license"],
     default_visibility = ["__subpackages__"],
-    features = ["layering_check"],
+    features = [
+        "layering_check",
+        "parse_headers",
+    ],
 )
 
 license(
@@ -36,9 +39,33 @@ cc_library(
     srcs = ["src/Environment.cc"],
     hdrs = ["include/gz/utils/Environment.hh"],
     includes = ["include"],
+    visibility = ["//visibility:public"],
     deps = [
         ":Config",
         ":Export",
+    ],
+)
+
+cc_library(
+    name = "ExtraTestMacros",
+    hdrs = [
+        "include/gz/utils/ExtraTestMacros.hh",
+        "include/gz/utils/detail/ExtraTestMacros.hh",
+    ],
+    includes = ["include"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":SuppressWarning",
+    ],
+)
+
+cc_test(
+    name = "ExtraTestMacros_TEST",
+    srcs = ["src/ExtraTestMacros_TEST.cc"],
+    deps = [
+        ":ExtraTestMacros",
+        "@googletest//:gtest",
+        "@googletest//:gtest_main",
     ],
 )
 
@@ -82,6 +109,9 @@ cc_library(
     ],
     includes = ["include"],
     visibility = ["//visibility:public"],
+    deps = [
+        ":Environment",
+    ],
 )
 
 cc_library(
@@ -106,7 +136,10 @@ cc_library(
         "test/integration/implptr/implptr_test_classes.hh",
     ],
     includes = ["test/integration/implptr"],
-    deps = [":ImplPtr"],
+    deps = [
+        ":Export",
+        ":ImplPtr",
+    ],
 )
 
 cc_test(
@@ -115,6 +148,7 @@ cc_test(
     srcs = ["test/integration/implptr/ImplPtr_TEST.cc"],
     deps = [
         ":implptr_test_classes",
+        "@googletest//:gtest",
         "@googletest//:gtest_main",
     ],
 )
@@ -124,6 +158,7 @@ cc_test(
     srcs = ["src/Environment_TEST.cc"],
     deps = [
         ":Environment",
+        "@googletest//:gtest",
         "@googletest//:gtest_main",
     ],
 )
@@ -133,7 +168,7 @@ cc_binary(
     srcs = ["test/integration/subprocess/subprocess_main.cc"],
     deps = [
         ":Environment",
-        "//cli",
+        "//cli:cli11",
     ],
 )
 
@@ -142,8 +177,10 @@ cc_test(
     srcs = ["test/integration/subprocess_TEST.cc"],
     local_defines = ['SUBPROCESS_EXECUTABLE_PATH=\\"subprocess_main\\"'],
     deps = [
-        ":gz-utils",
+        ":Environment",
+        ":Subprocess",
         ":subprocess_main",
+        "@googletest//:gtest",
         "@googletest//:gtest_main",
     ],
 )
