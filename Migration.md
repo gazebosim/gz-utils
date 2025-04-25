@@ -5,6 +5,18 @@ Deprecated code produces compile-time warnings. These warning serve as
 notification to users that their code should be upgraded. The next major
 release will remove the deprecated code.
 
+## Gazebo Utils 3.X to 4.X
+
+The default value of `GZ_UTILS_VENDOR_CLI11` is now set to `OFF`, so that
+an external version of `cli11` will be preferred by default. This is in
+preparation to remove the vendored version (see
+[issue #135](https://github.com/gazebosim/gz-utils/issues/135)).
+
+## Gazebo Utils 2.X to 3.X
+
+The `ignition` namespace, `ignition/` header files, `IGN_` prefixed macros,
+and `IgnitionFormatter` class have been removed.
+
 ## Gazebo Utils 1.X to 2.X
 
 * The `ignition` namespace is deprecated and will be removed in future versions.
