@@ -8,7 +8,7 @@ target_link_libraries(implptr_test_classes
 target_compile_definitions(
   implptr_test_classes
   PRIVATE
-  -Dgz_utils${PROJECT_VERSION_MAJOR}_EXPORTS
+  -Dgz_utils_EXPORTS
 )
 
 gz_build_tests(TYPE INTEGRATION SOURCES ImplPtr_TEST.cc)
