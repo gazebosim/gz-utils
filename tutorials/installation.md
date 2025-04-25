@@ -11,9 +11,9 @@ Windows via either a binary distribution or from source.
 
 - [Source Install](#source-install)
 
-  - [Prerequisites](#prerequisites)
+[Documentation](#documentation)
 
-  - [Building from Source](#building-from-source)
+[Testing](#testing)
 
 # Install
 
