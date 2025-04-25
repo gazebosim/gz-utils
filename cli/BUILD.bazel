@@ -1,12 +1,10 @@
-load("@rules_license//rules:license.bzl", "license")
-
 package(
     default_applicable_licenses = ["//:license"],
-)
-
-license(
-    name = "license",
-    package_name = "gz-utils-cli",
+    default_visibility = ["__subpackages__"],
+    features = [
+        "layering_check",
+        "parse_headers",
+    ],
 )
 
 cc_library(
@@ -14,7 +12,12 @@ cc_library(
     hdrs = glob([
         "include/vendored-cli/gz/utils/cli/*.hpp",
     ]),
+    features = [
+        # Disable header parsing for CLI11.
+        "-parse_headers",
+    ],
     includes = ["include/vendored-cli"],
+    visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -23,7 +26,9 @@ cc_library(
         "include/gz/utils/cli/GzFormatter.hpp",
     ],
     includes = ["include"],
+    visibility = ["//visibility:public"],
     deps = [
+        ":cli11",
         "//:Export",
     ],
 )
@@ -41,7 +46,9 @@ cc_test(
     name = "cli_TEST",
     srcs = ["src/cli_TEST.cc"],
     deps = [
-        ":cli",
+        ":GzFormatter",
+        ":cli11",
+        "@googletest//:gtest",
         "@googletest//:gtest_main",
     ],
 )
