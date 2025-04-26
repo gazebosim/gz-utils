@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>gz-utils4</name>
+  <name>gz-utils</name>
   <version>4.0.0</version>
   <description>Gazebo Utils : Classes and functions for robot applications</description>
 
@@ -11,7 +11,7 @@
 
   <buildtool_depend>cmake</buildtool_depend>
 
-  <build_depend>gz-cmake4</build_depend>
+  <build_depend>gz-cmake</build_depend>
 
   <depend>spdlog</depend>
 
