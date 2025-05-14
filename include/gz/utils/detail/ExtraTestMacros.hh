@@ -18,7 +18,7 @@
 #ifndef GZ_UTILS_DETAIL_EXTRATESTMACROS_HH
 #define GZ_UTILS_DETAIL_EXTRATESTMACROS_HH
 
-#include <gz/utils/SuppressWarning.hh>
+#include <gz/utils/ExtraTestMacros.hh>
 
 #define DETAIL_GZ_UTILS_ADD_DISABLED_PREFIX(x) DISABLED_##x
 
