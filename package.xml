@@ -13,6 +13,7 @@
 
   <build_depend>gz-cmake</build_depend>
 
+  <depend>cli11</depend>
   <depend>spdlog</depend>
 
   <export>
