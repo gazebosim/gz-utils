@@ -1,6 +1,25 @@
 ## Gazebo Utils 4.x
 
-## Gazebo Utils 4.0.0 (20XX-XX-XX)
+## Gazebo Utils 4.0.0 (2025-09-30)
+
+1. package.xml: depend on `cli11`
+    * [Pull request #177](https://github.com/gazebosim/gz-utils/pull/177)
+
+1. Fix include in `ExtraTestMacros.hh`
+    * [Pull request #176](https://github.com/gazebosim/gz-utils/pull/176)
+
+1. Bump gz-cmake and others in jetty
+    * [Pull request #171](https://github.com/gazebosim/gz-utils/pull/171)
+    * [Tracking issue](https://github.com/gazebo-tooling/release-tools/issues/1309)
+
+1. Use 24.04 for doxygen CI
+    * [Pull request #173](https://github.com/gazebosim/gz-utils/pull/173)
+
+1. Disable `CLI11` vendoring by default
+    * [Pull request #167](https://github.com/gazebosim/gz-utils/pull/167)
+
+1. Bump main to gz-utils 4.0.0~pre1
+    * [Pull request #154](https://github.com/gazebosim/gz-utils/pull/154)
 
 ## Gazebo Utils 3.x
 
