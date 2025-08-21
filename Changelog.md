@@ -1,6 +1,25 @@
 ## Gazebo Utils 4.x
 
-## Gazebo Utils 4.0.0 (20XX-XX-XX)
+## Gazebo Utils 4.0.0 (2025-09-30)
+
+1. package.xml: depend on `cli11`
+    * [Pull request #177](https://github.com/gazebosim/gz-utils/pull/177)
+
+1. Fix include in `ExtraTestMacros.hh`
+    * [Pull request #176](https://github.com/gazebosim/gz-utils/pull/176)
+
+1. Bump gz-cmake and others in jetty
+    * [Pull request #171](https://github.com/gazebosim/gz-utils/pull/171)
+    * [Tracking issue](https://github.com/gazebo-tooling/release-tools/issues/1309)
+
+1. Use 24.04 for doxygen CI
+    * [Pull request #173](https://github.com/gazebosim/gz-utils/pull/173)
+
+1. Disable `CLI11` vendoring by default
+    * [Pull request #167](https://github.com/gazebosim/gz-utils/pull/167)
+
+1. Bump main to gz-utils 4.0.0~pre1
+    * [Pull request #154](https://github.com/gazebosim/gz-utils/pull/154)
 
 ## Gazebo Utils 3.x
 
@@ -97,6 +116,24 @@
     * [Pull request #76](https://github.com/gazebosim/gz-utils/pull/76)
 
 ## Gazebo Utils 2.x
+
+### Gazebo Utils 2.2.1 (2025-01-30)
+
+1. Add package.xml
+    * [Pull request #125](https://github.com/gazebosim/gz-utils/pull/125)
+
+1. bazel: build and test subprocess functionality
+    * [Pull request #123](https://github.com/gazebosim/gz-utils/pull/123)
+
+1. Lint
+    * [Pull request #124](https://github.com/gazebosim/gz-utils/pull/124)
+
+1. Update CI badges in README
+    * [Pull request #120](https://github.com/gazebosim/gz-utils/pull/120)
+
+1. Infrastructure
+    * [Pull request #131](https://github.com/gazebosim/gz-utils/pull/131)
+    * [Pull request #119](https://github.com/gazebosim/gz-utils/pull/119)
 
 ## Gazebo Utils 2.2.0 (2023-11-08)
 
