@@ -9,10 +9,10 @@
 
 Build | Status
 -- | --
-Test coverage | [![codecov](https://codecov.io/gh/gazebosim/gz-utils/branch/main/graph/badge.svg)](https://app.codecov.io/gh/gazebosim/gz-utils/tree/main)
-Ubuntu Noble  | [![Build Status](https://build.osrfoundation.org/buildStatus/icon?job=gz_utils-ci-main-noble-amd64)](https://build.osrfoundation.org/job/gz_utils-ci-main-noble-amd64)
-Homebrew      | [![Build Status](https://build.osrfoundation.org/buildStatus/icon?job=gz_utils-ci-main-homebrew-amd64)](https://build.osrfoundation.org/job/gz_utils-ci-main-homebrew-amd64)
-Windows       | [![Build Status](https://build.osrfoundation.org/job/gz_utils-main-clowin/badge/icon)](https://build.osrfoundation.org/job/gz_utils-main-clowin/)
+Test coverage | [![codecov](https://codecov.io/gh/gazebosim/gz-utils/branch/gz-utils4/graph/badge.svg)](https://app.codecov.io/gh/gazebosim/gz-utils/tree/gz-utils4)
+Ubuntu Noble  | [![Build Status](https://build.osrfoundation.org/buildStatus/icon?job=gz_utils-ci-gz-utils4-noble-amd64)](https://build.osrfoundation.org/job/gz_utils-ci-gz-utils4-noble-amd64)
+Homebrew      | [![Build Status](https://build.osrfoundation.org/buildStatus/icon?job=gz_utils-ci-gz-utils4-homebrew-amd64)](https://build.osrfoundation.org/job/gz_utils-ci-gz-utils4-homebrew-amd64)
+Windows       | [![Build Status](https://build.osrfoundation.org/job/gz_utils-4-cnlwin/badge/icon)](https://build.osrfoundation.org/job/gz_utils-4-cnlwin/)
 
 Gazebo Utils, a component of [Gazebo](https://gazebosim.org), provides general purpose
 classes and functions designed for robotic applications.
@@ -53,7 +53,7 @@ See the [installation tutorial](https://gazebosim.org/api/utils/2/install.html).
 
 # Usage
 
-Please refer to the [examples directory](https://github.com/gazebosim/gz-utils/blob/main/examples/).
+Please refer to the [examples directory](https://github.com/gazebosim/gz-utils/blob/gz-utils4/examples/).
 
 # Documentation
 
