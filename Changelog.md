@@ -2,6 +2,15 @@
 
 ## Gazebo Utils 4.0.0 (2025-09-30)
 
+1. [Bazel] Enable github actions for gz-utils4
+    * [Pull request #186](https://github.com/gazebosim/gz-utils/pull/186)
+
+1. Update references of `main` to gz-utils4
+    * [Pull request #185](https://github.com/gazebosim/gz-utils/pull/185)
+
+1. packages.apt: use jetty package name
+    * [Pull request #180](https://github.com/gazebosim/gz-utils/pull/180)
+
 1. package.xml: depend on `cli11`
     * [Pull request #177](https://github.com/gazebosim/gz-utils/pull/177)
 
