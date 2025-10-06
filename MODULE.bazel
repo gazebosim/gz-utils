@@ -2,7 +2,6 @@
 
 module(
     name = "gz-utils",
-    repo_name = "org_gazebosim_gz-utils",
 )
 
 bazel_dep(name = "buildifier_prebuilt", version = "7.3.1")
