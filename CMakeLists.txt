@@ -9,7 +9,7 @@ project(gz-utils VERSION 4.0.0)
 # Find gz-cmake
 #============================================================================
 # If you get an error at this line, you need to install gz-cmake
-find_package(gz-cmake REQUIRED)
+find_package(gz-cmake 5 REQUIRED)
 
 #============================================================================
 # Configure the project
