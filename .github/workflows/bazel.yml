@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   test:
-    uses: bazel-contrib/.github/.github/workflows/bazel.yaml@v7
+    uses: bazel-contrib/.github/.github/workflows/bazel.yaml@v7.2.3
     with:
       folders: |
         [
@@ -22,3 +22,4 @@ jobs:
         [
           {"folder": ".", "bzlmodEnabled": false},
         ]
+      exclude_windows: true
