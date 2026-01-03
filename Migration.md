@@ -5,6 +5,10 @@ Deprecated code produces compile-time warnings. These warning serve as
 notification to users that their code should be upgraded. The next major
 release will remove the deprecated code.
 
+
+## Gazebo Utils 4.X to 5.X
+
+
 ## Gazebo Utils 3.X to 4.X
 
 The default value of `GZ_UTILS_VENDOR_CLI11` is now set to `OFF`, so that
