@@ -1,3 +1,7 @@
+## Gazebo Utils 5.x
+
+### Gazebo Utils 5.0.0 (20XX-XX-XX)
+
 ## Gazebo Utils 4.x
 
 ## Gazebo Utils 4.0.0 (2025-09-30)
