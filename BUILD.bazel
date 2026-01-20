@@ -176,11 +176,11 @@ cc_binary(
 cc_test(
     name = "subprocess_TEST",
     srcs = ["test/integration/subprocess_TEST.cc"],
-    local_defines = ['SUBPROCESS_EXECUTABLE_PATH=\\"subprocess_main\\"'],
+    data = [":subprocess_main"],
+    local_defines = ['SUBPROCESS_EXECUTABLE_PATH=\\"$(rootpath :subprocess_main)\\"'],
     deps = [
         ":Environment",
         ":Subprocess",
-        ":subprocess_main",
         "@googletest//:gtest",
         "@googletest//:gtest_main",
     ],
