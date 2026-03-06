@@ -65,6 +65,10 @@ class GZ_UTILS_LOG_VISIBLE Logger
   /// \param [in] _level Severity level
   public: void SetConsoleSinkLevel(spdlog::level::level_enum _level);
 
+  /// \brief Set console color output mode.
+  /// \param [in] _mode Color mode.
+  public: void SetConsoleColorMode(spdlog::color_mode _mode);
+
   /// \brief Implementation Pointer.
   GZ_UTILS_UNIQUE_IMPL_PTR(dataPtr)
 };
