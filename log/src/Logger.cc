@@ -133,4 +133,13 @@ void Logger::SetConsoleSinkLevel(spdlog::level::level_enum _level)
   }
 }
 
+/////////////////////////////////////////////////
+void Logger::SetConsoleColorMode(spdlog::color_mode _mode)
+{
+  if (this->dataPtr->consoleSink)
+  {
+    this->dataPtr->consoleSink->set_color_mode(_mode);
+  }
+}
+
 }  // namespace gz::utils::log
