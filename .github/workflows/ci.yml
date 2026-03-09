@@ -19,7 +19,7 @@ jobs:
         id: ci
         uses: gazebo-tooling/action-gz-ci@jrivero/gzdev-project-name-input
         with:
-          gzdev-project-name: nightly
+          gzdev-project-name: rotary          
           cppcheck-enabled: true
           cpplint-enabled: true
           doxygen-enabled: true
