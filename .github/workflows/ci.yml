@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Compile and test
         id: ci
-        uses: gazebo-tooling/action-gz-ci@jrivero/gzdev-project-name-input
+        uses: gazebo-tooling/action-gz-ci@noble
         with:
           gzdev-project-name: rotary          
           cppcheck-enabled: true
