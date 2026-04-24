@@ -33,7 +33,7 @@ jobs:
         id: ci
         uses: gazebo-tooling/action-gz-ci@resolute
         with:
-          gzdev-project-name: rotary          
+          gzdev-project-name: rotary
           cppcheck-enabled: true
           cpplint-enabled: true
           doxygen-enabled: true
