@@ -16,6 +16,7 @@
  */
 
 #include <gtest/gtest.h>
+#include <string>
 
 #include <gz/utils/SuppressWarning.hh>
 
@@ -28,11 +29,12 @@ class DerivedWithoutVirtualDestructor : public BaseWithoutVirtualDestructor
 {
 };
 
-// GZ_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING
 class DllInterfaceClass
 {
+  GZ_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING
+  private: std::string someString;
+  GZ_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
 };
-// GZ_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
 
 // GZ_UTILS_WARN_IGNORE__DEPRECATED_DECLARATION
 [[deprecated]]
