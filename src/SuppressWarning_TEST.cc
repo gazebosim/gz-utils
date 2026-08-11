@@ -21,7 +21,7 @@
 
 class BaseWithoutVirtualDestructor
 {
-  public: void DoSomething() {}
+  public: virtual void DoSomething() {}
 };
 
 class DerivedWithoutVirtualDestructor : public BaseWithoutVirtualDestructor
