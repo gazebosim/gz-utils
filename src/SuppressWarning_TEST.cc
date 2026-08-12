@@ -29,7 +29,7 @@ class DerivedWithoutVirtualDestructor : public BaseWithoutVirtualDestructor
 {
 };
 
-// GZ_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING
+GZ_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING
 class
 #ifdef _MSC_VER
   __declspec(dllexport)
@@ -38,30 +38,30 @@ DllInterfaceClass
 {
   private: std::string someString;
 };
-// GZ_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
+GZ_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
 
-// GZ_UTILS_WARN_IGNORE__DEPRECATED_DECLARATION
+GZ_UTILS_WARN_IGNORE__DEPRECATED_DECLARATION
 [[deprecated]]
 void DeprecatedFunction()
 {
 }
-// GZ_UTILS_WARN_RESUME__DEPRECATED_DECLARATION
+GZ_UTILS_WARN_RESUME__DEPRECATED_DECLARATION
 
 /////////////////////////////////////////////////
 TEST(SuppressWarning, NonVirtualDestructor)
 {
   BaseWithoutVirtualDestructor *ptr = new DerivedWithoutVirtualDestructor();
-  // GZ_UTILS_WARN_IGNORE__NON_VIRTUAL_DESTRUCTOR
+  GZ_UTILS_WARN_IGNORE__NON_VIRTUAL_DESTRUCTOR
   delete ptr;
-  // GZ_UTILS_WARN_RESUME__NON_VIRTUAL_DESTRUCTOR
+  GZ_UTILS_WARN_RESUME__NON_VIRTUAL_DESTRUCTOR
 }
 
 /////////////////////////////////////////////////
 TEST(SuppressWarning, DeprecatedDeclaration)
 {
-  // GZ_UTILS_WARN_IGNORE__DEPRECATED_DECLARATION
+  GZ_UTILS_WARN_IGNORE__DEPRECATED_DECLARATION
   DeprecatedFunction();
-  // GZ_UTILS_WARN_RESUME__DEPRECATED_DECLARATION
+  GZ_UTILS_WARN_RESUME__DEPRECATED_DECLARATION
 }
 
 /////////////////////////////////////////////////
@@ -70,7 +70,7 @@ TEST(SuppressWarning, SwitchNoDefault)
   enum class MyEnum { A, B };
   MyEnum e = MyEnum::A;
 
-  // GZ_UTILS_WARN_IGNORE__SWITCH_NO_DEFAULT_STATEMENT
+  GZ_UTILS_WARN_IGNORE__SWITCH_NO_DEFAULT_STATEMENT
   switch (e)
   {
     case MyEnum::A:
@@ -78,5 +78,5 @@ TEST(SuppressWarning, SwitchNoDefault)
     case MyEnum::B:
       break;
   }
-  // GZ_UTILS_WARN_RESUME__SWITCH_NO_DEFAULT_STATEMENT
+  GZ_UTILS_WARN_RESUME__SWITCH_NO_DEFAULT_STATEMENT
 }
