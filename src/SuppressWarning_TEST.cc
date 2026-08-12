@@ -29,12 +29,16 @@ class DerivedWithoutVirtualDestructor : public BaseWithoutVirtualDestructor
 {
 };
 
-class DllInterfaceClass
+// GZ_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING
+class
+#ifdef _MSC_VER
+  __declspec(dllexport)
+#endif
+DllInterfaceClass
 {
-  GZ_UTILS_WARN_IGNORE__DLL_INTERFACE_MISSING
   private: std::string someString;
-  GZ_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
 };
+// GZ_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
 
 // GZ_UTILS_WARN_IGNORE__DEPRECATED_DECLARATION
 [[deprecated]]
