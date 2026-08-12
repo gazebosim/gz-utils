@@ -85,6 +85,19 @@
     DETAIL_GZ_UTILS_WARN_RESUME__DEPRECATED_DECLARATION
 #endif
 
+/// \brief Use this to suppress warnings for switch without a default statement.
+/// This can be useful when using code that relies on not having a default to
+/// trigger missing case warnings when a new enum variant is added.
+#ifndef GZ_UTILS_WARN_IGNORE__SWITCH_NO_DEFAULT_STATEMENT
+  #define GZ_UTILS_WARN_IGNORE__SWITCH_NO_DEFAULT_STATEMENT \
+    DETAIL_GZ_UTILS_WARN_IGNORE__SWITCH_NO_DEFAULT_STATEMENT
+#endif
+
+#ifndef GZ_UTILS_WARN_RESUME__SWITCH_NO_DEFAULT_STATEMENT
+  #define GZ_UTILS_WARN_RESUME__SWITCH_NO_DEFAULT_STATEMENT \
+    DETAIL_GZ_UTILS_WARN_RESUME__SWITCH_NO_DEFAULT_STATEMENT
+#endif
+
 // TODO(anyone): Add more warning types as they become relevant.
 // Do not add warning types to suppress unless they are genuinely necessary.
 
