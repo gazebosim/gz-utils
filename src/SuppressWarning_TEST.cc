@@ -40,12 +40,10 @@ DllInterfaceClass
 };
 GZ_UTILS_WARN_RESUME__DLL_INTERFACE_MISSING
 
-GZ_UTILS_WARN_IGNORE__DEPRECATED_DECLARATION
 [[deprecated]]
 void DeprecatedFunction()
 {
 }
-GZ_UTILS_WARN_RESUME__DEPRECATED_DECLARATION
 
 /////////////////////////////////////////////////
 TEST(SuppressWarning, NonVirtualDestructor)
