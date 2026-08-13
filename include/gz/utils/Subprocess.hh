@@ -18,6 +18,10 @@
 #ifndef GZ_UTILS__SUBPROCESS_HH_
 #define GZ_UTILS__SUBPROCESS_HH_
 
+#if defined(_WIN32)
+#include <windows.h>
+#endif  // defined(_WIN32)
+
 #include "detail/subprocess.h"
 #include "gz/utils/Environment.hh"
 
@@ -87,7 +91,7 @@ class Subprocess
   {
   }
 
-
+  /// \brief Create a subprocess
   private: void Create()
   {
     if (this->process != nullptr)
@@ -181,6 +185,26 @@ class Subprocess
       return subprocess_alive(this->process);
     else
       return false;
+  }
+
+  public: bool Signal(int signum)
+  {
+    if (this->process != nullptr)
+      return subprocess_signal(this->process, signum) != 0;
+    else
+      return false;
+
+  }
+
+  public: bool SendExitSignal()
+  {
+    int signal = 0;
+#if defined(_WIN32)
+    signal = static_cast<int>(CTRL_BREAK_EVENT);
+#else
+    signal = static_cast<int>(SIGINT);
+#endif
+    return this->Signal(signal);
   }
 
   public: bool Terminate()
