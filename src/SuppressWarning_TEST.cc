@@ -45,9 +45,11 @@ void DeprecatedFunction()
 {
 }
 
+GZ_UTILS_WARN_IGNORE__UNUSED_FUNCTION
 static void UnusedStaticFunction()
 {
 }
+GZ_UTILS_WARN_RESUME__UNUSED_FUNCTION
 
 /////////////////////////////////////////////////
 TEST(SuppressWarning, NonVirtualDestructor)
