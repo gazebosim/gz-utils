@@ -45,6 +45,10 @@ void DeprecatedFunction()
 {
 }
 
+static void UnusedStaticFunction()
+{
+}
+
 /////////////////////////////////////////////////
 TEST(SuppressWarning, NonVirtualDestructor)
 {
