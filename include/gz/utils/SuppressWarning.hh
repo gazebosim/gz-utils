@@ -98,6 +98,19 @@
     DETAIL_GZ_UTILS_WARN_RESUME__SWITCH_NO_DEFAULT_STATEMENT
 #endif
 
+/// \brief Use this to suppress warnings for unused functions.
+/// This can be useful when external libraries have static functions with
+/// internal linkage that are not used.
+#ifndef GZ_UTILS_WARN_IGNORE__UNUSED_FUNCTION
+  #define GZ_UTILS_WARN_IGNORE__UNUSED_FUNCTION \
+    DETAIL_GZ_UTILS_WARN_IGNORE__UNUSED_FUNCTION
+#endif
+
+#ifndef GZ_UTILS_WARN_RESUME__UNUSED_FUNCTION
+  #define GZ_UTILS_WARN_RESUME__UNUSED_FUNCTION \
+    DETAIL_GZ_UTILS_WARN_RESUME__UNUSED_FUNCTION
+#endif
+
 // TODO(anyone): Add more warning types as they become relevant.
 // Do not add warning types to suppress unless they are genuinely necessary.
 
