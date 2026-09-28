@@ -5,7 +5,7 @@
   <description>Gazebo Utils : Classes and functions for robot applications</description>
 
   <maintainer email="addisu@openrobotics.org">Addizu Z. Taddese</maintainer>
-  <license>Apache License 2.0</license>
+  <license>Apache-2.0</license>
 
   <url type="website">https://github.com/gazebosim/gz-utils</url>
 
