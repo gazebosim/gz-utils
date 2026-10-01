@@ -6,6 +6,18 @@
             "github": "mjcarroll",
             "github_user_id": 279701,
             "name": "Michael Carroll"
+        },
+        {
+            "email": "scpeters@intrinsic.ai",
+            "github": "scpeters",
+            "github_user_id": 3650755,
+            "name": "Steve Peters"
+        },
+        {
+            "email": "jrivero@honurobotics.com",
+            "github": "j-rivero",
+            "github_user_id": 2098802,
+            "name": "Jose Luis Rivero"
         }
     ],
     "repository": [
