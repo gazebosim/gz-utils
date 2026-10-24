@@ -9,25 +9,29 @@ on:
       - 'main'
 
 jobs:
-  focal-ci:
-    runs-on: ubuntu-latest
-    name: Ubuntu Focal CI
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      - name: Compile and test
-        id: ci
-        uses: gazebo-tooling/action-gz-ci@focal
-        with:
-          codecov-enabled: true
-          cpplint-enabled: true
-          doxygen-enabled: true
   jammy-ci:
     runs-on: ubuntu-latest
     name: Ubuntu Jammy CI
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Compile and test
         id: ci
         uses: gazebo-tooling/action-gz-ci@jammy
+        with:
+          codecov-enabled: true
+          cpplint-enabled: true
+          doxygen-enabled: true
+  noble-ci:
+    runs-on: ubuntu-latest
+    name: Ubuntu Noble CI
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Compile and test
+        id: ci
+        uses: gazebo-tooling/action-gz-ci@noble
+        with:
+          codecov-enabled: true
+          cpplint-enabled: true
+          doxygen-enabled: true

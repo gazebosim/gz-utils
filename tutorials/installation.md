@@ -5,17 +5,17 @@
 This tutorial describes how to install Gazebo Utils on Linux, Mac OS X and
 Windows via either a binary distribution or from source.
 
-[Install](#install)
+[Installation instructions](#installation-instructions)
 
 - [Binary Install](#binary-install)
 
 - [Source Install](#source-install)
 
-  - [Prerequisites](#prerequisites)
+[Documentation](#documentation)
 
-  - [Building from Source](#building-from-source)
+[Testing](#testing)
 
-# Install
+# Installation instructions
 
 We recommend following the [Binary Install](#binary-install) instructions to get up and running as quickly and painlessly as possible.
 
