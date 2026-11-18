@@ -1,5 +1,34 @@
 ## Gazebo Utils 3.x
 
+### Gazebo Utils 3.2.0 (2026-11-18)
+
+1. Use the SPDX identifier Apache-2.0 in the license declaration
+    * [Pull request #235](https://github.com/gazebosim/gz-utils/pull/235)
+
+1. Add warning suppression macro for unused static functions
+    * [Pull request #226](https://github.com/gazebosim/gz-utils/pull/226)
+
+1. Tests for SuppressWarning macros
+    * [Pull request #219](https://github.com/gazebosim/gz-utils/pull/219)
+
+1. Add suppression macro for switch with no default
+    * [Pull request #221](https://github.com/gazebosim/gz-utils/pull/221)
+
+1. [bazel] Few fixes in MODULE.bazel
+    * [Pull request #197](https://github.com/gazebosim/gz-utils/pull/197)
+
+1. [bazel] Bump spdlog version
+    * [Pull request #198](https://github.com/gazebosim/gz-utils/pull/198)
+
+1. CI and infrastructure updates
+    * [Pull request #234](https://github.com/gazebosim/gz-utils/pull/234)
+    * [Pull request #227](https://github.com/gazebosim/gz-utils/pull/227)
+    * [Pull request #215](https://github.com/gazebosim/gz-utils/pull/215)
+    * [Pull request #209](https://github.com/gazebosim/gz-utils/pull/209)
+    * [Pull request #202](https://github.com/gazebosim/gz-utils/pull/202)
+    * [Pull request #195](https://github.com/gazebosim/gz-utils/pull/195)
+    * [Pull request #173](https://github.com/gazebosim/gz-utils/pull/173)
+
 ### Gazebo Utils 3.1.1 (2025-02-12)
 
 1. ci.yml: run cppcheck, cpplint on noble
